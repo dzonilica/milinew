@@ -1,0 +1,6 @@
+{
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/vest/:id", "destination": "/vest.html" }
+  ]
+}

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="sr" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel – Sport Vesti</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <script>
+    (function() {
+      const t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <style>
+    /* ─── Instagram import card ─────────────────────────────────────────── */
+    .ig-import-card {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px 20px;
+      margin-bottom: 24px;
+    }
+
+    .ig-import-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .ig-import-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem; font-weight: 700;
+    }
+
+    .ig-badge {
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+      background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+      color: #fff;
+    }
+
+    .ig-input-row {
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+
+    .ig-input-row input {
+      flex: 1; padding: 11px 14px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text); font-size: 0.9rem;
+      font-family: var(--font);
+      transition: border-color 0.2s;
+    }
+
+    .ig-input-row input:focus {
+      outline: none; border-color: #dc2743;
+    }
+
+    .btn-ig-fetch {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 11px 18px; border-radius: var(--radius-sm);
+      background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+      color: #fff; font-family: var(--font);
+      font-size: 0.88rem; font-weight: 700;
+      cursor: pointer; border: none;
+      transition: filter 0.2s, transform 0.15s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+
+    .btn-ig-fetch:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-ig-fetch:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .btn-ig-fetch svg { width: 15px; height: 15px; stroke: #fff; fill: none; }
+
+    .ig-status {
+      margin-top: 10px;
+      font-size: 0.82rem; padding: 9px 12px;
+      border-radius: 6px; display: none;
+      align-items: center; gap: 8px;
+    }
+
+    .ig-status.ok {
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25);
+      color: #16a34a; display: flex;
+    }
+
+    .ig-status.err {
+      background: rgba(230,53,53,0.08); border: 1px solid rgba(230,53,53,0.2);
+      color: #c0392b; display: flex;
+    }
+
+    [data-theme="dark"] .ig-status.ok { color: #4ade80; }
+    [data-theme="dark"] .ig-status.err { color: #ff7a7a; }
+
+    .ig-preview-img {
+      margin-top: 12px;
+      width: 100%; max-height: 180px; object-fit: cover;
+      border-radius: 8px; display: none;
+      border: 1px solid var(--border);
+    }
+
+    .form-divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 20px 0 4px;
+      color: var(--text-dim); font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 1.5px;
+    }
+
+    .form-divider::before, .form-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/>
+        </svg>
+      </div>
+      Sport<span>Vesti</span>
+    </a>
+    <div class="header-right">
+      <span class="header-tag" id="adminUserLabel"></span>
+      <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ─── LOGIN VIEW ───────────────────────────────────────────────────────── -->
+<div id="loginView">
+  <div class="login-card">
+    <div class="admin-badge" style="margin-bottom:20px;">Admin panel</div>
+    <h2>Prijava administratora</h2>
+    <p>Unesite admin podatke za pristup kontrolnoj tabli.</p>
+
+    <div class="form-group">
+      <label>Korisničko ime</label>
+      <input type="text" id="username" placeholder="korisnicko_ime" autocomplete="username"/>
+    </div>
+
+    <div class="form-group">
+      <label>Lozinka</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password"/>
+    </div>
+
+    <button class="btn btn-primary full" onclick="doLogin()">Prijavi se</button>
+    <div class="error-msg" id="loginError"></div>
+  </div>
+</div>
+
+<!-- ─── ADMIN DASHBOARD ──────────────────────────────────────────────────── -->
+<div id="adminView" style="display:none;">
+  <div class="admin-wrap">
+
+    <div class="admin-header">
+      <span class="admin-badge">Admin Panel</span>
+      <h1>Kontrolna tabla</h1>
+      <button class="btn btn-logout" onclick="doLogout()">Odjavi se</button>
+    </div>
+
+    <!-- STATS -->
+    <div class="admin-stats">
+      <div class="stat-card">
+        <div class="stat-number" id="totalNews">–</div>
+        <div class="stat-label">Ukupno vesti</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="todayNews">–</div>
+        <div class="stat-label">Danas dodato</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="manualNews">–</div>
+        <div class="stat-label">Ručno dodatih</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" data-tab="list">Sve vesti</button>
+      <button class="tab" data-tab="add">Dodaj novu vest</button>
+    </div>
+
+    <!-- TAB: LIST -->
+    <div class="tab-content active" id="tab-list">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <span style="font-size:.85rem;color:var(--text-muted);">Klikni Obriši za brisanje vesti</span>
+        <button class="btn" style="background:var(--surface2);border:1px solid var(--border);font-size:.8rem;padding:8px 14px;"
+          onclick="loadAdminNews()">Osveži</button>
+      </div>
+      <div id="adminNewsList" class="admin-news-list">
+        <div class="loading"><div class="loading-spinner"></div></div>
+      </div>
+    </div>
+
+    <!-- TAB: ADD -->
+    <div class="tab-content" id="tab-add">
+      <div class="add-form-card">
+        <h3>Dodaj novu vest</h3>
+        <p class="subtitle">Uvezi sa Instagrama ili ručno popuni polja.</p>
+
+        <!-- ── Instagram import ── -->
+        <div class="ig-import-card">
+          <div class="ig-import-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <defs>
+                <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#f09433"/>
+                  <stop offset="50%" stop-color="#dc2743"/>
+                  <stop offset="100%" stop-color="#bc1888"/>
+                </linearGradient>
+              </defs>
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4.5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="#dc2743" stroke="none"/>
+            </svg>
+            <h3>Uvezi sa Instagrama</h3>
+            <span class="ig-badge">Automatski</span>
+          </div>
+          <div class="ig-input-row">
+            <input type="url" id="igUrl" placeholder="https://www.instagram.com/p/ABC123/"/>
+            <button class="btn-ig-fetch" id="igFetchBtn" onclick="fetchInstagram()">
+              <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+              </svg>
+              Učitaj
+            </button>
+          </div>
+          <img id="igPreviewImg" class="ig-preview-img" alt=""/>
+          <div class="ig-status" id="igStatus"></div>
+        </div>
+
+        <div class="form-divider">Detalji vesti</div>
+
+        <!-- ── Form fields ── -->
+        <div class="form-group">
+          <label>Naslov vesti *</label>
+          <input type="text" id="newTitle" placeholder="Npr. FK Radnički slavio u derbiju" maxlength="200"/>
+          <div class="hint">Kratko i jasno – ovo će videti čitaoci na početnoj strani</div>
+        </div>
+
+        <div class="form-group">
+          <label>Opis / Tekst vesti</label>
+          <textarea id="newDescription" placeholder="Tekst vesti (preuzet sa Instagrama ili unesite ručno)..." rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>URL slike</label>
+          <input type="url" id="newImageUrl" placeholder="https://..."/>
+          <div class="hint">Automatski popunjeno sa Instagrama, ili zalepite link slike</div>
+          <div class="image-preview" id="imagePreview">
+            <img id="imagePreviewImg" src="" alt=""/>
+          </div>
+        </div>
+
+        <!-- Hidden: stores instagram post URL if imported -->
+        <input type="hidden" id="newInstagramUrl"/>
+
+        <button class="btn btn-primary full" onclick="addNews()" id="addBtn">
+          Objavi vest
+        </button>
+
+        <div class="error-msg" id="addError"></div>
+        <div class="success-msg" id="addSuccess"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/>
+        </svg>
+      </div>
+      Sport<span>Vesti</span>
+    </div>
+    <div class="footer-copy">© 2025 · Admin panel</div>
+  </div>
+</footer>
+
+<script>
+  // ─── AUTH ────────────────────────────────────────────────────────────────
+  const getToken = () => sessionStorage.getItem('sv_token');
+  const setToken = (t, u) => { sessionStorage.setItem('sv_token', t); sessionStorage.setItem('sv_user', u); };
+  const clearToken = () => { sessionStorage.removeItem('sv_token'); sessionStorage.removeItem('sv_user'); };
+
+  function escapeHtml(s) {
+    if (!s) return '';
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  async function doLogin() {
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    if (!username || !password) return showLoginError('Unesite korisničko ime i lozinku.');
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (!res.ok) return showLoginError(data.error || 'Greška pri prijavi.');
+      setToken(data.token, data.username);
+      showAdminPanel();
+    } catch(e) {
+      showLoginError('Nije moguće spojiti se na server.');
+    }
+  }
+
+  function doLogout() {
+    clearToken();
+    document.getElementById('adminView').style.display = 'none';
+    document.getElementById('loginView').style.display = 'block';
+    document.getElementById('adminUserLabel').textContent = '';
+    document.getElementById('password').value = '';
+  }
+
+  function showLoginError(msg) {
+    const el = document.getElementById('loginError');
+    el.textContent = msg; el.style.display = 'block';
+  }
+
+  function showAdminPanel() {
+    document.getElementById('loginView').style.display = 'none';
+    document.getElementById('adminView').style.display = 'block';
+    document.getElementById('adminUserLabel').textContent = sessionStorage.getItem('sv_user') || '';
+    loadAdminNews();
+  }
+
+  // ─── TABS ────────────────────────────────────────────────────────────────
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+    });
+  });
+
+  // ─── IMAGE PREVIEW ───────────────────────────────────────────────────────
+  document.getElementById('newImageUrl').addEventListener('input', function() {
+    const url = this.value.trim();
+    const preview = document.getElementById('imagePreview');
+    const img = document.getElementById('imagePreviewImg');
+    if (url && url.match(/^https?:\/\//)) {
+      img.src = url;
+      preview.style.display = 'block';
+      img.onerror = () => { preview.style.display = 'none'; };
+    } else {
+      preview.style.display = 'none';
+    }
+  });
+
+  // ─── INSTAGRAM FETCH ─────────────────────────────────────────────────────
+  async function fetchInstagram() {
+    const url = document.getElementById('igUrl').value.trim();
+    const btn = document.getElementById('igFetchBtn');
+    const status = document.getElementById('igStatus');
+    const previewImg = document.getElementById('igPreviewImg');
+
+    status.className = 'ig-status';
+    status.style.display = 'none';
+    previewImg.style.display = 'none';
+
+    if (!url) {
+      status.textContent = 'Unesite Instagram link objave.';
+      status.className = 'ig-status err';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;animation:spin .7s linear infinite"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Učitavam...`;
+
+    try {
+      const res = await fetch('/api/instagram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
+        body: JSON.stringify({ url })
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        status.textContent = data.error || 'Greška pri učitavanju.';
+        status.className = 'ig-status err';
+        if (res.status === 401) doLogout();
+        return;
+      }
+
+      // Fill form fields
+      if (data.image_url) {
+        document.getElementById('newImageUrl').value = data.image_url;
+        document.getElementById('newImageUrl').dispatchEvent(new Event('input'));
+        previewImg.src = data.image_url;
+        previewImg.style.display = 'block';
+        previewImg.onerror = () => { previewImg.style.display = 'none'; };
+      }
+
+      if (data.description) {
+        document.getElementById('newDescription').value = data.description;
+      }
+
+      document.getElementById('newInstagramUrl').value = data.instagram_post_url || url;
+
+      const gotImg = !!data.image_url;
+      const gotDesc = !!data.description;
+
+      if (gotImg || gotDesc) {
+        status.innerHTML = `&#10003; Uspešno! ${gotImg ? 'Slika preuzeta.' : 'Slika nije pronađena.'} ${gotDesc ? 'Opis preuzet.' : 'Dodaj opis ručno.'} <strong>Unesite naslov i objavite.</strong>`;
+        status.className = 'ig-status ok';
+        document.getElementById('newTitle').focus();
+      } else {
+        status.textContent = 'Objava učitana, ali bez slike i opisa. Moguće da je profil privatan.';
+        status.className = 'ig-status err';
+      }
+
+    } catch(e) {
+      status.textContent = 'Greška: ' + e.message;
+      status.className = 'ig-status err';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Učitaj`;
+    }
+  }
+
+  // ─── LOAD NEWS LIST ──────────────────────────────────────────────────────
+  async function loadAdminNews() {
+    const list = document.getElementById('adminNewsList');
+    list.innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+
+    try {
+      const res = await fetch('/api/news', { headers: { 'Authorization': `Bearer ${getToken()}` } });
+      const news = await res.json();
+      if (!Array.isArray(news)) throw new Error();
+
+      const today = new Date().toDateString();
+      document.getElementById('totalNews').textContent = news.length;
+      document.getElementById('todayNews').textContent = news.filter(n => new Date(n.created_at).toDateString() === today).length;
+      document.getElementById('manualNews').textContent = news.filter(n => String(n.instagram_post_id || '').startsWith('manual_')).length;
+
+      if (!news.length) {
+        list.innerHTML = `<div class="empty-state" style="padding:50px 20px;">
+          <div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px;stroke:var(--text-dim)"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9"/><path d="M22 19l-4-4"/><circle cx="17" cy="17" r="3"/></svg></div>
+          <h3>Nema vesti</h3>
+          <p>Dodaj prvu vest klikom na "Dodaj novu vest".</p>
+        </div>`;
+        return;
+      }
+
+      list.innerHTML = news.map(n => {
+        const isIG = n.instagram_post_url && !String(n.instagram_post_id || '').startsWith('manual_');
+        const igSvg = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`;
+        const penSvg = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`;
+        const ballPlaceholder = `<div class="admin-news-thumb" style="background:var(--surface2);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text-dim)" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/></svg></div>`;
+        return `
+          <div class="admin-news-item" id="item-${n.id}">
+            ${n.image_url
+              ? `<img src="${escapeHtml(n.image_url)}" class="admin-news-thumb" alt="" onerror="this.replaceWith(document.createElement('div'))">`
+              : ballPlaceholder}
+            <div class="admin-news-info">
+              <div class="admin-news-title" style="display:flex;align-items:center;gap:6px;">
+                ${isIG ? igSvg : penSvg}
+                ${escapeHtml(n.title)}
+              </div>
+              <div class="admin-news-time">
+                ${new Date(n.created_at).toLocaleString('sr-RS', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
+              </div>
+            </div>
+            <div class="admin-news-actions">
+              <a href="vest.html?id=${n.id}" target="_blank" class="admin-view-btn">Pregledaj</a>
+              <button class="btn btn-danger" onclick="deleteNews(${n.id})">Obriši</button>
+            </div>
+          </div>`;
+      }).join('');
+    } catch(e) {
+      list.innerHTML = `<div class="empty-state"><div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px;stroke:var(--text-dim)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><h3>Greška pri učitavanju</h3></div>`;
+    }
+  }
+
+  // ─── DELETE ──────────────────────────────────────────────────────────────
+  async function deleteNews(id) {
+    if (!confirm('Obrisati ovu vest? Ova akcija je nepovratna.')) return;
+    try {
+      const res = await fetch(`/api/news/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+      });
+      if (res.ok) {
+        const item = document.getElementById(`item-${id}`);
+        item.style.transition = 'opacity .3s, max-height .3s';
+        item.style.opacity = '0';
+        setTimeout(() => { item.remove(); loadAdminNews(); }, 300);
+      } else {
+        const d = await res.json();
+        if (res.status === 401) return doLogout();
+        alert('Greška: ' + (d.error || 'Nepoznata greška'));
+      }
+    } catch(e) {
+      alert('Greška pri brisanju.');
+    }
+  }
+
+  // ─── ADD NEWS ────────────────────────────────────────────────────────────
+  async function addNews() {
+    const title = document.getElementById('newTitle').value.trim();
+    const description = document.getElementById('newDescription').value.trim();
+    const image_url = document.getElementById('newImageUrl').value.trim();
+    const instagram_post_url = document.getElementById('newInstagramUrl').value.trim();
+    const errEl = document.getElementById('addError');
+    const successEl = document.getElementById('addSuccess');
+    const btn = document.getElementById('addBtn');
+
+    errEl.style.display = 'none';
+    successEl.style.display = 'none';
+
+    if (!title) {
+      errEl.textContent = 'Naslov je obavezan.';
+      errEl.style.display = 'block';
+      document.getElementById('newTitle').focus();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Objavljivanje...';
+
+    try {
+      const res = await fetch('/api/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
+        body: JSON.stringify({ title, description, image_url, instagram_post_url })
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        if (res.status === 401) return doLogout();
+        errEl.textContent = data.error || 'Greška pri objavljivanju.';
+        errEl.style.display = 'block';
+        return;
+      }
+
+      successEl.textContent = 'Vest je uspešno objavljena!';
+      successEl.style.display = 'block';
+
+      // Reset all fields
+      ['newTitle','newDescription','newImageUrl','igUrl','newInstagramUrl'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('imagePreview').style.display = 'none';
+      document.getElementById('igPreviewImg').style.display = 'none';
+      document.getElementById('igStatus').style.display = 'none';
+      document.getElementById('igStatus').className = 'ig-status';
+
+      loadAdminNews();
+
+      setTimeout(() => {
+        document.querySelector('.tab[data-tab="list"]').click();
+        successEl.style.display = 'none';
+      }, 1500);
+
+    } catch(e) {
+      errEl.textContent = 'Greška: ' + e.message;
+      errEl.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Objavi vest';
+    }
+  }
+
+  // ─── KEYBOARD ────────────────────────────────────────────────────────────
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('loginView').style.display !== 'none') doLogin();
+    if (e.key === 'Enter' && e.ctrlKey && document.getElementById('tab-add').classList.contains('active')) addNews();
+  });
+
+  // ─── THEME ───────────────────────────────────────────────────────────────
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+
+  // ─── INIT ────────────────────────────────────────────────────────────────
+  if (getToken()) showAdminPanel();
+</script>
+
+</body>
+</html>
