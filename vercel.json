@@ -1,6 +1,34 @@
 {
   "outputDirectory": "public",
   "rewrites": [
-    { "source": "/vest/:id", "destination": "/vest.html" }
+    { "source": "/vest/:id", "destination": "/vest.html" },
+    { "source": "/sitemap.xml", "destination": "/api/sitemap" }
+  ],
+  "headers": [
+    {
+      "source": "/admin-panel.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/(favicon|og-image).(svg|png|jpg|ico)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, immutable" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
   ]
 }

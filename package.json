@@ -1,0 +1,13 @@
+{
+  "name": "kragujevac-sport",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kragujevac Sport – najnovije sportske vesti iz Kragujevca i okoline.",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

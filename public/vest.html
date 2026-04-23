@@ -3,9 +3,24 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sport Vesti Kragujevac</title>
+  <meta name="theme-color" content="#e63535"/>
+
+  <title>Kragujevac Sport – Vest</title>
+  <meta name="description" content="Sportska vest iz Kragujevca – Kragujevac Sport."/>
+  <meta name="robots" content="index, follow, max-image-preview:large"/>
+
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="Kragujevac Sport"/>
+  <meta property="og:locale" content="sr_RS"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
   <link rel="stylesheet" href="css/style.css"/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23e63535'/><path d='M16 6a10 10 0 1 0 0 20A10 10 0 0 0 16 6zm0 2a8 8 0 0 1 5.29 2L18 12.24 14.2 10l-.2-.11A8 8 0 0 1 16 8zm-3.5 1.4.2.12L15.5 12H10.1A8 8 0 0 1 12.5 9.4zm7 0A8 8 0 0 1 21.9 12H17l2.8-1.71.7-.89zm-10.06 4.6h5.06l-1.56 4.8-3.5-3.5v-1.3zm6.56 0h5.06V15l-3.5 3.5L11.06 14zM9 15.06l3 3-1.85 2.4A8 8 0 0 1 9 15.06zm14 0a8 8 0 0 1-1.15 5.4L20 18.06l3-3zm-9.26 3.44 1.26.82 1.26-.82.88 2.72A8 8 0 0 1 16 22a8 8 0 0 1-2.14-.28l.88-2.72z' fill='%23fff'/></svg>"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preconnect" href="https://djhrxrhucwfygnjvkqyl.supabase.co"/>
+
   <script>
     (function() {
       const t = localStorage.getItem('theme') || 'light';
@@ -15,31 +30,30 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="header-inner">
-    <a href="index.html" class="logo">
+    <a href="index.html" class="logo" aria-label="Kragujevac Sport – početna">
       <div class="logo-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/>
         </svg>
       </div>
-      Sport<span>Vesti</span>
+      Kragujevac<span>Sport</span>
     </a>
     <div class="header-right">
       <span class="header-tag">
         <span class="live-dot"></span>
-        Kragujevac Sport
+        Sve sportske vesti iz Kragujevca
       </span>
       <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="5"/>
           <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
           <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
           <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
@@ -47,29 +61,75 @@
   </div>
 </header>
 
-<!-- ARTICLE -->
-<div class="article-wrap" id="articleWrap">
-  <div class="loading">
-    <div class="loading-spinner"></div>
-    <p>Učitavanje vesti...</p>
+<!-- PAGE GRID: left banner | article | right banner -->
+<div class="page-with-sides">
+  <aside class="side-banner" aria-label="Reklamna pozicija levo">
+    <div class="side-banner-slot" id="bannerLeft">
+      <span class="side-banner-label">Reklama</span>
+      <div class="side-banner-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        Reklamna<br/>pozicija
+      </div>
+    </div>
+  </aside>
+
+  <div class="article-wrap" id="articleWrap">
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      <p>Učitavanje vesti...</p>
+    </div>
   </div>
+
+  <aside class="side-banner" aria-label="Reklamna pozicija desno">
+    <div class="side-banner-slot" id="bannerRight">
+      <span class="side-banner-label">Reklama</span>
+      <div class="side-banner-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        Reklamna<br/>pozicija
+      </div>
+    </div>
+  </aside>
 </div>
 
-<!-- FOOTER -->
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galerija slika">
+  <button class="lightbox-close" id="lbClose" aria-label="Zatvori">×</button>
+  <button class="lightbox-nav prev" id="lbPrev" aria-label="Prethodna">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <img id="lbImg" src="" alt=""/>
+  <button class="lightbox-nav next" id="lbNext" aria-label="Sledeća">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="logo-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/>
         </svg>
       </div>
-      Sport<span>Vesti</span>
+      Kragujevac<span>Sport</span>
     </div>
-    <div class="footer-copy">© 2025 Sport Vesti Kragujevac</div>
+    <div class="footer-copy">
+      © <span id="year"></span> Kragujevac Sport · Sve sportske vesti iz Kragujevca
+      <span class="footer-credit">
+        Radio <a href="https://lotifystudio.com" target="_blank" rel="noopener">Lotify Studio</a>
+      </span>
+    </div>
     <div class="footer-socials">
-      <a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" title="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
           <circle cx="12" cy="12" r="4.5"/>
           <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
@@ -80,67 +140,16 @@
 </footer>
 
 <script>
-  const SUPABASE_URL = 'https://djhrxrhucwfygnjvkqyl.supabase.co';
+  const SUPABASE_URL  = 'https://djhrxrhucwfygnjvkqyl.supabase.co';
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqaHJ4cmh1Y3dmeWduanZrcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzOTAzMTYsImV4cCI6MjA4OTk2NjMxNn0.APKFBCb4PfuPoiD4c4p5AdUWe6aXpZZ3eFvifPuzvpw';
 
-  // Embedded so vest page works even without visiting index first
-  const SAMPLE_NEWS = [
-    {
-      id: 'sample-1',
-      title: 'Radnički savladao Vojvodinu u derbiju: Historijska pobeda u Kragujevcu',
-      description: 'U uzbudljivom meču pred prepunim stadionom u Kragujevcu, FK Radnički je savladao Vojvodinu rezultatom 2:1. Golove za domaće postigli su Nikola Jović u 34. minutu i Stefan Marković u 78. minutu, dok je počasni gol gostiju dao Lazar Popović. Ovom pobedom Radnički se učvrstio na četvrtom mestu tabele Superlige.',
-      created_at: new Date(Date.now() - 2 * 3600 * 1000).toISOString(),
-      image_url: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80',
-      category: 'Fudbal'
-    },
-    {
-      id: 'sample-2',
-      title: 'KK Radnički šampion Kupa Srbije u košarci za mlađe kategorije',
-      description: 'Košarkaši Radničkog su na završnom turniru u Nišu osvojili Kup Srbije u kategoriji kadeta, pobedivši u finalu Crvenu zvezdu rezultatom 74:68.',
-      created_at: new Date(Date.now() - 5 * 3600 * 1000).toISOString(),
-      image_url: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=900&q=80',
-      category: 'Košarka'
-    },
-    {
-      id: 'sample-3',
-      title: 'Mladi atletičar iz Kragujevca oborio rekord Srbije u skoku udalj',
-      description: 'Marko Đurić (18) postavio je novi rekord Srbije u skoku udalj za juniore skočivši 7,82 metra na takmičenju u Beogradu.',
-      created_at: new Date(Date.now() - 24 * 3600 * 1000).toISOString(),
-      image_url: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=900&q=80',
-      category: 'Atletika'
-    },
-    {
-      id: 'sample-4',
-      title: 'Rukometaši Radničkog plasirali se u finale Super lige',
-      description: 'RK Radnički Kragujevac je u polufinalu Super lige savladao RK Dinamo sa 29:24 i izborio nastup u finalu. Najefikasniji je bio Aleksandar Stojanović sa 9 golova.',
-      created_at: new Date(Date.now() - 48 * 3600 * 1000).toISOString(),
-      image_url: 'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=900&q=80',
-      category: 'Rukomet'
-    },
-    {
-      id: 'sample-5',
-      title: 'Fudbalska akademija Kragujevac prima novu generaciju polaznika',
-      description: 'Fudbalska akademija Kragujevac objavila je upis za novu generaciju dece uzrasta 6–14 godina. Prijave su otvorene do kraja meseca, a treninzi počinju 1. maja.',
-      created_at: new Date(Date.now() - 3 * 24 * 3600 * 1000).toISOString(),
-      image_url: 'https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=900&q=80',
-      category: 'Fudbal'
-    },
-    {
-      id: 'sample-6',
-      title: 'Džudo klub Šumadija: Pet medalja na međunarodnom turniru u Budimpešti',
-      description: 'Džudisti Šumadije osvijili su dve zlatne, dve srebrne i jednu bronzanu medalju na međunarodnom junior turniru u Budimpešti.',
-      created_at: new Date(Date.now() - 4 * 24 * 3600 * 1000).toISOString(),
-      image_url: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?w=900&q=80',
-      category: 'Džudo'
-    }
-  ];
+  document.getElementById('year').textContent = new Date().getFullYear();
 
   function escapeHtml(s) {
     if (!s) return '';
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
-  // Read the ID from ?id= query param (primary) or URL path as fallback
   const params = new URLSearchParams(window.location.search);
   const qsId = params.get('id');
   const pathParts = window.location.pathname.split('/').filter(p => p && !p.includes('.html'));
@@ -153,88 +162,240 @@
     });
   }
 
-  const backSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>`;
-  const calSvg  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
-  const igSvg   = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>`;
-  const extSvg  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+  const backSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>';
+  const calSvg  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+  const igSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
+  const extSvg  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+
+  let currentGallery = [];
+  let lbIdx = 0;
+
+  function buildImages(news) {
+    const imgs = [];
+    if (news.image_url) imgs.push(news.image_url);
+    if (Array.isArray(news.gallery)) {
+      for (const g of news.gallery) {
+        if (g && g.url && !imgs.includes(g.url)) imgs.push(g.url);
+      }
+    }
+    return imgs;
+  }
 
   function renderArticle(news) {
     const isFromInstagram = news.instagram_post_url &&
       !String(news.instagram_post_id || '').startsWith('manual_') &&
       !String(news.id || '').startsWith('sample-');
     const tag = escapeHtml(news.category || 'Sport');
+    currentGallery = buildImages(news);
+    const mainImage = currentGallery[0] || null;
+    const extraImages = currentGallery.slice(1);
 
-    document.title = `${news.title} – Sport Vesti Kragujevac`;
+    // Head updates for SEO
+    const pageTitle = news.title + ' – Kragujevac Sport';
+    document.title = pageTitle;
+    setMeta('description', excerpt(news.description || news.title, 155));
+    setOg('og:title', pageTitle);
+    setOg('og:description', excerpt(news.description || news.title, 155));
+    setOg('og:url', location.href);
+    if (mainImage) setOg('og:image', mainImage);
+    setMeta('twitter:title', pageTitle);
+    setMeta('twitter:description', excerpt(news.description || news.title, 155));
+    if (mainImage) setMeta('twitter:image', mainImage);
+    setCanonical(location.origin + location.pathname + '?id=' + encodeURIComponent(news.id));
 
-    document.getElementById('articleWrap').innerHTML = `
-      <a href="index.html" class="back-btn">${backSvg} Sve vesti</a>
+    // NewsArticle schema
+    injectArticleSchema(news, currentGallery);
 
-      <div class="article-tag">${tag}</div>
+    const gallerySection = extraImages.length
+      ? '<div class="article-gallery" id="articleGallery">'
+        + extraImages.map((url, i) => ''
+          + '<button class="gallery-thumb" data-idx="' + (i + 1) + '" aria-label="Otvori sliku ' + (i + 2) + '">'
+          +   '<img src="' + escapeHtml(url) + '" alt="" loading="lazy" decoding="async">'
+          + '</button>').join('')
+        + '</div>'
+      : '';
 
-      <h1 class="article-title">${escapeHtml(news.title)}</h1>
+    document.getElementById('articleWrap').innerHTML = ''
+      + '<a href="index.html" class="back-btn">' + backSvg + ' Sve vesti</a>'
+      + '<div class="article-tag">' + tag + '</div>'
+      + '<h1 class="article-title">' + escapeHtml(news.title) + '</h1>'
+      + '<div class="article-meta">'
+      +   '<span>' + calSvg + ' ' + formatDate(news.created_at) + '</span>'
+      +   (isFromInstagram ? '<span>' + igSvg + ' Izvor: Instagram</span>' : '')
+      + '</div>'
+      + (mainImage
+          ? '<img src="' + escapeHtml(mainImage) + '" alt="' + escapeHtml(news.title) + '" class="article-image" id="articleMainImg" loading="eager" decoding="async" onerror="this.style.display=\'none\'">'
+          : '')
+      + gallerySection
+      + '<div class="article-body">' + escapeHtml(news.description || '') + '</div>'
+      + (isFromInstagram
+          ? '<a href="' + escapeHtml(news.instagram_post_url) + '" target="_blank" rel="noopener" class="article-ig-link">' + igSvg + ' Pogledaj originalnu objavu na Instagramu ' + extSvg + '</a>'
+          : '<a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" class="article-ig-link">' + igSvg + ' Prati @kragujevacsport za više vesti ' + extSvg + '</a>');
 
-      <div class="article-meta">
-        <span>${calSvg} ${formatDate(news.created_at)}</span>
-        ${isFromInstagram ? `<span>${igSvg} Izvor: Instagram</span>` : ''}
-      </div>
+    // Wire up lightbox
+    const main = document.getElementById('articleMainImg');
+    if (main) { main.style.cursor = 'zoom-in'; main.addEventListener('click', () => openLightbox(0)); }
+    document.querySelectorAll('.gallery-thumb').forEach(btn => {
+      btn.addEventListener('click', () => openLightbox(+btn.dataset.idx));
+    });
+  }
 
-      ${news.image_url
-        ? `<img src="${escapeHtml(news.image_url)}" alt="${escapeHtml(news.title)}" class="article-image"
-             onerror="this.style.display='none'">`
-        : ''}
+  function excerpt(text, max) {
+    if (!text) return '';
+    return text.length > max ? text.slice(0, max).trim() + '…' : text;
+  }
 
-      <div class="article-body">${escapeHtml(news.description || '')}</div>
+  function setMeta(name, content) {
+    let el = document.querySelector('meta[name="' + name + '"]');
+    if (!el) { el = document.createElement('meta'); el.setAttribute('name', name); document.head.appendChild(el); }
+    el.setAttribute('content', content);
+  }
 
-      ${isFromInstagram ? `
-        <a href="${escapeHtml(news.instagram_post_url)}" target="_blank" rel="noopener" class="article-ig-link">
-          ${igSvg} Pogledaj originalnu objavu na Instagramu ${extSvg}
-        </a>
-      ` : `
-        <a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" class="article-ig-link">
-          ${igSvg} Prati @kragujevacsport za više vesti ${extSvg}
-        </a>
-      `}
-    `;
+  function setOg(property, content) {
+    let el = document.querySelector('meta[property="' + property + '"]');
+    if (!el) { el = document.createElement('meta'); el.setAttribute('property', property); document.head.appendChild(el); }
+    el.setAttribute('content', content);
+  }
+
+  function setCanonical(href) {
+    let el = document.querySelector('link[rel="canonical"]');
+    if (!el) { el = document.createElement('link'); el.setAttribute('rel', 'canonical'); document.head.appendChild(el); }
+    el.setAttribute('href', href);
+  }
+
+  function injectArticleSchema(news, images) {
+    const prev = document.getElementById('articleSchema');
+    if (prev) prev.remove();
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": news.title,
+      "datePublished": news.created_at,
+      "dateModified": news.created_at,
+      "inLanguage": "sr-RS",
+      "mainEntityOfPage": location.href,
+      "articleSection": news.category || "Sport",
+      "image": images.length ? images : undefined,
+      "description": excerpt(news.description || news.title, 155),
+      "publisher": {
+        "@type": "NewsMediaOrganization",
+        "name": "Kragujevac Sport",
+        "url": "https://kragujevacsport.com/",
+        "logo": { "@type": "ImageObject", "url": "https://kragujevacsport.com/favicon.svg" }
+      }
+    };
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.id = 'articleSchema';
+    s.textContent = JSON.stringify(schema);
+    document.head.appendChild(s);
   }
 
   function showNotFound() {
-    document.getElementById('articleWrap').innerHTML = `
-      <a href="index.html" class="back-btn">${backSvg} Sve vesti</a>
-      <div class="empty-state" style="margin-top:40px;">
-        <div class="empty-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </div>
-        <h3>Vest nije pronađena</h3>
-        <p>Možda je obrisana ili ne postoji.</p>
-      </div>`;
+    document.getElementById('articleWrap').innerHTML =
+      '<a href="index.html" class="back-btn">' + backSvg + ' Sve vesti</a>'
+      + '<div class="empty-state" style="margin-top:40px;">'
+      +   '<div class="empty-icon">'
+      +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
+      +   '</div>'
+      +   '<h3>Vest nije pronađena</h3>'
+      +   '<p>Možda je obrisana ili ne postoji.</p>'
+      + '</div>';
+  }
+
+  // ─── LIGHTBOX ───────────────────────────────────────────────────────
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  function openLightbox(i) {
+    if (!currentGallery.length) return;
+    lbIdx = i % currentGallery.length;
+    lbImg.src = currentGallery[lbIdx];
+    lb.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lb.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => openLightbox((lbIdx - 1 + currentGallery.length) % currentGallery.length));
+  document.getElementById('lbNext').addEventListener('click', () => openLightbox((lbIdx + 1) % currentGallery.length));
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') openLightbox((lbIdx + 1) % currentGallery.length);
+    if (e.key === 'ArrowLeft') openLightbox((lbIdx - 1 + currentGallery.length) % currentGallery.length);
+  });
+
+  // ─── SIDE BANNERS ────────────────────────────────────────────────────
+  async function loadBanners() {
+    try {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/ads?active=eq.true&select=*&order=sort_order.asc,id.asc', {
+        headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON }
+      });
+      if (!res.ok) return;
+      const ads = await res.json();
+      if (!Array.isArray(ads)) return;
+      renderBanner('bannerLeft',  ads.filter(a => a.position === 'left'));
+      renderBanner('bannerRight', ads.filter(a => a.position === 'right'));
+    } catch (_) {}
+  }
+
+  function renderBanner(slotId, ads) {
+    const slot = document.getElementById(slotId);
+    if (!slot || !ads.length) return;
+    const perAdMs = Math.max(4000, Math.floor(60000 / ads.length));
+    slot.querySelector('.side-banner-empty')?.remove();
+    const label = slot.querySelector('.side-banner-label');
+    slot.innerHTML = '';
+    if (label) slot.appendChild(label);
+
+    ads.forEach((ad, i) => {
+      const el = ad.link_url ? document.createElement('a') : document.createElement('div');
+      if (ad.link_url) { el.href = ad.link_url; el.target = '_blank'; el.rel = 'noopener sponsored'; }
+      el.className = 'side-banner-link';
+      el.style.position = 'absolute';
+      el.style.inset = '0';
+      el.setAttribute('aria-label', 'Reklama: ' + (ad.client_name || ''));
+      const img = document.createElement('img');
+      img.src = ad.image_url;
+      img.alt = ad.client_name || 'Reklama';
+      img.className = 'side-banner-img' + (i === 0 ? ' is-active' : '');
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      el.appendChild(img);
+      slot.appendChild(el);
+    });
+
+    if (ads.length > 1) {
+      let idx = 0;
+      const imgs = slot.querySelectorAll('.side-banner-img');
+      setInterval(() => {
+        imgs[idx].classList.remove('is-active');
+        idx = (idx + 1) % imgs.length;
+        imgs[idx].classList.add('is-active');
+      }, perAdMs);
+    }
   }
 
   async function loadArticle() {
     if (!newsId) { showNotFound(); return; }
-
-    // 1. Check embedded sample news (works without any server or session)
-    const sample = SAMPLE_NEWS.find(n => String(n.id) === newsId);
-    if (sample) { renderArticle(sample); return; }
-
-    // 2. Load from Supabase
     try {
       const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/news?id=eq.${encodeURIComponent(newsId)}&select=*&limit=1`,
-        { headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}` } }
+        SUPABASE_URL + '/rest/v1/news?id=eq.' + encodeURIComponent(newsId) + '&select=*&limit=1',
+        { headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON } }
       );
       const data = await res.json();
       const news = Array.isArray(data) ? data[0] : null;
       if (news) { renderArticle(news); return; }
     } catch(e) {}
-
     showNotFound();
   }
 
   loadArticle();
+  loadBanners();
 
-  // Theme toggle
   document.getElementById('themeToggle').addEventListener('click', () => {
     const html = document.documentElement;
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
