@@ -1278,7 +1278,7 @@ footer {
 
 .footer-brand .logo-icon svg { width: 16px; height: 16px; }
 
-.footer-brand span { color: var(--accent); }
+.footer-brand span { color: var(--cat-red); }
 
 .footer-copy {
   color: var(--text-dim); font-size: 0.82rem;
