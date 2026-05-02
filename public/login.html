@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="sr" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#e63535"/>
+  <title>Prijava – Kragujevac Sport</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="mililogo.png" type="image/png"/>
+  <link rel="apple-touch-icon" href="mililogo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <script>
+    (function() {
+      const t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo" aria-label="Kragujevac Sport – početna">
+      <img src="mililogo.png" alt="Kragujevac Sport" class="logo-icon"/>
+      Kragujevac<span>Sport</span>
+    </a>
+    <div class="header-right">
+      <span class="header-tag">
+        <span class="live-dot"></span>
+        Sve sportske vesti iz Kragujevca
+      </span>
+      <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <img src="mililogo.png" alt="Kragujevac Sport" style="width:32px;height:32px;border-radius:8px;object-fit:contain;flex-shrink:0;"/>
+      Kragujevac<span>Sport</span>
+    </div>
+
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab active" data-tab="login" role="tab" aria-selected="true">Prijava</button>
+      <button class="auth-tab" data-tab="register" role="tab" aria-selected="false">Registracija</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="auth-tab-content active" id="tab-login">
+      <form id="loginForm" autocomplete="on" novalidate>
+        <div class="form-group">
+          <label for="loginUsername">Korisničko ime</label>
+          <input type="text" id="loginUsername" placeholder="tvoj_nick" autocomplete="username" required/>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Lozinka</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required/>
+        </div>
+        <button type="submit" class="btn btn-primary full" id="loginBtn">Prijavi se</button>
+        <div class="error-msg" id="loginError"></div>
+      </form>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="auth-tab-content" id="tab-register">
+      <form id="registerForm" autocomplete="on" novalidate>
+        <div class="form-group">
+          <label for="registerUsername">Korisničko ime</label>
+          <input type="text" id="registerUsername" placeholder="npr. Nikola" autocomplete="username" required maxlength="30"/>
+          <div class="hint">Prikazuje se pored tvojih komentara. Samo slova, brojevi i _ . -</div>
+        </div>
+        <div class="form-group">
+          <label for="registerPassword">Lozinka</label>
+          <input type="password" id="registerPassword" placeholder="Minimalno 6 znakova" autocomplete="new-password" required minlength="6"/>
+        </div>
+        <button type="submit" class="btn btn-primary full" id="registerBtn">Napravi nalog</button>
+        <div class="error-msg" id="registerError"></div>
+        <div class="success-msg" id="registerSuccess"></div>
+        <p style="margin-top:14px;font-size:.76rem;color:var(--text-dim);line-height:1.5;">
+          Kreiranjem naloga prihvataš našu <a href="privacy-policy.html" style="color:var(--accent);text-decoration:none;font-weight:600;">Politiku Privatnosti</a>.
+        </p>
+      </form>
+    </div>
+
+    <p style="margin-top:22px;text-align:center;font-size:.82rem;color:var(--text-muted);">
+      <a href="index.html" style="color:var(--accent);text-decoration:none;font-weight:600;">← Povratak na vesti</a>
+    </p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+  const SUPABASE_URL  = 'https://djhrxrhucwfygnjvkqyl.supabase.co';
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqaHJ4cmh1Y3dmeWduanZrcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzOTAzMTYsImV4cCI6MjA4OTk2NjMxNn0.APKFBCb4PfuPoiD4c4p5AdUWe6aXpZZ3eFvifPuzvpw';
+
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  const returnUrl = new URLSearchParams(location.search).get('return') || 'index.html';
+
+  function setCookie(rt) {
+    document.cookie = 'ks_rt=' + encodeURIComponent(rt) + '; max-age=2592000; path=/; SameSite=Lax';
+  }
+
+  // If already logged in (localStorage or cookie), redirect immediately
+  (async () => {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) { location.href = returnUrl; return; }
+
+    // Try cookie
+    const match = document.cookie.match(/(?:^|;\s*)ks_rt=([^;]+)/);
+    if (match) {
+      try {
+        const { data } = await sb.auth.refreshSession({ refresh_token: decodeURIComponent(match[1]) });
+        if (data?.session) {
+          setCookie(data.session.refresh_token);
+          location.href = returnUrl;
+          return;
+        }
+      } catch (_) {}
+      document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
+    }
+  })();
+
+  // ─── TABS ────────────────────────────────────────────────────────────────
+  document.querySelectorAll('.auth-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.auth-tab').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.auth-tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  function showErr(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg; el.style.display = 'block';
+  }
+  function hideMsg(id) { document.getElementById(id).style.display = 'none'; }
+
+  // ─── LOGIN ───────────────────────────────────────────────────────────────
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideMsg('loginError');
+    const username = document.getElementById('loginUsername').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const btn      = document.getElementById('loginBtn');
+    if (!username || !password) return showErr('loginError', 'Unesite korisničko ime i lozinku.');
+    btn.disabled = true; btn.textContent = 'Prijavljivanje...';
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showErr('loginError', data.error || 'Greška pri prijavi.');
+        btn.disabled = false; btn.textContent = 'Prijavi se';
+        return;
+      }
+      // Set Supabase session client-side
+      await sb.auth.setSession({ access_token: data.session.access_token, refresh_token: data.session.refresh_token });
+      setCookie(data.session.refresh_token);
+      location.href = returnUrl;
+    } catch (_) {
+      showErr('loginError', 'Greška pri prijavi. Pokušaj ponovo.');
+      btn.disabled = false; btn.textContent = 'Prijavi se';
+    }
+  });
+
+  // ─── REGISTER ────────────────────────────────────────────────────────────
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideMsg('registerError');
+    hideMsg('registerSuccess');
+    const username = document.getElementById('registerUsername').value.trim();
+    const password = document.getElementById('registerPassword').value;
+    const btn      = document.getElementById('registerBtn');
+
+    if (!username) return showErr('registerError', 'Unesite korisničko ime.');
+    if (password.length < 6) return showErr('registerError', 'Lozinka mora imati najmanje 6 znakova.');
+
+    btn.disabled = true; btn.textContent = 'Kreiranje naloga...';
+
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showErr('registerError', data.error || 'Greška pri registraciji.');
+        btn.disabled = false; btn.textContent = 'Napravi nalog';
+        return;
+      }
+      if (data.session) {
+        await sb.auth.setSession({ access_token: data.session.access_token, refresh_token: data.session.refresh_token });
+        setCookie(data.session.refresh_token);
+        location.href = returnUrl;
+      } else {
+        document.getElementById('registerSuccess').textContent = data.message || 'Nalog kreiran! Prijavi se.';
+        document.getElementById('registerSuccess').style.display = 'block';
+        btn.disabled = false; btn.textContent = 'Napravi nalog';
+      }
+    } catch (_) {
+      showErr('registerError', 'Greška. Pokušaj ponovo.');
+      btn.disabled = false; btn.textContent = 'Napravi nalog';
+    }
+  });
+
+  // ─── THEME ───────────────────────────────────────────────────────────────
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+</script>
+
+</body>
+</html>

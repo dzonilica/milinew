@@ -104,6 +104,31 @@
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" title="Meni" aria-label="Otvori meni" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-label="Mobilni meni">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-auth" id="mobileMenuAuth">
+        <a href="login.html" class="btn-auth-login">Prijavi se</a>
+      </div>
+      <button class="mobile-menu-theme" id="mobileThemeToggle" title="Promeni temu" aria-label="Promeni temu">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <span id="mobileThemeLabel">Tamna tema</span>
+      </button>
     </div>
   </div>
 </header>
@@ -243,13 +268,15 @@
 
   function updateAuthUI(user) {
     const el = document.getElementById('headerAuth');
+    const mobileEl = document.getElementById('mobileMenuAuth');
     if (!user) {
       el.innerHTML = '<a href="login.html" class="btn-auth-login">Prijavi se</a>';
+      if (mobileEl) mobileEl.innerHTML = '<a href="login.html" class="btn-auth-login">Prijavi se</a>';
       return;
     }
     const name = user.user_metadata?.full_name || user.email.split('@')[0];
     const initials = name.slice(0, 2).toUpperCase();
-    el.innerHTML =
+    const userMenuHtml =
       '<div style="position:relative;">'
       + '<button class="btn-user-menu" id="userMenuBtn">'
       +   '<span class="user-avatar">' + escapeHtml(initials) + '</span>'
@@ -259,6 +286,19 @@
       +   '<button class="user-dropdown-item" id="signOutBtn">Odjavi se</button>'
       + '</div>'
       + '</div>';
+    el.innerHTML = userMenuHtml;
+    if (mobileEl) {
+      mobileEl.innerHTML =
+        '<button class="mobile-user-menu" id="mobileUserMenuBtn">'
+        +   '<span class="user-avatar">' + escapeHtml(initials) + '</span>'
+        +   '<span>' + escapeHtml(name) + '</span>'
+        + '</button>'
+        + '<button class="mobile-user-signout" id="mobileSignOutBtn">Odjavi se</button>';
+      document.getElementById('mobileSignOutBtn').addEventListener('click', async () => {
+        document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
+        await sb.auth.signOut();
+      });
+    }
     document.getElementById('userMenuBtn').addEventListener('click', (e) => {
       e.stopPropagation();
       document.getElementById('userDropdown').classList.toggle('is-open');
@@ -485,11 +525,44 @@
   setInterval(loadNews, 5 * 60 * 1000);
   setInterval(loadBanners, 10 * 60 * 1000);
 
-  document.getElementById('themeToggle').addEventListener('click', () => {
+  function toggleTheme() {
     const html = document.documentElement;
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
+    updateThemeLabel();
+  }
+
+  function updateThemeLabel() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const label = document.getElementById('mobileThemeLabel');
+    if (label) label.textContent = isDark ? 'Svetla tema' : 'Tamna tema';
+  }
+
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('mobileThemeToggle').addEventListener('click', toggleTheme);
+
+  updateThemeLabel();
+
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileMenuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('is-open');
+    mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+      mobileMenu.classList.remove('is-open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.getElementById('mobileMenu').addEventListener('click', (e) => {
+    if (e.target.closest('a')) {
+      mobileMenu.classList.remove('is-open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
   });
 </script>
 
