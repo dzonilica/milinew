@@ -159,9 +159,9 @@
               <option>Košarka</option>
               <option>Rukomet</option>
               <option>Odbojka</option>
+              <option>Vaterpolo</option>
               <option>Atletika</option>
               <option>Tenis</option>
-              <option>Džudo</option>
               <option>Karate</option>
               <option>Boks</option>
               <option>Plivanje</option>
@@ -384,6 +384,7 @@
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'ads') loadAds();
     });
   });
 
@@ -768,9 +769,11 @@
       renderAdList('adListInGrid', ads.filter(a => a.position === 'in_grid'));
       renderAdList('adListBottom', ads.filter(a => a.position === 'bottom'));
     } catch(e) {
-      document.getElementById('adListTop').innerHTML = '<div class="empty-state"><h3>Greška</h3></div>';
-      document.getElementById('adListMiddle').innerHTML = '';
-      document.getElementById('adListBottom').innerHTML = '';
+      const errHtml = '<div class="empty-state" style="padding:20px;text-align:center;"><h3>Greška pri učitavanju reklama</h3></div>';
+      document.getElementById('adListTop').innerHTML = errHtml;
+      document.getElementById('adListMiddle').innerHTML = errHtml;
+      document.getElementById('adListInGrid').innerHTML = errHtml;
+      document.getElementById('adListBottom').innerHTML = errHtml;
     }
   }
 
