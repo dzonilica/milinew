@@ -1,14 +1,15 @@
 {
   "outputDirectory": "public",
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/vest/:id", "destination": "/vest.html" },
+    { "source": "/vest/:id", "destination": "/vest" },
     { "source": "/sitemap.xml",          "destination": "/api/sitemap" },
     { "source": "/sitemap-articles.xml", "destination": "/api/sitemap" },
     { "source": "/sitemap-news.xml",     "destination": "/api/sitemap" }
   ],
   "headers": [
     {
-      "source": "/admin-panel.html",
+      "source": "/admin-panel",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
         { "key": "Cache-Control", "value": "no-store" }

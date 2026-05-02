@@ -110,7 +110,7 @@
 <!-- HEADER -->
 <header>
   <div class="header-inner">
-    <a href="index.html" class="logo" aria-label="Kragujevac Sport – početna">
+    <a href="/" class="logo" aria-label="Kragujevac Sport – početna">
       <img src="mililogo.png" alt="Kragujevac Sport" class="logo-icon"/>
       Kragujevac<span>Sport</span>
     </a>
@@ -120,7 +120,7 @@
         Sve sportske vesti iz Kragujevca
       </span>
       <div class="header-auth" id="headerAuth">
-        <a href="login.html" class="btn-auth-login">Prijavi se</a>
+        <a href="/login" class="btn-auth-login">Prijavi se</a>
       </div>
       <button class="search-btn" id="searchBtn" title="Pretraži vesti" aria-label="Pretraži vesti" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
@@ -167,7 +167,7 @@
   <div class="mobile-menu" id="mobileMenu" aria-label="Mobilni meni">
     <div class="mobile-menu-content">
       <div class="mobile-menu-auth" id="mobileMenuAuth">
-        <a href="login.html" class="btn-auth-login">Prijavi se</a>
+        <a href="/login" class="btn-auth-login">Prijavi se</a>
       </div>
       <button class="mobile-menu-theme" id="mobileThemeToggle" title="Promeni temu" aria-label="Promeni temu">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -189,15 +189,15 @@
 <!-- CATEGORY NAV -->
 <nav class="cat-nav" aria-label="Kategorije">
   <div class="cat-nav-inner">
-    <a href="index.html" class="cat-nav-link" data-cat="">Naslovna</a>
-    <a href="index.html?cat=Fudbal" class="cat-nav-link" data-cat="Fudbal">Fudbal</a>
-    <a href="index.html?cat=Ko%C5%A1arka" class="cat-nav-link" data-cat="Košarka">Košarka</a>
-    <a href="index.html?cat=Rukomet" class="cat-nav-link" data-cat="Rukomet">Rukomet</a>
-    <a href="index.html?cat=Odbojka" class="cat-nav-link" data-cat="Odbojka">Odbojka</a>
-    <a href="index.html?cat=Vaterpolo" class="cat-nav-link" data-cat="Vaterpolo">Vaterpolo</a>
-    <a href="index.html?cat=Atletika" class="cat-nav-link" data-cat="Atletika">Atletika</a>
-    <a href="index.html?cat=Tenis" class="cat-nav-link" data-cat="Tenis">Tenis</a>
-    <a href="index.html?cat=Ostalo" class="cat-nav-link" data-cat="Ostalo">Ostalo</a>
+    <a href="/" class="cat-nav-link" data-cat="">Naslovna</a>
+    <a href="/?cat=Fudbal" class="cat-nav-link" data-cat="Fudbal">Fudbal</a>
+    <a href="/?cat=Ko%C5%A1arka" class="cat-nav-link" data-cat="Košarka">Košarka</a>
+    <a href="/?cat=Rukomet" class="cat-nav-link" data-cat="Rukomet">Rukomet</a>
+    <a href="/?cat=Odbojka" class="cat-nav-link" data-cat="Odbojka">Odbojka</a>
+    <a href="/?cat=Vaterpolo" class="cat-nav-link" data-cat="Vaterpolo">Vaterpolo</a>
+    <a href="/?cat=Atletika" class="cat-nav-link" data-cat="Atletika">Atletika</a>
+    <a href="/?cat=Tenis" class="cat-nav-link" data-cat="Tenis">Tenis</a>
+    <a href="/?cat=Ostalo" class="cat-nav-link" data-cat="Ostalo">Ostalo</a>
   </div>
 </nav>
 
@@ -245,7 +245,7 @@
     <div class="footer-copy">
       © <span id="year"></span> Kragujevac Sport · Sve sportske vesti iz Kragujevca
       <span class="footer-credit">
-        Radio <a href="https://lotifystudio.com" target="_blank" rel="noopener">Lotify Studio</a>
+        By <a href="https://lotifystudio.com" target="_blank" rel="noopener">Lotify Studio</a>
         &nbsp;·&nbsp;
         <a href="privacy-policy.html" style="color:var(--text-muted);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">Politika privatnosti</a>
       </span>
@@ -336,8 +336,8 @@
     const el = document.getElementById('headerAuth');
     const mobileEl = document.getElementById('mobileMenuAuth');
     if (!user) {
-      el.innerHTML = '<a href="login.html" class="btn-auth-login">Prijavi se</a>';
-      if (mobileEl) mobileEl.innerHTML = '<a href="login.html" class="btn-auth-login">Prijavi se</a>';
+      el.innerHTML = '<a href="/login" class="btn-auth-login">Prijavi se</a>';
+      if (mobileEl) mobileEl.innerHTML = '<a href="/login" class="btn-auth-login">Prijavi se</a>';
       return;
     }
     const name = user.user_metadata?.full_name || user.email.split('@')[0];
@@ -416,7 +416,7 @@
     const sidePosts = news.slice(1, 3);
 
     featured.innerHTML =
-      '<a href="vest.html?id=' + encodeURIComponent(main.id) + '" aria-label="' + escapeHtml(decodeHtml(main.title)) + '">'
+      '<a href="/vest?id=' + encodeURIComponent(main.id) + '" aria-label="' + escapeHtml(decodeHtml(main.title)) + '">'
       + (main.image_url
         ? '<img src="' + escapeHtml(main.image_url) + '" alt="' + escapeHtml(decodeHtml(main.title)) + '" loading="eager" decoding="async">'
         : '<div class="hero-placeholder">' + ballSvg + '</div>')
@@ -432,7 +432,7 @@
     sidebar.innerHTML = sidePosts.map(n => {
       const ex = excerpt(decodeHtml(n.content || n.summary || n.description || ''), 100);
       const cc = commentCounts[n.id] || 0;
-      return '<a href="vest.html?id=' + encodeURIComponent(n.id) + '" class="hero-sidebar-item" aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
+      return '<a href="/vest?id=' + encodeURIComponent(n.id) + '" class="hero-sidebar-item" aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
       + (n.image_url
         ? '<img src="' + escapeHtml(n.image_url) + '" alt="" class="hero-sidebar-img" loading="lazy" decoding="async">'
         : '<div class="hero-sidebar-no-img">' + ballSvg + '</div>')
@@ -476,7 +476,7 @@
         : '';
       const ex = excerpt(decodeHtml(n.content || n.summary || n.description || ''), 130);
       return ''
-        + '<a href="vest.html?id=' + encodeURIComponent(n.id) + '" class="news-card" aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
+        + '<a href="/vest?id=' + encodeURIComponent(n.id) + '" class="news-card" aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
         +   '<div class="card-image-wrap">'
         +     (hasImg
               ? '<img src="' + escapeHtml(n.image_url) + '" alt="' + escapeHtml(decodeHtml(n.title)) + '" class="card-image" loading="lazy" decoding="async" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'
