@@ -123,19 +123,19 @@
         <a href="login.html" class="btn-auth-login">Prijavi se</a>
       </div>
       <button class="search-btn" id="searchBtn" title="Pretraži vesti" aria-label="Pretraži vesti" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </button>
       <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
           <circle cx="12" cy="12" r="5"/>
           <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
           <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
           <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
@@ -150,12 +150,12 @@
   <div class="search-overlay" id="searchOverlay" aria-label="Pretraga vesti">
     <div class="search-overlay-inner">
       <div class="search-input-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
         <input type="search" id="searchInput" placeholder="Pretražite vesti..." autocomplete="off" spellcheck="false" aria-label="Pretraga vesti"/>
         <button class="search-clear-btn" id="searchClearBtn" aria-label="Obriši pretragu" tabindex="-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
@@ -380,10 +380,10 @@
   });
 
   // ─── HELPERS ──────────────────────────────────────────────────────────────
-  const clockSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
-  const ballSvg    = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/></svg>';
-  const gallerySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
-  const commentSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  const clockSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="13" height="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+  const ballSvg    = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="56" height="56"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/></svg>';
+  const gallerySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="13" height="13"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
+  const commentSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="13" height="13"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
 
   function relativeTime(dateStr) {
     const diff = (Date.now() - new Date(dateStr)) / 1000;
@@ -605,6 +605,7 @@
       } else {
         buildGrid(data, commentCounts);
       }
+      fixSvgDimensions();
     } catch (e) {
       buildGrid([]);
     }
@@ -647,6 +648,26 @@
       mobileMenuBtn.setAttribute('aria-expanded', 'false');
     }
   });
+
+  // Add width/height to dynamically-generated SVGs to prevent them from rendering at full size
+  function fixSvgDimensions() {
+    document.querySelectorAll('.card-image-placeholder svg').forEach(svg => {
+      if (!svg.hasAttribute('width')) svg.setAttribute('width', '56');
+      if (!svg.hasAttribute('height')) svg.setAttribute('height', '56');
+    });
+    document.querySelectorAll('.card-comments svg').forEach(svg => {
+      if (!svg.hasAttribute('width')) svg.setAttribute('width', '13');
+      if (!svg.hasAttribute('height')) svg.setAttribute('height', '13');
+    });
+    document.querySelectorAll('.card-time svg').forEach(svg => {
+      if (!svg.hasAttribute('width')) svg.setAttribute('width', '13');
+      if (!svg.hasAttribute('height')) svg.setAttribute('height', '13');
+    });
+    document.querySelectorAll('.hero-sidebar-comments svg').forEach(svg => {
+      if (!svg.hasAttribute('width')) svg.setAttribute('width', '12');
+      if (!svg.hasAttribute('height')) svg.setAttribute('height', '12');
+    });
+  }
 
   // ─── SEARCH ───────────────────────────────────────────────────────────────
   let allNewsCache = [];
@@ -723,7 +744,7 @@
       return;
     }
 
-    const imgPh = '<div class="search-result-thumb-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>';
+    const imgPh = '<div class="search-result-thumb-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>';
     const items = results.map(n =>
       '<a class="search-result-item" href="vest/' + encodeURIComponent(n.id) + '">' +
         (n.image_url ? '<img class="search-result-thumb" src="' + escHtml(n.image_url) + '" alt="" loading="lazy"/>' : imgPh) +
