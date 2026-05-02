@@ -867,13 +867,29 @@
       document.getElementById('adActive').value = a.active ? 'true' : 'false';
       document.getElementById('adLink').value = a.link_url || '';
       document.getElementById('adImgUrl').value = '';
-      document.getElementById('adImgPreview').innerHTML =
-        '<div class="img-tile is-main" style="max-width:160px;"><img src="' + escapeHtml(a.image_url) + '" alt=""></div>';
+      renderAdImagePreview(a.image_url);
       document.getElementById('adFormCard').style.display = 'block';
       document.getElementById('adFormCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch(e) { alert('Greška.'); }
   }
   window.editAd = editAd;
+
+  function renderAdImagePreview(url) {
+    adImageUrl = url;
+    document.getElementById('adImgPreview').innerHTML = url
+      ? '<div style="display:flex;align-items:center;gap:12px;margin-top:8px;">'
+        + '<div class="img-tile is-main" style="max-width:160px;flex-shrink:0;"><img src="' + escapeHtml(url) + '" alt=""></div>'
+        + '<button type="button" onclick="clearAdImage()" style="padding:8px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;cursor:pointer;color:var(--text);font-size:.85rem;white-space:nowrap;">✕ Ukloni sliku</button>'
+        + '</div>'
+      : '';
+  }
+
+  window.clearAdImage = function() {
+    adImageUrl = '';
+    document.getElementById('adImgPreview').innerHTML = '';
+    document.getElementById('adImgUrl').value = '';
+    document.getElementById('adImgFile').value = '';
+  };
 
   document.getElementById('adImgFile').addEventListener('change', async (e) => {
     const file = e.target.files?.[0];
@@ -882,9 +898,8 @@
     errEl.style.display = 'none';
     try {
       const dataUrl = await compressImage(file, 1200, 0.85);
-      adImageUrl = await uploadDataUrl(dataUrl, 'ads');
-      document.getElementById('adImgPreview').innerHTML =
-        '<div class="img-tile is-main" style="max-width:160px;"><img src="' + escapeHtml(adImageUrl) + '" alt=""></div>';
+      const url = await uploadDataUrl(dataUrl, 'ads');
+      renderAdImagePreview(url);
     } catch(err) {
       errEl.textContent = 'Greška: ' + err.message;
       errEl.style.display = 'block';
@@ -895,9 +910,7 @@
   document.getElementById('adImgUrl').addEventListener('change', function() {
     const v = this.value.trim();
     if (v && v.match(/^https?:\/\//)) {
-      adImageUrl = v;
-      document.getElementById('adImgPreview').innerHTML =
-        '<div class="img-tile is-main" style="max-width:160px;"><img src="' + escapeHtml(v) + '" alt=""></div>';
+      renderAdImagePreview(v);
     }
   });
 

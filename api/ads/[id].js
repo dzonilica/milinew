@@ -38,8 +38,8 @@ export default async function handler(req, res) {
     const update = {};
     if (client_name !== undefined) update.client_name = String(client_name).trim();
     if (position !== undefined) {
-      if (!['left', 'right'].includes(position))
-        return res.status(400).json({ error: 'Pozicija mora biti left ili right' });
+      if (!['top', 'middle', 'in_grid', 'bottom'].includes(position))
+        return res.status(400).json({ error: 'Neispravna pozicija reklame' });
       update.position = position;
     }
     if (image_url !== undefined) update.image_url = String(image_url).trim();

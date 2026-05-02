@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     const { client_name, position, image_url, link_url, active, sort_order } = req.body || {};
 
     if (!client_name?.trim()) return res.status(400).json({ error: 'Ime klijenta je obavezno' });
-    if (!['left', 'right', 'top', 'middle', 'bottom'].includes(position)) return res.status(400).json({ error: 'Neispravna pozicija reklame' });
+    if (!['top', 'middle', 'in_grid', 'bottom'].includes(position)) return res.status(400).json({ error: 'Neispravna pozicija reklame' });
     if (!image_url?.trim()) return res.status(400).json({ error: 'Slika je obavezna' });
 
     const { data, error } = await supabase
