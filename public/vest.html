@@ -6,13 +6,28 @@
   <meta name="theme-color" content="#e63535"/>
 
   <title>Kragujevac Sport – Vest</title>
-  <meta name="description" content="Sportska vest iz Kragujevca – Kragujevac Sport."/>
-  <meta name="robots" content="index, follow, max-image-preview:large"/>
+  <meta name="description" content="Sportska vest iz Kragujevca – pratite najnovije sportske vesti na Kragujevac Sport."/>
+  <meta name="robots" content="noindex, follow"/>
 
+  <link rel="canonical" href="https://kragujevacsport.com/"/>
+  <link rel="alternate" hreflang="sr" href="https://kragujevacsport.com/"/>
+
+  <!-- Open Graph (JS overwrites these with real article data) -->
   <meta property="og:type" content="article"/>
   <meta property="og:site_name" content="Kragujevac Sport"/>
+  <meta property="og:title" content="Kragujevac Sport – Sportske vesti iz Kragujevca"/>
+  <meta property="og:description" content="Pratite najnovije sportske vesti iz Kragujevca i Šumadije."/>
+  <meta property="og:url" content="https://kragujevacsport.com/"/>
+  <meta property="og:image" content="https://kragujevacsport.com/og-image.png"/>
+  <meta property="og:image:alt" content="Kragujevac Sport"/>
   <meta property="og:locale" content="sr_RS"/>
+
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@kragujevacsport"/>
+  <meta name="twitter:title" content="Kragujevac Sport – Sportske vesti iz Kragujevca"/>
+  <meta name="twitter:description" content="Pratite najnovije sportske vesti iz Kragujevca i Šumadije."/>
+  <meta name="twitter:image" content="https://kragujevacsport.com/og-image.png"/>
 
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="icon" href="mililogo.png" type="image/png"/>
@@ -20,6 +35,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="preconnect" href="https://djhrxrhucwfygnjvkqyl.supabase.co"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap"/></noscript>
 
   <script>
     (function() {
@@ -44,6 +62,11 @@
       <div class="header-auth" id="headerAuth">
         <a href="login.html" class="btn-auth-login">Prijavi se</a>
       </div>
+      <button class="search-btn" id="searchBtn" title="Pretraži vesti" aria-label="Pretraži vesti" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
       <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="5"/>
@@ -56,6 +79,26 @@
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
+    </div>
+  </div>
+
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay" aria-label="Pretraga vesti">
+    <div class="search-overlay-inner">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="search" id="searchInput" placeholder="Pretražite vesti..." autocomplete="off" spellcheck="false" aria-label="Pretraga vesti"/>
+        <button class="search-clear-btn" id="searchClearBtn" aria-label="Obriši pretragu" tabindex="-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="search-results-wrap" id="searchResultsWrap">
+        <p class="search-hint-text">Pritisnite Enter za pretragu ili kliknite na lupu…</p>
+      </div>
     </div>
   </div>
 </header>
@@ -283,23 +326,26 @@
     const extraImages = currentGallery.slice(1);
 
     const pageTitle = titleText + ' – Kragujevac Sport';
+    const canonicalUrl = 'https://kragujevacsport.com/vest/' + encodeURIComponent(news.id);
+    const metaDesc = excerpt(descriptionText || titleText, 155);
     document.title = pageTitle;
-    setMeta('description', excerpt(descriptionText || titleText, 155));
+    setMeta('robots', 'index, follow, max-image-preview:large');
+    setMeta('description', metaDesc);
     setOg('og:title', pageTitle);
-    setOg('og:description', excerpt(descriptionText || titleText, 155));
-    setOg('og:url', location.href);
-    if (mainImage) setOg('og:image', mainImage);
+    setOg('og:description', metaDesc);
+    setOg('og:url', canonicalUrl);
+    if (mainImage) { setOg('og:image', mainImage); setOg('og:image:alt', titleText); }
     setMeta('twitter:title', pageTitle);
-    setMeta('twitter:description', excerpt(descriptionText || titleText, 155));
+    setMeta('twitter:description', metaDesc);
     if (mainImage) setMeta('twitter:image', mainImage);
-    setCanonical(location.origin + location.pathname + '?id=' + encodeURIComponent(news.id));
-    injectArticleSchema(news, currentGallery);
+    setCanonical(canonicalUrl);
+    injectArticleSchema(news, currentGallery, canonicalUrl);
 
     const gallerySection = extraImages.length
       ? '<div class="article-gallery" id="articleGallery">'
         + extraImages.map((url, i) => ''
           + '<button class="gallery-thumb" data-idx="' + (i + 1) + '" aria-label="Otvori sliku ' + (i + 2) + '">'
-          +   '<img src="' + escapeHtml(url) + '" alt="" loading="lazy" decoding="async">'
+          +   '<img src="' + escapeHtml(url) + '" alt="' + escapeHtml(titleText) + ' – slika ' + (i + 2) + '" loading="lazy" decoding="async">'
           + '</button>').join('')
         + '</div>'
       : '';
@@ -352,25 +398,43 @@
     el.setAttribute('href', href);
   }
 
-  function injectArticleSchema(news, images) {
+  function injectArticleSchema(news, images, canonicalUrl) {
     const prev = document.getElementById('articleSchema');
     if (prev) prev.remove();
+    const BASE = 'https://kragujevacsport.com';
+    const url = canonicalUrl || (BASE + '/vest/' + encodeURIComponent(news.id));
+    const categoryText = decodeHtml(news.category || 'Sport');
+    const imageObjects = images.map(u => ({ "@type": "ImageObject", "url": u, "contentUrl": u }));
     const schema = {
       "@context": "https://schema.org",
       "@type": "NewsArticle",
-      "headline": news.title,
+      "@id": url + '#article',
+      "headline": decodeHtml(news.title || ''),
+      "description": excerpt(decodeHtml(news.description || news.title || ''), 155),
       "datePublished": news.created_at,
-      "dateModified": news.created_at,
+      "dateModified": news.updated_at || news.created_at,
       "inLanguage": "sr-RS",
-      "mainEntityOfPage": location.href,
-      "articleSection": news.category || "Sport",
-      "image": images.length ? images : undefined,
-      "description": excerpt(news.description || news.title, 155),
+      "url": url,
+      "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+      "isPartOf": { "@id": BASE + "/#website" },
+      "articleSection": categoryText,
+      "image": imageObjects.length ? imageObjects : undefined,
+      "author": {
+        "@type": "Organization",
+        "@id": BASE + "/#org",
+        "name": "Kragujevac Sport",
+        "url": BASE + "/"
+      },
       "publisher": {
         "@type": "NewsMediaOrganization",
+        "@id": BASE + "/#org",
         "name": "Kragujevac Sport",
-        "url": "https://kragujevacsport.com/",
-        "logo": { "@type": "ImageObject", "url": "https://kragujevacsport.com/favicon.svg" }
+        "url": BASE + "/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": BASE + "/mililogo.png",
+          "contentUrl": BASE + "/mililogo.png"
+        }
       }
     };
     const s = document.createElement('script');
@@ -378,6 +442,24 @@
     s.id = 'articleSchema';
     s.textContent = JSON.stringify(schema);
     document.head.appendChild(s);
+
+    // BreadcrumbList — dodatni rich result slot u SERPu
+    const prevBc = document.getElementById('breadcrumbSchema');
+    if (prevBc) prevBc.remove();
+    const breadcrumb = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Naslovna", "item": BASE + "/" },
+        { "@type": "ListItem", "position": 2, "name": categoryText, "item": BASE + "/?cat=" + encodeURIComponent(categoryText) },
+        { "@type": "ListItem", "position": 3, "name": decodeHtml(news.title || ''), "item": url }
+      ]
+    };
+    const bc = document.createElement('script');
+    bc.type = 'application/ld+json';
+    bc.id = 'breadcrumbSchema';
+    bc.textContent = JSON.stringify(breadcrumb);
+    document.head.appendChild(bc);
   }
 
   function showNotFound() {
@@ -399,6 +481,7 @@
     if (!currentGallery.length) return;
     lbIdx = i % currentGallery.length;
     lbImg.src = currentGallery[lbIdx];
+    lbImg.alt = (document.querySelector('.article-title')?.textContent || 'Slika') + ' – ' + (lbIdx + 1);
     lb.classList.add('is-open');
     document.body.style.overflow = 'hidden';
   }
@@ -613,6 +696,58 @@
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
+  });
+
+  // ─── SEARCH ───────────────────────────────────────────────────────────────
+  const searchBtn      = document.getElementById('searchBtn');
+  const searchOverlay  = document.getElementById('searchOverlay');
+  const searchInput    = document.getElementById('searchInput');
+  const searchClearBtn = document.getElementById('searchClearBtn');
+  const searchResultsWrap = document.getElementById('searchResultsWrap');
+
+  function openSearch() {
+    searchOverlay.classList.add('is-open');
+    searchBtn.classList.add('is-active');
+    searchBtn.setAttribute('aria-expanded', 'true');
+    searchInput.focus();
+  }
+
+  function closeSearch() {
+    searchOverlay.classList.remove('is-open');
+    searchBtn.classList.remove('is-active');
+    searchBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  searchBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    searchOverlay.classList.contains('is-open') ? closeSearch() : openSearch();
+  });
+
+  searchInput.addEventListener('input', () => {
+    searchClearBtn.classList.toggle('visible', searchInput.value.length > 0);
+    searchResultsWrap.innerHTML = '<p class="search-hint-text">Pritisnite Enter za pretragu…</p>';
+  });
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && searchInput.value.trim()) {
+      location.href = 'index.html?search=' + encodeURIComponent(searchInput.value.trim());
+    }
+    if (e.key === 'Escape') { closeSearch(); searchBtn.focus(); }
+  });
+
+  searchClearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    searchClearBtn.classList.remove('visible');
+    searchResultsWrap.innerHTML = '<p class="search-hint-text">Pritisnite Enter za pretragu ili kliknite na lupu…</p>';
+    searchInput.focus();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (searchOverlay.classList.contains('is-open') &&
+        !searchOverlay.contains(e.target) &&
+        !searchBtn.contains(e.target)) {
+      closeSearch();
+    }
   });
 </script>
 

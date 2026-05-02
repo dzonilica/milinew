@@ -7,7 +7,6 @@
 
   <title>Kragujevac Sport – Najnovije sportske vesti iz Kragujevca</title>
   <meta name="description" content="Kragujevac Sport – najnovije sportske vesti iz Kragujevca i Šumadije. Fudbal, košarka, rukomet, vaterpolo, atletika i svi klubovi iz Kragujevca na jednom mestu."/>
-  <meta name="keywords" content="kragujevac sport, sportske vesti kragujevac, FK Radnički Kragujevac, KK Radnički, RK Radnički, Šumadija sport, sport Kragujevac"/>
   <meta name="author" content="Kragujevac Sport"/>
   <meta name="robots" content="index, follow, max-image-preview:large"/>
   <meta name="googlebot" content="index, follow"/>
@@ -21,15 +20,18 @@
   <meta property="og:title" content="Kragujevac Sport – Najnovije sportske vesti iz Kragujevca"/>
   <meta property="og:description" content="Sve sportske vesti iz Kragujevca i Šumadije – fudbal, košarka, rukomet, atletika i mnogo više, ažurirano svakog dana."/>
   <meta property="og:url" content="https://kragujevacsport.com/"/>
-  <meta property="og:image" content="https://kragujevacsport.com/mililogo.png"/>
-  <meta property="og:image:alt" content="Kragujevac Sport"/>
+  <meta property="og:image" content="https://kragujevacsport.com/og-image.png"/>
+  <meta property="og:image:alt" content="Kragujevac Sport – Najnovije sportske vesti iz Kragujevca"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
   <meta property="og:locale" content="sr_RS"/>
 
-  <!-- Twitter -->
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Kragujevac Sport"/>
-  <meta name="twitter:description" content="Sve sportske vesti iz Kragujevca na jednom mestu."/>
-  <meta name="twitter:image" content="https://kragujevacsport.com/mililogo.png"/>
+  <meta name="twitter:site" content="@kragujevacsport"/>
+  <meta name="twitter:title" content="Kragujevac Sport – Najnovije sportske vesti iz Kragujevca"/>
+  <meta name="twitter:description" content="Sve sportske vesti iz Kragujevca i Šumadije – fudbal, košarka, rukomet, atletika i mnogo više, ažurirano svakog dana."/>
+  <meta name="twitter:image" content="https://kragujevacsport.com/og-image.png"/>
 
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="icon" href="mililogo.png" type="image/png"/>
@@ -37,6 +39,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="preconnect" href="https://djhrxrhucwfygnjvkqyl.supabase.co"/>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap"/></noscript>
 
   <script>
     (function() {
@@ -45,7 +50,7 @@
     })();
   </script>
 
-  <!-- Organization / WebSite schema -->
+  <!-- Organization / WebSite / CollectionPage schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,7 +60,13 @@
         "@id": "https://kragujevacsport.com/#org",
         "name": "Kragujevac Sport",
         "url": "https://kragujevacsport.com/",
-        "logo": "https://kragujevacsport.com/mililogo.png",
+        "description": "Lokalni sportski portal za Kragujevac i Šumadiju. Fudbal, košarka, rukomet, odbojka, vaterpolo, atletika, tenis.",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://kragujevacsport.com/#logo",
+          "url": "https://kragujevacsport.com/mililogo.png",
+          "contentUrl": "https://kragujevacsport.com/mililogo.png"
+        },
         "sameAs": ["https://www.instagram.com/kragujevacsport/"],
         "areaServed": {
           "@type": "City",
@@ -68,7 +79,26 @@
         "@id": "https://kragujevacsport.com/#website",
         "url": "https://kragujevacsport.com/",
         "name": "Kragujevac Sport",
+        "description": "Najnovije sportske vesti iz Kragujevca i Šumadije.",
         "inLanguage": "sr-RS",
+        "publisher": { "@id": "https://kragujevacsport.com/#org" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://kragujevacsport.com/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://kragujevacsport.com/#homepage",
+        "url": "https://kragujevacsport.com/",
+        "name": "Kragujevac Sport – Najnovije sportske vesti iz Kragujevca",
+        "description": "Sve sportske vesti iz Kragujevca i Šumadije – fudbal, košarka, rukomet, atletika i mnogo više, ažurirano svakog dana.",
+        "inLanguage": "sr-RS",
+        "isPartOf": { "@id": "https://kragujevacsport.com/#website" },
         "publisher": { "@id": "https://kragujevacsport.com/#org" }
       }
     ]
@@ -92,6 +122,11 @@
       <div class="header-auth" id="headerAuth">
         <a href="login.html" class="btn-auth-login">Prijavi se</a>
       </div>
+      <button class="search-btn" id="searchBtn" title="Pretraži vesti" aria-label="Pretraži vesti" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
       <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="5"/>
@@ -111,6 +146,24 @@
       </button>
     </div>
   </div>
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay" aria-label="Pretraga vesti">
+    <div class="search-overlay-inner">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="search" id="searchInput" placeholder="Pretražite vesti..." autocomplete="off" spellcheck="false" aria-label="Pretraga vesti"/>
+        <button class="search-clear-btn" id="searchClearBtn" aria-label="Obriši pretragu" tabindex="-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="search-results-wrap" id="searchResultsWrap"></div>
+    </div>
+  </div>
+
   <div class="mobile-menu" id="mobileMenu" aria-label="Mobilni meni">
     <div class="mobile-menu-content">
       <div class="mobile-menu-auth" id="mobileMenuAuth">
@@ -228,6 +281,12 @@
 
   if (catParam) {
     document.getElementById('sectionTitle').textContent = catParam;
+    const catUrl = 'https://kragujevacsport.com/?cat=' + encodeURIComponent(catParam);
+    document.querySelector('link[rel="canonical"]').href = catUrl;
+    document.querySelector('meta[property="og:url"]').content = catUrl;
+    document.title = catParam + ' – Kragujevac Sport';
+    document.querySelector('meta[name="description"]').content =
+      'Najnovije ' + catParam.toLowerCase() + ' vesti iz Kragujevca i Šumadije – Kragujevac Sport.';
   }
 
   // ─── AUTH ─────────────────────────────────────────────────────────────────
@@ -448,13 +507,17 @@
   function injectItemListSchema(news) {
     const prev = document.getElementById('itemListSchema');
     if (prev) prev.remove();
+    const BASE = 'https://kragujevacsport.com';
     const schema = {
       "@context": "https://schema.org",
       "@type": "ItemList",
+      "name": "Najnovije sportske vesti iz Kragujevca",
+      "numberOfItems": Math.min(news.length, 10),
+      "mainEntityOfPage": { "@id": BASE + "/#homepage" },
       "itemListElement": news.slice(0, 10).map((n, i) => ({
         "@type": "ListItem",
         "position": i + 1,
-        "url": location.origin + '/vest.html?id=' + encodeURIComponent(n.id),
+        "url": BASE + '/vest/' + encodeURIComponent(n.id),
         "name": decodeHtml(n.title)
       }))
     };
@@ -526,6 +589,8 @@
       ]);
 
       const data = Array.isArray(newsJson) ? newsJson : [];
+      allNewsCache = data;
+      if (searchInput && searchInput.value.trim()) renderSearchResults(searchInput.value.trim());
 
       const commentCounts = {};
       if (Array.isArray(cmtJson)) {
@@ -582,6 +647,106 @@
       mobileMenuBtn.setAttribute('aria-expanded', 'false');
     }
   });
+
+  // ─── SEARCH ───────────────────────────────────────────────────────────────
+  let allNewsCache = [];
+
+  const searchBtn       = document.getElementById('searchBtn');
+  const searchOverlay   = document.getElementById('searchOverlay');
+  const searchInput     = document.getElementById('searchInput');
+  const searchClearBtn  = document.getElementById('searchClearBtn');
+  const searchResultsWrap = document.getElementById('searchResultsWrap');
+
+  function openSearch() {
+    searchOverlay.classList.add('is-open');
+    searchBtn.classList.add('is-active');
+    searchBtn.setAttribute('aria-expanded', 'true');
+    searchInput.focus();
+    renderSearchResults(searchInput.value.trim());
+  }
+
+  function closeSearch() {
+    searchOverlay.classList.remove('is-open');
+    searchBtn.classList.remove('is-active');
+    searchBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  searchBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    searchOverlay.classList.contains('is-open') ? closeSearch() : openSearch();
+  });
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim();
+    searchClearBtn.classList.toggle('visible', q.length > 0);
+    renderSearchResults(q);
+  });
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeSearch(); searchBtn.focus(); }
+  });
+
+  searchClearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    searchClearBtn.classList.remove('visible');
+    renderSearchResults('');
+    searchInput.focus();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (searchOverlay.classList.contains('is-open') &&
+        !searchOverlay.contains(e.target) &&
+        !searchBtn.contains(e.target)) {
+      closeSearch();
+    }
+  });
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function renderSearchResults(q) {
+    if (!q) {
+      searchResultsWrap.innerHTML = '<p class="search-hint-text">Ukucajte pojam za pretragu vesti…</p>';
+      return;
+    }
+    const lower = q.toLowerCase();
+    const results = allNewsCache.filter(n =>
+      (n.title       && n.title.toLowerCase().includes(lower)) ||
+      (n.description && n.description.toLowerCase().includes(lower))
+    ).slice(0, 8);
+
+    if (!results.length) {
+      searchResultsWrap.innerHTML = '<p class="search-no-results">Nema rezultata za <strong>"' + escHtml(q) + '"</strong></p>';
+      return;
+    }
+
+    const imgPh = '<div class="search-result-thumb-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>';
+    const items = results.map(n =>
+      '<a class="search-result-item" href="vest/' + encodeURIComponent(n.id) + '">' +
+        (n.image_url ? '<img class="search-result-thumb" src="' + escHtml(n.image_url) + '" alt="" loading="lazy"/>' : imgPh) +
+        '<div class="search-result-body">' +
+          (n.category ? '<span class="search-result-cat">' + escHtml(n.category) + '</span>' : '') +
+          '<p class="search-result-title">' + escHtml(n.title || '') + '</p>' +
+          '<span class="search-result-date">' + relativeTime(n.created_at) + '</span>' +
+        '</div>' +
+      '</a>'
+    ).join('');
+
+    const plural = results.length === 1 ? 'rezultat' : results.length < 5 ? 'rezultata' : 'rezultata';
+    searchResultsWrap.innerHTML =
+      '<p class="search-status-text">' + results.length + ' ' + plural + '</p>' + items;
+  }
+
+  // Pre-fill search from URL param
+  const searchParam = new URLSearchParams(location.search).get('search') || '';
+  if (searchParam) {
+    searchInput.value = searchParam;
+    searchClearBtn.classList.add('visible');
+    openSearch();
+  }
 
   document.getElementById('mobileMenu').addEventListener('click', (e) => {
     if (e.target.closest('a')) {

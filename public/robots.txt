@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /admin-panel.html
 Disallow: /api/
+Disallow: /*?search=
 
 # AI crawlers welcome
 User-agent: GPTBot

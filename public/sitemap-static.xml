@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://kragujevacsport.com/</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+
+  <!-- Category filters — query-param pages crawled by Google -->
+  <url>
+    <loc>https://kragujevacsport.com/?cat=Fudbal</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+  <url>
+    <loc>https://kragujevacsport.com/?cat=Ko%C5%A1arka</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+  <url>
+    <loc>https://kragujevacsport.com/?cat=Rukomet</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+  <url>
+    <loc>https://kragujevacsport.com/?cat=Odbojka</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+  <url>
+    <loc>https://kragujevacsport.com/?cat=Vaterpolo</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+  <url>
+    <loc>https://kragujevacsport.com/?cat=Atletika</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+  <url>
+    <loc>https://kragujevacsport.com/?cat=Tenis</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+  <url>
+    <loc>https://kragujevacsport.com/?cat=Ostalo</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+
+  <!-- Static content pages -->
+  <url>
+    <loc>https://kragujevacsport.com/privacy-policy.html</loc>
+    <lastmod>2026-05-02</lastmod>
+  </url>
+
+</urlset>
