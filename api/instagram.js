@@ -87,12 +87,27 @@ export default async function handler(req, res) {
 }
 
 function decodeEntities(str) {
+  if (!str) return '';
+
+  const named = {
+    'amp': '&', 'lt': '<', 'gt': '>', 'quot': '"', 'apos': "'",
+    'nbsp': ' ', 'ndash': '–', 'mdash': '—', 'hellip': '…',
+    'lsquo': '‘', 'rsquo': '’', 'ldquo': '“', 'rdquo': '”',
+    'laquo': '«', 'raquo': '»', 'copy': '©', 'reg': '®', 'trade': '™'
+  };
+
   return str
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&apos;/g, "'")
+    // Hex numeric entities (e.g. &#x10d; → č, &#x1f525; → 🔥)
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => {
+      try { return String.fromCodePoint(parseInt(hex, 16)); }
+      catch { return ''; }
+    })
+    // Decimal numeric entities (e.g. &#269; → č)
+    .replace(/&#(\d+);/g, (_, dec) => {
+      try { return String.fromCodePoint(parseInt(dec, 10)); }
+      catch { return ''; }
+    })
+    // Named entities
+    .replace(/&([a-z]+);/gi, (m, name) => named[name.toLowerCase()] ?? m)
     .replace(/\\n/g, '\n');
 }

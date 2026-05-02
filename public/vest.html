@@ -193,6 +193,13 @@
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
+  function decodeHtml(html) {
+    if (!html) return '';
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
   function updateAuthUI(user) {
     const el = document.getElementById('headerAuth');
     if (!user) {
@@ -267,20 +274,23 @@
     const isFromInstagram = news.instagram_post_url &&
       !String(news.instagram_post_id || '').startsWith('manual_') &&
       !String(news.id || '').startsWith('sample-');
-    const tag = escapeHtml(news.category || 'Sport');
+    const titleText = decodeHtml(news.title);
+    const descriptionText = decodeHtml(news.description || '');
+    const categoryText = decodeHtml(news.category || 'Sport');
+    const tag = escapeHtml(categoryText);
     currentGallery = buildImages(news);
     const mainImage = currentGallery[0] || null;
     const extraImages = currentGallery.slice(1);
 
-    const pageTitle = news.title + ' – Kragujevac Sport';
+    const pageTitle = titleText + ' – Kragujevac Sport';
     document.title = pageTitle;
-    setMeta('description', excerpt(news.description || news.title, 155));
+    setMeta('description', excerpt(descriptionText || titleText, 155));
     setOg('og:title', pageTitle);
-    setOg('og:description', excerpt(news.description || news.title, 155));
+    setOg('og:description', excerpt(descriptionText || titleText, 155));
     setOg('og:url', location.href);
     if (mainImage) setOg('og:image', mainImage);
     setMeta('twitter:title', pageTitle);
-    setMeta('twitter:description', excerpt(news.description || news.title, 155));
+    setMeta('twitter:description', excerpt(descriptionText || titleText, 155));
     if (mainImage) setMeta('twitter:image', mainImage);
     setCanonical(location.origin + location.pathname + '?id=' + encodeURIComponent(news.id));
     injectArticleSchema(news, currentGallery);
@@ -297,16 +307,16 @@
     document.getElementById('articleWrap').innerHTML = ''
       + '<a href="index.html" class="back-btn">' + backSvg + ' Sve vesti</a>'
       + '<div class="article-tag">' + tag + '</div>'
-      + '<h1 class="article-title">' + escapeHtml(news.title) + '</h1>'
+      + '<h1 class="article-title">' + escapeHtml(titleText) + '</h1>'
       + '<div class="article-meta">'
       +   '<span>' + calSvg + ' ' + formatDate(news.created_at) + '</span>'
       +   (isFromInstagram ? '<span>' + igSvg + ' Izvor: Instagram</span>' : '')
       + '</div>'
       + (mainImage
-          ? '<img src="' + escapeHtml(mainImage) + '" alt="' + escapeHtml(news.title) + '" class="article-image" id="articleMainImg" loading="eager" decoding="async" onerror="this.style.display=\'none\'">'
+          ? '<img src="' + escapeHtml(mainImage) + '" alt="' + escapeHtml(titleText) + '" class="article-image" id="articleMainImg" loading="eager" decoding="async" onerror="this.style.display=\'none\'">'
           : '')
       + gallerySection
-      + '<div class="article-body">' + escapeHtml(news.description || '') + '</div>'
+      + '<div class="article-body">' + escapeHtml(descriptionText) + '</div>'
       + (isFromInstagram
           ? '<a href="' + escapeHtml(news.instagram_post_url) + '" target="_blank" rel="noopener" class="article-ig-link">' + igSvg + ' Pogledaj originalnu objavu na Instagramu ' + extSvg + '</a>'
           : '<a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" class="article-ig-link">' + igSvg + ' Prati @kragujevacsport za više vesti ' + extSvg + '</a>');
