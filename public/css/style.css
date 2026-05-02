@@ -172,11 +172,12 @@ header {
 }
 
 .mobile-menu-btn span {
-  width: 18px; height: 2px;
+  width: 20px; height: 2px;
   background: var(--text);
   border-radius: 1px;
   transition: all 0.3s ease;
   transform-origin: center;
+  display: block;
 }
 
 .mobile-menu-btn[aria-expanded="true"] span:nth-child(1) {
@@ -221,15 +222,15 @@ header {
 }
 
 .mobile-menu-content {
-  padding: 16px 12px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .mobile-menu-auth {
-  border-bottom: 1px solid var(--border);
   padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
 }
 
 .mobile-menu-auth .btn-auth-login {
@@ -269,6 +270,7 @@ header {
   transition: all 0.2s;
   font-size: 0.9rem;
   color: var(--text-dim);
+  margin-top: 8px;
 }
 
 .mobile-user-signout:hover {

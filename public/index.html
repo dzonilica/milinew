@@ -266,6 +266,13 @@
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
+  function decodeHtml(html) {
+    if (!html) return '';
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
   function updateAuthUI(user) {
     const el = document.getElementById('headerAuth');
     const mobileEl = document.getElementById('mobileMenuAuth');
@@ -349,28 +356,28 @@
     const sidePosts = news.slice(1, 3);
 
     featured.innerHTML =
-      '<a href="vest.html?id=' + encodeURIComponent(main.id) + '" aria-label="' + escapeHtml(main.title) + '">'
+      '<a href="vest.html?id=' + encodeURIComponent(main.id) + '" aria-label="' + escapeHtml(decodeHtml(main.title)) + '">'
       + (main.image_url
-        ? '<img src="' + escapeHtml(main.image_url) + '" alt="' + escapeHtml(main.title) + '" loading="eager" decoding="async">'
+        ? '<img src="' + escapeHtml(main.image_url) + '" alt="' + escapeHtml(decodeHtml(main.title)) + '" loading="eager" decoding="async">'
         : '<div class="hero-placeholder">' + ballSvg + '</div>')
       + '<span class="hero-featured-badge">Izdvojeno</span>'
       + '<div class="hero-featured-overlay"></div>'
       + '<div class="hero-featured-body">'
-      +   '<span class="hero-featured-tag">' + escapeHtml(main.category || 'Sport') + '</span>'
-      +   '<div class="hero-featured-title">' + escapeHtml(main.title) + '</div>'
+      +   '<span class="hero-featured-tag">' + escapeHtml(decodeHtml(main.category || 'Sport')) + '</span>'
+      +   '<div class="hero-featured-title">' + escapeHtml(decodeHtml(main.title)) + '</div>'
       +   '<div class="hero-featured-time">' + relativeTime(main.created_at) + '</div>'
       + '</div>'
       + '</a>';
 
     sidebar.innerHTML = sidePosts.map(n => {
-      const ex = excerpt(n.content || n.summary || n.description || '', 100);
-      return '<a href="vest.html?id=' + encodeURIComponent(n.id) + '" class="hero-sidebar-item" aria-label="' + escapeHtml(n.title) + '">'
+      const ex = excerpt(decodeHtml(n.content || n.summary || n.description || ''), 100);
+      return '<a href="vest.html?id=' + encodeURIComponent(n.id) + '" class="hero-sidebar-item" aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
       + (n.image_url
         ? '<img src="' + escapeHtml(n.image_url) + '" alt="" class="hero-sidebar-img" loading="lazy" decoding="async">'
         : '<div class="hero-sidebar-no-img">' + ballSvg + '</div>')
       + '<div class="hero-sidebar-body">'
-      +   '<span class="hero-sidebar-tag">' + escapeHtml(n.category || 'Sport') + '</span>'
-      +   '<div class="hero-sidebar-title">' + escapeHtml(n.title) + '</div>'
+      +   '<span class="hero-sidebar-tag">' + escapeHtml(decodeHtml(n.category || 'Sport')) + '</span>'
+      +   '<div class="hero-sidebar-title">' + escapeHtml(decodeHtml(n.title)) + '</div>'
       +   (ex ? '<p class="hero-sidebar-excerpt">' + escapeHtml(ex) + '</p>' : '')
       +   '<span class="hero-sidebar-time">' + relativeTime(n.created_at) + '</span>'
       + '</div>'
@@ -397,24 +404,24 @@
 
     const cards = news.map(n => {
       const hasImg = !!n.image_url;
-      const tag = escapeHtml(n.category || 'Sport');
+      const tag = escapeHtml(decodeHtml(n.category || 'Sport'));
       const count = galleryCount(n);
       const badge = count > 1
         ? '<div class="card-gallery-badge">' + gallerySvg + ' ' + count + '</div>'
         : '';
-      const ex = excerpt(n.content || n.summary || n.description || '', 130);
+      const ex = excerpt(decodeHtml(n.content || n.summary || n.description || ''), 130);
       return ''
-        + '<a href="vest.html?id=' + encodeURIComponent(n.id) + '" class="news-card" aria-label="' + escapeHtml(n.title) + '">'
+        + '<a href="vest.html?id=' + encodeURIComponent(n.id) + '" class="news-card" aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
         +   '<div class="card-image-wrap">'
         +     (hasImg
-              ? '<img src="' + escapeHtml(n.image_url) + '" alt="' + escapeHtml(n.title) + '" class="card-image" loading="lazy" decoding="async" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'
+              ? '<img src="' + escapeHtml(n.image_url) + '" alt="' + escapeHtml(decodeHtml(n.title)) + '" class="card-image" loading="lazy" decoding="async" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'
               : '')
         +     '<div class="card-image-placeholder"' + (hasImg ? ' style="display:none"' : '') + '>' + ballSvg + '</div>'
         +     '<span class="card-tag-overlay">' + tag + '</span>'
         +     badge
         +   '</div>'
         +   '<div class="card-body">'
-        +     '<h2 class="card-title">' + escapeHtml(n.title) + '</h2>'
+        +     '<h2 class="card-title">' + escapeHtml(decodeHtml(n.title)) + '</h2>'
         +     (ex ? '<p class="card-excerpt">' + escapeHtml(ex) + '</p>' : '')
         +     '<div class="card-meta">'
         +       '<span class="card-time">' + clockSvg + ' ' + relativeTime(n.created_at) + '</span>'
@@ -441,7 +448,7 @@
         "@type": "ListItem",
         "position": i + 1,
         "url": location.origin + '/vest.html?id=' + encodeURIComponent(n.id),
-        "name": n.title
+        "name": decodeHtml(n.title)
       }))
     };
     const s = document.createElement('script');
