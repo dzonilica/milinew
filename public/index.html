@@ -80,7 +80,7 @@
 <!-- HEADER -->
 <header>
   <div class="header-inner">
-    <a href="/" class="logo" aria-label="Kragujevac Sport – početna">
+    <a href="index.html" class="logo" aria-label="Kragujevac Sport – početna">
       <img src="mililogo.png" alt="Kragujevac Sport" class="logo-icon"/>
       Kragujevac<span>Sport</span>
     </a>
@@ -89,6 +89,9 @@
         <span class="live-dot"></span>
         Sve sportske vesti iz Kragujevca
       </span>
+      <div class="header-auth" id="headerAuth">
+        <a href="login.html" class="btn-auth-login">Prijavi se</a>
+      </div>
       <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="5"/>
@@ -105,37 +108,38 @@
   </div>
 </header>
 
-<!-- TICKER -->
-<div class="ticker" id="ticker" style="display:none;">
-  <div class="ticker-label">
-    <svg viewBox="0 0 8 8" aria-hidden="true"><circle cx="4" cy="4" r="4"/></svg>
-    Uživo
+<!-- CATEGORY NAV -->
+<nav class="cat-nav" aria-label="Kategorije">
+  <div class="cat-nav-inner">
+    <a href="index.html" class="cat-nav-link" data-cat="">Naslovna</a>
+    <a href="index.html?cat=Fudbal" class="cat-nav-link" data-cat="Fudbal">Fudbal</a>
+    <a href="index.html?cat=Ko%C5%A1arka" class="cat-nav-link" data-cat="Košarka">Košarka</a>
+    <a href="index.html?cat=Rukomet" class="cat-nav-link" data-cat="Rukomet">Rukomet</a>
+    <a href="index.html?cat=Odbojka" class="cat-nav-link" data-cat="Odbojka">Odbojka</a>
+    <a href="index.html?cat=Atletika" class="cat-nav-link" data-cat="Atletika">Atletika</a>
+    <a href="index.html?cat=Tenis" class="cat-nav-link" data-cat="Tenis">Tenis</a>
+    <a href="index.html?cat=D%C5%BEudo" class="cat-nav-link" data-cat="Džudo">Džudo</a>
+    <a href="index.html?cat=Ostalo" class="cat-nav-link" data-cat="Ostalo">Ostalo</a>
   </div>
-  <div class="ticker-track" id="tickerTrack"></div>
-</div>
+</nav>
 
-<!-- PAGE GRID: left banner | main | right banner -->
-<div class="page-with-sides">
+<!-- PAGE CONTENT -->
+<div class="page-container">
 
-  <aside class="side-banner" aria-label="Reklamna pozicija levo">
-    <div class="side-banner-slot" id="bannerLeft">
-      <span class="side-banner-label">Reklama</span>
-      <div class="side-banner-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        Reklamna<br/>pozicija
-      </div>
-    </div>
-  </aside>
+  <!-- TOP HORIZONTAL BANNER -->
+  <div class="h-banner-wrap" id="bannerTop" aria-label="Reklamna pozicija"></div>
 
   <main>
-    <div class="section-heading">
+    <!-- HERO SECTION (shown only on homepage, no category filter) -->
+    <div class="hero-section" id="heroSection" style="display:none;" aria-label="Izdvojena vest">
+      <div class="hero-featured" id="heroFeatured"></div>
+      <div class="hero-sidebar" id="heroSidebar"></div>
+    </div>
+
+    <div class="section-heading" id="sectionHeading">
       <div class="accent-bar"></div>
-      <h1 style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text);">Najnovije vesti</h1>
-      <div class="line"></div>
+      <h1 id="sectionTitle" class="section-title">Najnovije vesti</h1>
+      <span class="section-count" id="sectionCount"></span>
     </div>
 
     <div id="newsGrid" class="news-grid" aria-live="polite">
@@ -147,39 +151,9 @@
       </div>
     </div>
 
-    <div class="contact-bar">
-      <div class="contact-bar-text">
-        <div class="contact-bar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <circle cx="12" cy="12" r="4.5"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/>
-          </svg>
-        </div>
-        <div>
-          <h4>Prati nas na Instagramu</h4>
-          <p>Budi u toku sa najnovijim sportskim vestima iz Kragujevca</p>
-        </div>
-      </div>
-      <a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" class="btn btn-instagram">
-        @kragujevacsport
-      </a>
-    </div>
+    <!-- MIDDLE HORIZONTAL BANNER -->
+    <div class="h-banner-wrap" id="bannerMiddle" aria-label="Reklamna pozicija"></div>
   </main>
-
-  <aside class="side-banner" aria-label="Reklamna pozicija desno">
-    <div class="side-banner-slot" id="bannerRight">
-      <span class="side-banner-label">Reklama</span>
-      <div class="side-banner-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        Reklamna<br/>pozicija
-      </div>
-    </div>
-  </aside>
 
 </div>
 
@@ -194,6 +168,8 @@
       © <span id="year"></span> Kragujevac Sport · Sve sportske vesti iz Kragujevca
       <span class="footer-credit">
         Radio <a href="https://lotifystudio.com" target="_blank" rel="noopener">Lotify Studio</a>
+        &nbsp;·&nbsp;
+        <a href="privacy-policy.html" style="color:var(--text-muted);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">Politika privatnosti</a>
       </span>
     </div>
     <div class="footer-socials">
@@ -208,20 +184,99 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
   const SUPABASE_URL  = 'https://djhrxrhucwfygnjvkqyl.supabase.co';
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqaHJ4cmh1Y3dmeWduanZrcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzOTAzMTYsImV4cCI6MjA4OTk2NjMxNn0.APKFBCb4PfuPoiD4c4p5AdUWe6aXpZZ3eFvifPuzvpw';
 
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  let currentUser = null;
+
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const clockSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
-  const ballSvg  = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/></svg>';
-  const gallerySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
+  // ─── CATEGORY FILTER ──────────────────────────────────────────────────────
+  const catParam = new URLSearchParams(location.search).get('cat') || '';
+
+  document.querySelectorAll('.cat-nav-link').forEach(a => {
+    if (a.dataset.cat === catParam) a.classList.add('active');
+  });
+
+  if (catParam) {
+    document.getElementById('sectionTitle').textContent = catParam;
+  }
+
+  // ─── AUTH ─────────────────────────────────────────────────────────────────
+  async function initAuth() {
+    let { data: { session } } = await sb.auth.getSession();
+    if (!session) {
+      const match = document.cookie.match(/(?:^|;\s*)ks_rt=([^;]+)/);
+      if (match) {
+        try {
+          const { data } = await sb.auth.refreshSession({ refresh_token: decodeURIComponent(match[1]) });
+          if (data?.session) {
+            document.cookie = 'ks_rt=' + encodeURIComponent(data.session.refresh_token) + '; max-age=2592000; path=/; SameSite=Lax';
+            session = data.session;
+          } else {
+            document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
+          }
+        } catch (_) {}
+      }
+    }
+    currentUser = session?.user || null;
+    updateAuthUI(currentUser);
+  }
+
+  initAuth();
+
+  sb.auth.onAuthStateChange((event, session) => {
+    currentUser = session?.user || null;
+    updateAuthUI(currentUser);
+    if (event === 'SIGNED_OUT') {
+      document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
+    }
+  });
 
   function escapeHtml(s) {
     if (!s) return '';
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
+
+  function updateAuthUI(user) {
+    const el = document.getElementById('headerAuth');
+    if (!user) {
+      el.innerHTML = '<a href="login.html" class="btn-auth-login">Prijavi se</a>';
+      return;
+    }
+    const name = user.user_metadata?.full_name || user.email.split('@')[0];
+    const initials = name.slice(0, 2).toUpperCase();
+    el.innerHTML =
+      '<div style="position:relative;">'
+      + '<button class="btn-user-menu" id="userMenuBtn">'
+      +   '<span class="user-avatar">' + escapeHtml(initials) + '</span>'
+      +   '<span>' + escapeHtml(name) + '</span>'
+      + '</button>'
+      + '<div class="user-dropdown" id="userDropdown">'
+      +   '<button class="user-dropdown-item" id="signOutBtn">Odjavi se</button>'
+      + '</div>'
+      + '</div>';
+    document.getElementById('userMenuBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('userDropdown').classList.toggle('is-open');
+    });
+    document.getElementById('signOutBtn').addEventListener('click', async () => {
+      document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
+      await sb.auth.signOut();
+    });
+  }
+
+  document.addEventListener('click', () => {
+    document.getElementById('userDropdown')?.classList.remove('is-open');
+  });
+
+  // ─── HELPERS ──────────────────────────────────────────────────────────────
+  const clockSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+  const ballSvg  = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/></svg>';
+  const gallerySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
 
   function relativeTime(dateStr) {
     const diff = (Date.now() - new Date(dateStr)) / 1000;
@@ -237,17 +292,6 @@
     return text.length > max ? text.slice(0, max).trim() + '…' : text;
   }
 
-  function buildTicker(news) {
-    if (!news.length) return;
-    const ticker = document.getElementById('ticker');
-    const track = document.getElementById('tickerTrack');
-    const items = [...news, ...news];
-    track.innerHTML = items.map(n =>
-      '<span class="ticker-item">' + escapeHtml(n.title) + '</span>'
-    ).join('');
-    ticker.style.display = 'flex';
-  }
-
   function galleryCount(n) {
     const g = Array.isArray(n.gallery) ? n.gallery : [];
     const base = n.image_url ? 1 : 0;
@@ -255,42 +299,95 @@
     return base + extra;
   }
 
+// ─── HERO SECTION ─────────────────────────────────────────────────────────
+  function buildHero(news) {
+    if (news.length < 2) return;
+    const section  = document.getElementById('heroSection');
+    const featured = document.getElementById('heroFeatured');
+    const sidebar  = document.getElementById('heroSidebar');
+    const main = news[0];
+    const sidePosts = news.slice(1, 3);
+
+    featured.innerHTML =
+      '<a href="vest.html?id=' + encodeURIComponent(main.id) + '" aria-label="' + escapeHtml(main.title) + '">'
+      + (main.image_url
+        ? '<img src="' + escapeHtml(main.image_url) + '" alt="' + escapeHtml(main.title) + '" loading="eager" decoding="async">'
+        : '<div class="hero-placeholder">' + ballSvg + '</div>')
+      + '<span class="hero-featured-badge">Izdvojeno</span>'
+      + '<div class="hero-featured-overlay"></div>'
+      + '<div class="hero-featured-body">'
+      +   '<span class="hero-featured-tag">' + escapeHtml(main.category || 'Sport') + '</span>'
+      +   '<div class="hero-featured-title">' + escapeHtml(main.title) + '</div>'
+      +   '<div class="hero-featured-time">' + relativeTime(main.created_at) + '</div>'
+      + '</div>'
+      + '</a>';
+
+    sidebar.innerHTML = sidePosts.map(n => {
+      const ex = excerpt(n.content || n.summary || n.description || '', 100);
+      return '<a href="vest.html?id=' + encodeURIComponent(n.id) + '" class="hero-sidebar-item" aria-label="' + escapeHtml(n.title) + '">'
+      + (n.image_url
+        ? '<img src="' + escapeHtml(n.image_url) + '" alt="" class="hero-sidebar-img" loading="lazy" decoding="async">'
+        : '<div class="hero-sidebar-no-img">' + ballSvg + '</div>')
+      + '<div class="hero-sidebar-body">'
+      +   '<span class="hero-sidebar-tag">' + escapeHtml(n.category || 'Sport') + '</span>'
+      +   '<div class="hero-sidebar-title">' + escapeHtml(n.title) + '</div>'
+      +   (ex ? '<p class="hero-sidebar-excerpt">' + escapeHtml(ex) + '</p>' : '')
+      +   '<span class="hero-sidebar-time">' + relativeTime(n.created_at) + '</span>'
+      + '</div>'
+      + '</a>';
+    }).join('');
+
+    section.style.display = '';
+  }
+
+  // ─── NEWS GRID ─────────────────────────────────────────────────────────────
   function buildGrid(news) {
     const grid = document.getElementById('newsGrid');
+    const countEl = document.getElementById('sectionCount');
+    if (countEl) countEl.textContent = news.length ? news.length + (news.length === 1 ? ' vest' : (news.length < 5 ? ' vesti' : ' vesti')) : '';
     if (!news.length) {
       grid.innerHTML = '<div style="grid-column:1/-1;"><div class="empty-state"><h3>Nema vesti za prikaz</h3><p>Vesti će biti dostupne uskoro.</p></div></div>';
       return;
     }
 
-    grid.innerHTML = news.map((n, i) => {
+    const arrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+
+    const IN_GRID_AFTER = 3;
+    const bannerSlot = '<div id="bannerInGrid" class="in-grid-banner-slot" aria-label="Reklamna pozicija"></div>';
+
+    const cards = news.map(n => {
       const hasImg = !!n.image_url;
       const tag = escapeHtml(n.category || 'Sport');
       const count = galleryCount(n);
       const badge = count > 1
         ? '<div class="card-gallery-badge">' + gallerySvg + ' ' + count + '</div>'
         : '';
+      const ex = excerpt(n.content || n.summary || n.description || '', 130);
       return ''
         + '<a href="vest.html?id=' + encodeURIComponent(n.id) + '" class="news-card" aria-label="' + escapeHtml(n.title) + '">'
         +   '<div class="card-image-wrap">'
         +     (hasImg
               ? '<img src="' + escapeHtml(n.image_url) + '" alt="' + escapeHtml(n.title) + '" class="card-image" loading="lazy" decoding="async" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'
               : '')
-        +     '<div class="card-image-placeholder" style="' + (hasImg ? 'display:none' : '') + '">' + ballSvg + '</div>'
+        +     '<div class="card-image-placeholder"' + (hasImg ? ' style="display:none"' : '') + '>' + ballSvg + '</div>'
+        +     '<span class="card-tag-overlay">' + tag + '</span>'
         +     badge
-        +     '<div class="card-image-gradient"></div>'
         +   '</div>'
         +   '<div class="card-body">'
-        +     '<div class="card-meta">'
-        +       '<span class="card-tag">' + tag + '</span>'
-        +       '<span class="card-time">' + clockSvg + ' ' + relativeTime(n.created_at) + '</span>'
-        +     '</div>'
         +     '<h2 class="card-title">' + escapeHtml(n.title) + '</h2>'
-        +     (i === 0 && n.description ? '<div class="card-excerpt">' + escapeHtml(excerpt(n.description)) + '</div>' : '')
+        +     (ex ? '<p class="card-excerpt">' + escapeHtml(ex) + '</p>' : '')
+        +     '<div class="card-meta">'
+        +       '<span class="card-time">' + clockSvg + ' ' + relativeTime(n.created_at) + '</span>'
+        +       '<span class="card-read-more">Pročitaj ' + arrowSvg + '</span>'
+        +     '</div>'
         +   '</div>'
         + '</a>';
-    }).join('');
+    });
 
-    // Inject ItemList schema for SEO
+    const before = cards.slice(0, IN_GRID_AFTER).join('');
+    const after  = cards.slice(IN_GRID_AFTER).join('');
+    grid.innerHTML = before + (cards.length > IN_GRID_AFTER ? bannerSlot : '') + after;
+
     injectItemListSchema(news);
   }
 
@@ -314,7 +411,7 @@
     document.head.appendChild(s);
   }
 
-  // ─── SIDE BANNERS ────────────────────────────────────────────────────────
+  // ─── HORIZONTAL BANNERS ───────────────────────────────────────────────────
   async function loadBanners() {
     try {
       const res = await fetch(SUPABASE_URL + '/rest/v1/ads?active=eq.true&select=*&order=sort_order.asc,id.asc', {
@@ -323,48 +420,36 @@
       if (!res.ok) return;
       const ads = await res.json();
       if (!Array.isArray(ads)) return;
-      renderBanner('bannerLeft',  ads.filter(a => a.position === 'left'));
-      renderBanner('bannerRight', ads.filter(a => a.position === 'right'));
+      renderHBanner('bannerTop',    ads.filter(a => a.position === 'top'));
+      renderHBanner('bannerMiddle', ads.filter(a => a.position === 'middle'));
+      renderHBanner('bannerInGrid', ads.filter(a => a.position === 'in_grid'));
     } catch (_) {}
   }
 
-  function renderBanner(slotId, ads) {
+  function renderHBanner(slotId, ads) {
     const slot = document.getElementById(slotId);
     if (!slot || !ads.length) return;
-    const TOTAL_CYCLE_MS = 60000; // 60s total cycle
-    const perAdMs = Math.max(4000, Math.floor(TOTAL_CYCLE_MS / ads.length));
-
-    slot.querySelector('.side-banner-empty')?.remove();
-    const label = slot.querySelector('.side-banner-label');
-    slot.innerHTML = '';
-    if (label) slot.appendChild(label);
+    slot.classList.add('has-ads');
+    slot.innerHTML = '<span class="h-banner-label">Reklama</span>';
+    const perAdMs = Math.max(4000, Math.floor(60000 / ads.length));
 
     ads.forEach((ad, i) => {
       const el = ad.link_url ? document.createElement('a') : document.createElement('div');
-      if (ad.link_url) {
-        el.href = ad.link_url;
-        el.target = '_blank';
-        el.rel = 'noopener sponsored';
-      }
-      el.className = 'side-banner-link';
-      el.style.position = 'absolute';
-      el.style.inset = '0';
+      if (ad.link_url) { el.href = ad.link_url; el.target = '_blank'; el.rel = 'noopener sponsored'; }
+      el.className = 'h-banner-link';
       el.setAttribute('aria-label', 'Reklama: ' + (ad.client_name || ''));
-
       const img = document.createElement('img');
       img.src = ad.image_url;
       img.alt = ad.client_name || 'Reklama';
-      img.className = 'side-banner-img' + (i === 0 ? ' is-active' : '');
-      img.loading = 'lazy';
-      img.decoding = 'async';
-
+      img.className = 'h-banner-img' + (i === 0 ? ' is-active' : '');
+      img.loading = 'lazy'; img.decoding = 'async';
       el.appendChild(img);
       slot.appendChild(el);
     });
 
     if (ads.length > 1) {
       let idx = 0;
-      const imgs = slot.querySelectorAll('.side-banner-img');
+      const imgs = slot.querySelectorAll('.h-banner-img');
       setInterval(() => {
         imgs[idx].classList.remove('is-active');
         idx = (idx + 1) % imgs.length;
@@ -373,15 +458,23 @@
     }
   }
 
+  // ─── LOAD NEWS ────────────────────────────────────────────────────────────
   async function loadNews() {
     try {
-      const res = await fetch(SUPABASE_URL + '/rest/v1/news?select=*&order=created_at.desc', {
+      let url = SUPABASE_URL + '/rest/v1/news?select=*&order=created_at.desc';
+      if (catParam) url += '&category=eq.' + encodeURIComponent(catParam);
+      const res = await fetch(url, {
         headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON }
       });
       const news = await res.json();
       const data = Array.isArray(news) ? news : [];
-      buildGrid(data);
-      buildTicker(data.slice(0, 10));
+
+      if (!catParam && data.length >= 2) {
+        buildHero(data.slice(0, 3));
+        buildGrid(data.slice(3));
+      } else {
+        buildGrid(data);
+      }
     } catch (e) {
       buildGrid([]);
     }

@@ -41,6 +41,9 @@
         <span class="live-dot"></span>
         Sve sportske vesti iz Kragujevca
       </span>
+      <div class="header-auth" id="headerAuth">
+        <a href="login.html" class="btn-auth-login">Prijavi se</a>
+      </div>
       <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="5"/>
@@ -57,22 +60,28 @@
   </div>
 </header>
 
-<!-- PAGE GRID: left banner | article | right banner -->
-<div class="page-with-sides">
-  <aside class="side-banner" aria-label="Reklamna pozicija levo">
-    <div class="side-banner-slot" id="bannerLeft">
-      <span class="side-banner-label">Reklama</span>
-      <div class="side-banner-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        Reklamna<br/>pozicija
-      </div>
-    </div>
-  </aside>
+<!-- CATEGORY NAV -->
+<nav class="cat-nav" aria-label="Kategorije">
+  <div class="cat-nav-inner">
+    <a href="index.html" class="cat-nav-link" data-cat="">Naslovna</a>
+    <a href="index.html?cat=Fudbal" class="cat-nav-link" data-cat="Fudbal">Fudbal</a>
+    <a href="index.html?cat=Ko%C5%A1arka" class="cat-nav-link" data-cat="Košarka">Košarka</a>
+    <a href="index.html?cat=Rukomet" class="cat-nav-link" data-cat="Rukomet">Rukomet</a>
+    <a href="index.html?cat=Odbojka" class="cat-nav-link" data-cat="Odbojka">Odbojka</a>
+    <a href="index.html?cat=Atletika" class="cat-nav-link" data-cat="Atletika">Atletika</a>
+    <a href="index.html?cat=Tenis" class="cat-nav-link" data-cat="Tenis">Tenis</a>
+    <a href="index.html?cat=D%C5%BEudo" class="cat-nav-link" data-cat="Džudo">Džudo</a>
+    <a href="index.html?cat=Ostalo" class="cat-nav-link" data-cat="Ostalo">Ostalo</a>
+  </div>
+</nav>
 
+<!-- PAGE CONTENT -->
+<div class="page-container">
+
+  <!-- TOP HORIZONTAL BANNER -->
+  <div class="h-banner-wrap" id="bannerTop" aria-label="Reklamna pozicija"></div>
+
+  <!-- ARTICLE -->
   <div class="article-wrap" id="articleWrap">
     <div class="loading">
       <div class="loading-spinner"></div>
@@ -80,19 +89,24 @@
     </div>
   </div>
 
-  <aside class="side-banner" aria-label="Reklamna pozicija desno">
-    <div class="side-banner-slot" id="bannerRight">
-      <span class="side-banner-label">Reklama</span>
-      <div class="side-banner-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        Reklamna<br/>pozicija
-      </div>
+  <!-- COMMENTS SECTION -->
+  <div class="comments-section" id="commentsSection" style="display:none;">
+    <div class="section-heading" style="margin-top:48px;">
+      <div class="accent-bar"></div>
+      <h2 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text);">
+        Komentari <span id="commentsCount" style="font-size:.85rem;color:var(--text-muted);font-weight:500;letter-spacing:0;text-transform:none;"></span>
+      </h2>
+      <div class="line"></div>
     </div>
-  </aside>
+    <div id="commentFormWrap"></div>
+    <div id="commentsList">
+      <div class="comments-loading">Učitavanje komentara...</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM HORIZONTAL BANNER -->
+  <div class="h-banner-wrap" id="bannerBottom" aria-label="Reklamna pozicija" style="margin-top:32px;"></div>
+
 </div>
 
 <!-- Lightbox -->
@@ -131,27 +145,103 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
   const SUPABASE_URL  = 'https://djhrxrhucwfygnjvkqyl.supabase.co';
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqaHJ4cmh1Y3dmeWduanZrcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzOTAzMTYsImV4cCI6MjA4OTk2NjMxNn0.APKFBCb4PfuPoiD4c4p5AdUWe6aXpZZ3eFvifPuzvpw';
 
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  let currentUser = null;
+
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ─── AUTH ─────────────────────────────────────────────────────────────────
+  async function initAuth() {
+    let { data: { session } } = await sb.auth.getSession();
+    if (!session) {
+      const match = document.cookie.match(/(?:^|;\s*)ks_rt=([^;]+)/);
+      if (match) {
+        try {
+          const { data } = await sb.auth.refreshSession({ refresh_token: decodeURIComponent(match[1]) });
+          if (data?.session) {
+            document.cookie = 'ks_rt=' + encodeURIComponent(data.session.refresh_token) + '; max-age=2592000; path=/; SameSite=Lax';
+            session = data.session;
+          } else {
+            document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
+          }
+        } catch (_) {}
+      }
+    }
+    currentUser = session?.user || null;
+    updateAuthUI(currentUser);
+    if (newsId) renderCommentForm();
+  }
+
+  initAuth();
+
+  sb.auth.onAuthStateChange((event, session) => {
+    currentUser = session?.user || null;
+    updateAuthUI(currentUser);
+    if (newsId) renderCommentForm();
+    if (event === 'SIGNED_OUT') {
+      document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
+    }
+  });
 
   function escapeHtml(s) {
     if (!s) return '';
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
+  function updateAuthUI(user) {
+    const el = document.getElementById('headerAuth');
+    if (!user) {
+      el.innerHTML = '<a href="login.html?return=' + encodeURIComponent(location.href) + '" class="btn-auth-login">Prijavi se</a>';
+      return;
+    }
+    const name = user.user_metadata?.full_name || user.email.split('@')[0];
+    const initials = name.slice(0, 2).toUpperCase();
+    el.innerHTML =
+      '<div style="position:relative;">'
+      + '<button class="btn-user-menu" id="userMenuBtn">'
+      +   '<span class="user-avatar">' + escapeHtml(initials) + '</span>'
+      +   '<span>' + escapeHtml(name) + '</span>'
+      + '</button>'
+      + '<div class="user-dropdown" id="userDropdown">'
+      +   '<button class="user-dropdown-item" id="signOutBtn">Odjavi se</button>'
+      + '</div>'
+      + '</div>';
+    document.getElementById('userMenuBtn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('userDropdown').classList.toggle('is-open');
+    });
+    document.getElementById('signOutBtn').addEventListener('click', async () => {
+      document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
+      await sb.auth.signOut();
+    });
+  }
+
+  document.addEventListener('click', () => {
+    document.getElementById('userDropdown')?.classList.remove('is-open');
+  });
+
+  // ─── URL PARAMS ───────────────────────────────────────────────────────────
   const params = new URLSearchParams(window.location.search);
   const qsId = params.get('id');
   const pathParts = window.location.pathname.split('/').filter(p => p && !p.includes('.html'));
   const newsId = qsId || pathParts[pathParts.length - 1] || '';
 
+  // ─── HELPERS ──────────────────────────────────────────────────────────────
   function formatDate(dateStr) {
     return new Date(dateStr).toLocaleString('sr-RS', {
       year: 'numeric', month: 'long', day: 'numeric',
       hour: '2-digit', minute: '2-digit'
     });
+  }
+
+  function excerpt(text, max) {
+    if (!text) return '';
+    return text.length > max ? text.slice(0, max).trim() + '…' : text;
   }
 
   const backSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>';
@@ -182,7 +272,6 @@
     const mainImage = currentGallery[0] || null;
     const extraImages = currentGallery.slice(1);
 
-    // Head updates for SEO
     const pageTitle = news.title + ' – Kragujevac Sport';
     document.title = pageTitle;
     setMeta('description', excerpt(news.description || news.title, 155));
@@ -194,8 +283,6 @@
     setMeta('twitter:description', excerpt(news.description || news.title, 155));
     if (mainImage) setMeta('twitter:image', mainImage);
     setCanonical(location.origin + location.pathname + '?id=' + encodeURIComponent(news.id));
-
-    // NewsArticle schema
     injectArticleSchema(news, currentGallery);
 
     const gallerySection = extraImages.length
@@ -224,19 +311,19 @@
           ? '<a href="' + escapeHtml(news.instagram_post_url) + '" target="_blank" rel="noopener" class="article-ig-link">' + igSvg + ' Pogledaj originalnu objavu na Instagramu ' + extSvg + '</a>'
           : '<a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" class="article-ig-link">' + igSvg + ' Prati @kragujevacsport za više vesti ' + extSvg + '</a>');
 
-    // Wire up lightbox
     const main = document.getElementById('articleMainImg');
     if (main) { main.style.cursor = 'zoom-in'; main.addEventListener('click', () => openLightbox(0)); }
     document.querySelectorAll('.gallery-thumb').forEach(btn => {
       btn.addEventListener('click', () => openLightbox(+btn.dataset.idx));
     });
+
+    // Show comments section
+    document.getElementById('commentsSection').style.display = 'block';
+    loadComments(news.id);
+    renderCommentForm();
   }
 
-  function excerpt(text, max) {
-    if (!text) return '';
-    return text.length > max ? text.slice(0, max).trim() + '…' : text;
-  }
-
+  // ─── META HELPERS ─────────────────────────────────────────────────────────
   function setMeta(name, content) {
     let el = document.querySelector('meta[name="' + name + '"]');
     if (!el) { el = document.createElement('meta'); el.setAttribute('name', name); document.head.appendChild(el); }
@@ -295,7 +382,7 @@
       + '</div>';
   }
 
-  // ─── LIGHTBOX ───────────────────────────────────────────────────────
+  // ─── LIGHTBOX ─────────────────────────────────────────────────────────────
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
   function openLightbox(i) {
@@ -320,7 +407,7 @@
     if (e.key === 'ArrowLeft') openLightbox((lbIdx - 1 + currentGallery.length) % currentGallery.length);
   });
 
-  // ─── SIDE BANNERS ────────────────────────────────────────────────────
+  // ─── HORIZONTAL BANNERS ───────────────────────────────────────────────────
   async function loadBanners() {
     try {
       const res = await fetch(SUPABASE_URL + '/rest/v1/ads?active=eq.true&select=*&order=sort_order.asc,id.asc', {
@@ -329,31 +416,27 @@
       if (!res.ok) return;
       const ads = await res.json();
       if (!Array.isArray(ads)) return;
-      renderBanner('bannerLeft',  ads.filter(a => a.position === 'left'));
-      renderBanner('bannerRight', ads.filter(a => a.position === 'right'));
+      renderHBanner('bannerTop',    ads.filter(a => a.position === 'top'));
+      renderHBanner('bannerBottom', ads.filter(a => a.position === 'bottom'));
     } catch (_) {}
   }
 
-  function renderBanner(slotId, ads) {
+  function renderHBanner(slotId, ads) {
     const slot = document.getElementById(slotId);
     if (!slot || !ads.length) return;
+    slot.classList.add('has-ads');
+    slot.innerHTML = '<span class="h-banner-label">Reklama</span>';
     const perAdMs = Math.max(4000, Math.floor(60000 / ads.length));
-    slot.querySelector('.side-banner-empty')?.remove();
-    const label = slot.querySelector('.side-banner-label');
-    slot.innerHTML = '';
-    if (label) slot.appendChild(label);
 
     ads.forEach((ad, i) => {
       const el = ad.link_url ? document.createElement('a') : document.createElement('div');
       if (ad.link_url) { el.href = ad.link_url; el.target = '_blank'; el.rel = 'noopener sponsored'; }
-      el.className = 'side-banner-link';
-      el.style.position = 'absolute';
-      el.style.inset = '0';
+      el.className = 'h-banner-link';
       el.setAttribute('aria-label', 'Reklama: ' + (ad.client_name || ''));
       const img = document.createElement('img');
       img.src = ad.image_url;
       img.alt = ad.client_name || 'Reklama';
-      img.className = 'side-banner-img' + (i === 0 ? ' is-active' : '');
+      img.className = 'h-banner-img' + (i === 0 ? ' is-active' : '');
       img.loading = 'lazy';
       img.decoding = 'async';
       el.appendChild(img);
@@ -362,7 +445,7 @@
 
     if (ads.length > 1) {
       let idx = 0;
-      const imgs = slot.querySelectorAll('.side-banner-img');
+      const imgs = slot.querySelectorAll('.h-banner-img');
       setInterval(() => {
         imgs[idx].classList.remove('is-active');
         idx = (idx + 1) % imgs.length;
@@ -371,6 +454,133 @@
     }
   }
 
+  // ─── COMMENTS ─────────────────────────────────────────────────────────────
+  async function loadComments(nId) {
+    try {
+      const res = await fetch(
+        SUPABASE_URL + '/rest/v1/comments?news_id=eq.' + encodeURIComponent(nId) + '&order=created_at.asc&select=*',
+        { headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON } }
+      );
+      const data = await res.json();
+      renderComments(Array.isArray(data) ? data : []);
+    } catch (_) {
+      renderComments([]);
+    }
+  }
+
+  function renderComments(comments) {
+    const list = document.getElementById('commentsList');
+    const countEl = document.getElementById('commentsCount');
+    if (countEl) countEl.textContent = comments.length ? '(' + comments.length + ')' : '';
+
+    if (!comments.length) {
+      list.innerHTML = '<div class="comments-empty">Budite prvi koji će komentarisati ovu vest.</div>';
+      return;
+    }
+
+    list.innerHTML = comments.map(c => {
+      const name = escapeHtml(c.user_name || c.user_email?.split('@')[0] || 'Korisnik');
+      const initials = name.slice(0, 2).toUpperCase();
+      const time = new Date(c.created_at).toLocaleString('sr-RS', {
+        day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+      });
+      const isOwn = currentUser && currentUser.id === c.user_id;
+      return '<div class="comment-item" id="cmt-' + c.id + '">'
+        + '<div class="comment-header">'
+        +   '<div class="comment-avatar">' + initials + '</div>'
+        +   '<span class="comment-author">' + name + '</span>'
+        +   '<span class="comment-time">' + time + '</span>'
+        + '</div>'
+        + '<div class="comment-body">' + escapeHtml(c.content) + '</div>'
+        + (isOwn
+          ? '<div class="comment-actions"><button class="btn-comment-delete" onclick="deleteComment(' + c.id + ')">Obriši</button></div>'
+          : '')
+        + '</div>';
+    }).join('');
+  }
+
+  function renderCommentForm() {
+    const wrap = document.getElementById('commentFormWrap');
+    if (!wrap) return;
+
+    if (!currentUser) {
+      const retUrl = encodeURIComponent(location.href);
+      wrap.innerHTML = '<div class="comment-login-prompt">'
+        + '<p>Moraš biti prijavljen/a da bi ostavio/la komentar.</p>'
+        + '<a href="login.html?return=' + retUrl + '" class="btn btn-primary">Prijavi se</a>'
+        + '</div>';
+      return;
+    }
+
+    const name = currentUser.user_metadata?.full_name || currentUser.email.split('@')[0];
+    const initials = name.slice(0, 2).toUpperCase();
+
+    wrap.innerHTML = '<div class="comment-form">'
+      + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">'
+      +   '<div class="comment-avatar">' + escapeHtml(initials) + '</div>'
+      +   '<span style="font-size:.88rem;font-weight:600;color:var(--text);">' + escapeHtml(name) + '</span>'
+      + '</div>'
+      + '<textarea id="commentText" placeholder="Napiši komentar..." maxlength="1000" rows="3"></textarea>'
+      + '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:10px;">'
+      +   '<span style="font-size:.75rem;color:var(--text-dim);" id="charCount">0 / 1000</span>'
+      +   '<button class="btn btn-primary" id="submitCommentBtn" onclick="submitComment()">Objavi komentar</button>'
+      + '</div>'
+      + '<div class="error-msg" id="commentError"></div>'
+      + '</div>';
+
+    const ta = document.getElementById('commentText');
+    ta.addEventListener('input', () => {
+      document.getElementById('charCount').textContent = ta.value.length + ' / 1000';
+    });
+    ta.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'Enter') submitComment();
+    });
+  }
+
+  window.submitComment = async function() {
+    const ta = document.getElementById('commentText');
+    const errEl = document.getElementById('commentError');
+    const btn = document.getElementById('submitCommentBtn');
+    const content = ta.value.trim();
+    errEl.style.display = 'none';
+
+    if (content.length < 2)   { errEl.textContent = 'Komentar mora imati najmanje 2 znaka.'; errEl.style.display = 'block'; return; }
+    if (content.length > 1000) { errEl.textContent = 'Komentar ne sme imati više od 1000 znakova.'; errEl.style.display = 'block'; return; }
+    if (!currentUser) { errEl.textContent = 'Moraš biti prijavljen/a.'; errEl.style.display = 'block'; return; }
+
+    btn.disabled = true; btn.textContent = 'Objavljivanje...';
+
+    const { error } = await sb.from('comments').insert({
+      news_id:    parseInt(newsId),
+      user_id:    currentUser.id,
+      user_email: currentUser.email,
+      user_name:  currentUser.user_metadata?.full_name || currentUser.email.split('@')[0],
+      content
+    });
+
+    btn.disabled = false; btn.textContent = 'Objavi komentar';
+
+    if (error) {
+      errEl.textContent = 'Greška pri objavljivanju komentara.';
+      errEl.style.display = 'block';
+    } else {
+      ta.value = '';
+      document.getElementById('charCount').textContent = '0 / 1000';
+      loadComments(newsId);
+    }
+  };
+
+  window.deleteComment = async function(id) {
+    if (!confirm('Obrisati komentar?')) return;
+    const { error } = await sb.from('comments').delete().eq('id', id);
+    if (!error) {
+      const el = document.getElementById('cmt-' + id);
+      if (el) { el.style.opacity = '0'; setTimeout(() => { el.remove(); }, 200); }
+      loadComments(newsId);
+    }
+  };
+
+  // ─── LOAD ARTICLE ─────────────────────────────────────────────────────────
   async function loadArticle() {
     if (!newsId) { showNotFound(); return; }
     try {

@@ -216,8 +216,8 @@
     <div class="tab-content" id="tab-ads">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
         <div>
-          <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:700;">Banneri sa strane</h3>
-          <p style="font-size:.85rem;color:var(--text-muted);margin-top:2px;">Levo i desno — svaka aktivna reklama se smenjuje na <strong>60 / broj reklama</strong> sekundi.</p>
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:700;">Horizontalni baneri</h3>
+          <p style="font-size:.85rem;color:var(--text-muted);margin-top:2px;">Preporučena dimenzija: <strong>970×90 px</strong> (leaderboard). Svaka aktivna reklama se smenjuje na <strong>60 / broj reklama</strong> sekundi.</p>
         </div>
         <button class="btn btn-primary" onclick="openAdForm()">+ Dodaj reklamu</button>
       </div>
@@ -236,8 +236,10 @@
           <div class="form-group">
             <label>Pozicija *</label>
             <select id="adPosition">
-              <option value="left">Levo</option>
-              <option value="right">Desno</option>
+              <option value="top">Gore (ispod tickera)</option>
+              <option value="middle">Sredina (između vesti)</option>
+              <option value="in_grid">U gridu (ispod prvog reda vesti)</option>
+              <option value="bottom">Dole (ispod vesti)</option>
             </select>
           </div>
           <div class="form-group">
@@ -263,7 +265,7 @@
               <polyline points="21 15 16 10 5 21"/>
             </svg>
             <strong>Dodaj sliku</strong>
-            <span>Preporučeno: 160×600 ili 300×600 px</span>
+            <span>Preporučeno: 970×90 px (leaderboard/horizontalni baner)</span>
             <input type="file" id="adImgFile" accept="image/jpeg,image/png,image/webp,image/gif"/>
           </label>
           <input type="url" id="adImgUrl" placeholder="Ili zalepi direktan URL slike" style="margin-top:10px;width:100%;padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:.9rem;font-family:var(--font);"/>
@@ -279,13 +281,27 @@
       </div>
 
       <div class="ad-position-group">
-        <h4><span class="accent-bar" style="width:4px;height:18px;background:var(--accent);border-radius:2px;display:inline-block;"></span> Levo</h4>
-        <div class="ad-grid" id="adListLeft"><div class="loading"><div class="loading-spinner"></div></div></div>
+        <h4><span class="accent-bar" style="width:4px;height:18px;background:var(--accent);border-radius:2px;display:inline-block;"></span> Gore – ispod tickera</h4>
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:8px;">Prikazuje se na početnoj i stranici vesti, odmah ispod trake s vestima.</p>
+        <div class="ad-grid" id="adListTop"><div class="loading"><div class="loading-spinner"></div></div></div>
       </div>
 
       <div class="ad-position-group">
-        <h4><span class="accent-bar" style="width:4px;height:18px;background:var(--accent);border-radius:2px;display:inline-block;"></span> Desno</h4>
-        <div class="ad-grid" id="adListRight"><div class="loading"><div class="loading-spinner"></div></div></div>
+        <h4><span class="accent-bar" style="width:4px;height:18px;background:var(--accent);border-radius:2px;display:inline-block;"></span> Sredina – između vesti</h4>
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:8px;">Prikazuje se između grida sa vestima na početnoj strani.</p>
+        <div class="ad-grid" id="adListMiddle"><div class="loading"><div class="loading-spinner"></div></div></div>
+      </div>
+
+      <div class="ad-position-group">
+        <h4><span class="accent-bar" style="width:4px;height:18px;background:var(--accent);border-radius:2px;display:inline-block;"></span> U gridu – ispod prvog reda vesti</h4>
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:8px;">Prikazuje se unutar sekcije "Najnovije vesti", odmah ispod prvog reda kartica.</p>
+        <div class="ad-grid" id="adListInGrid"><div class="loading"><div class="loading-spinner"></div></div></div>
+      </div>
+
+      <div class="ad-position-group">
+        <h4><span class="accent-bar" style="width:4px;height:18px;background:var(--accent);border-radius:2px;display:inline-block;"></span> Dole – ispod vesti</h4>
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:8px;">Prikazuje se na stranici vesti, ispod članka.</p>
+        <div class="ad-grid" id="adListBottom"><div class="loading"><div class="loading-spinner"></div></div></div>
       </div>
     </div>
 
@@ -747,11 +763,14 @@
       const ads = await res.json();
       if (!Array.isArray(ads)) throw new Error();
       document.getElementById('activeAds').textContent = ads.filter(a => a.active).length;
-      renderAdList('adListLeft',  ads.filter(a => a.position === 'left'));
-      renderAdList('adListRight', ads.filter(a => a.position === 'right'));
+      renderAdList('adListTop',    ads.filter(a => a.position === 'top'));
+      renderAdList('adListMiddle', ads.filter(a => a.position === 'middle'));
+      renderAdList('adListInGrid', ads.filter(a => a.position === 'in_grid'));
+      renderAdList('adListBottom', ads.filter(a => a.position === 'bottom'));
     } catch(e) {
-      document.getElementById('adListLeft').innerHTML = '<div class="empty-state"><h3>Greška</h3></div>';
-      document.getElementById('adListRight').innerHTML = '';
+      document.getElementById('adListTop').innerHTML = '<div class="empty-state"><h3>Greška</h3></div>';
+      document.getElementById('adListMiddle').innerHTML = '';
+      document.getElementById('adListBottom').innerHTML = '';
     }
   }
 
@@ -767,7 +786,7 @@
       +   '<div class="ad-card-body">'
       +     '<div class="ad-card-name">' + escapeHtml(a.client_name) + '</div>'
       +     '<div class="ad-card-meta">'
-      +       '<span class="ad-position-tag">' + (a.position === 'left' ? 'Levo' : 'Desno') + '</span>'
+      +       '<span class="ad-position-tag">' + ({top:'Gore',middle:'Sredina',in_grid:'U gridu',bottom:'Dole',left:'Levo',right:'Desno'}[a.position] || a.position) + '</span>'
       +       '<span><span class="ad-status-dot' + (a.active ? '' : ' off') + '"></span> ' + (a.active ? 'Aktivna' : 'Pauzirana') + '</span>'
       +     '</div>'
       +     '<div class="ad-card-actions">'
@@ -812,7 +831,7 @@
     adImageUrl = '';
     document.getElementById('adFormTitle').textContent = 'Nova reklama';
     document.getElementById('adClient').value = '';
-    document.getElementById('adPosition').value = 'left';
+    document.getElementById('adPosition').value = 'top';
     document.getElementById('adActive').value = 'true';
     document.getElementById('adLink').value = '';
     document.getElementById('adImgUrl').value = '';
