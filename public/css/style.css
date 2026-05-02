@@ -641,6 +641,15 @@ main {
 
 .card-time svg { width: 13px; height: 13px; stroke: currentColor; fill: none; flex-shrink: 0; }
 
+.card-comments {
+  font-size: 0.76rem; color: var(--text-muted);
+  display: inline-flex; align-items: center; gap: 4px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.card-comments svg { width: 13px; height: 13px; stroke: currentColor; fill: none; flex-shrink: 0; }
+
 .card-read-more {
   margin-left: auto;
   font-size: 0.76rem;
@@ -2128,11 +2137,23 @@ footer {
   margin: 0;
 }
 
+.hero-sidebar-meta {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: auto;
+}
+
 .hero-sidebar-time {
   font-size: 0.7rem; color: var(--text-dim);
   font-weight: 500;
-  margin-top: auto;
 }
+
+.hero-sidebar-comments {
+  font-size: 0.7rem; color: var(--text-dim);
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 3px;
+}
+
+.hero-sidebar-comments svg { width: 12px; height: 12px; stroke: currentColor; fill: none; flex-shrink: 0; }
 
 @media (max-width: 900px) {
   .hero-section { grid-template-columns: 1fr; gap: 14px; }
