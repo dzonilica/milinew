@@ -51,6 +51,8 @@ body {
   color: var(--text);
   font-family: var(--font);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background 0.3s, color 0.3s;
@@ -439,6 +441,7 @@ header {
 main {
   padding: 40px 0 80px;
   min-width: 0;
+  flex: 1;
 }
 
 .section-heading {
