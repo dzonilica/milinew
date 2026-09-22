@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#e63535"/>
+  <meta name="theme-color" content="#fcfcfc"/>
 
-  <title>Kragujevac Sport – Vest</title>
-  <meta name="description" content="Sportska vest iz Kragujevca – pratite najnovije sportske vesti na Kragujevac Sport."/>
+  <title>Kragujevac Sport - Vest</title>
+  <meta name="description" content="Sportska vest iz Kragujevca. Pratite najnovije sportske vesti na Kragujevac Sport."/>
   <meta name="robots" content="noindex, follow"/>
 
   <link rel="canonical" href="https://kragujevacsport.com/"/>
@@ -15,44 +15,38 @@
   <!-- Open Graph (JS overwrites these with real article data) -->
   <meta property="og:type" content="article"/>
   <meta property="og:site_name" content="Kragujevac Sport"/>
-  <meta property="og:title" content="Kragujevac Sport – Sportske vesti iz Kragujevca"/>
+  <meta property="og:title" content="Kragujevac Sport - Sportske vesti iz Kragujevca"/>
   <meta property="og:description" content="Pratite najnovije sportske vesti iz Kragujevca i Šumadije."/>
   <meta property="og:url" content="https://kragujevacsport.com/"/>
-  <meta property="og:image" content="https://kragujevacsport.com/og-image.png"/>
+  <meta property="og:image" content="https://kragujevacsport.com/og-image.svg"/>
   <meta property="og:image:alt" content="Kragujevac Sport"/>
   <meta property="og:locale" content="sr_RS"/>
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@kragujevacsport"/>
-  <meta name="twitter:title" content="Kragujevac Sport – Sportske vesti iz Kragujevca"/>
+  <meta name="twitter:title" content="Kragujevac Sport - Sportske vesti iz Kragujevca"/>
   <meta name="twitter:description" content="Pratite najnovije sportske vesti iz Kragujevca i Šumadije."/>
-  <meta name="twitter:image" content="https://kragujevacsport.com/og-image.png"/>
+  <meta name="twitter:image" content="https://kragujevacsport.com/og-image.svg"/>
 
   <link rel="stylesheet" href="/css/style.css"/>
-  <link rel="icon" href="/mililogo.png" type="image/png"/>
+  <link rel="stylesheet" href="/css/premium.css"/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="/mililogo.png"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="preconnect" href="https://djhrxrhucwfygnjvkqyl.supabase.co"/>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" media="print" onload="this.media='all'"/>
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap"/></noscript>
 
   <script>
     (function() {
-      const t = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-theme', 'light');
     })();
   </script>
 </head>
-<body>
+<body class="article-page">
 
 <header>
   <div class="header-inner">
-    <a href="/" class="logo" aria-label="Kragujevac Sport – početna">
-      <img src="/mililogo.png" alt="Kragujevac Sport" class="logo-icon"/>
-      Kragujevac<span>Sport</span>
+    <a href="/" class="logo" aria-label="Kragujevac Sport - početna">
+      <span class="logo-lockup" aria-hidden="true"><img src="/mililogo.png" alt=""/></span>
     </a>
     <div class="header-right">
       <span class="header-tag">
@@ -115,6 +109,7 @@
     <a href="/?cat=Atletika" class="cat-nav-link" data-cat="Atletika">Atletika</a>
     <a href="/?cat=Tenis" class="cat-nav-link" data-cat="Tenis">Tenis</a>
     <a href="/?cat=Ostalo" class="cat-nav-link" data-cat="Ostalo">Ostalo</a>
+    <a href="/kontakt" class="cat-nav-link">Kontakt</a>
   </div>
 </nav>
 
@@ -125,12 +120,12 @@
   <div class="h-banner-wrap" id="bannerTop" aria-label="Reklamna pozicija"></div>
 
   <!-- ARTICLE -->
-  <div class="article-wrap" id="articleWrap">
+  <article class="article-wrap" id="articleWrap">
     <div class="loading">
       <div class="loading-spinner"></div>
       <p>Učitavanje vesti...</p>
     </div>
-  </div>
+  </article>
 
   <!-- COMMENTS SECTION -->
   <div class="comments-section" id="commentsSection" style="display:none;">
@@ -167,17 +162,20 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="/mililogo.png" alt="Kragujevac Sport" class="logo-icon"/>
-      Kragujevac<span>Sport</span>
+      <span class="footer-logo-lockup"><img src="/mililogo.png" alt="Kragujevac Sport"/></span>
     </div>
     <div class="footer-copy">
       © <span id="year"></span> Kragujevac Sport · Sve sportske vesti iz Kragujevca
       <span class="footer-credit">
         By <a href="https://lotifystudio.com" target="_blank" rel="noopener">Lotify Studio</a>
+        &nbsp;·&nbsp;
+        <a href="/kontakt">Kontakt</a>
+        &nbsp;·&nbsp;
+        <a href="/privacy-policy.html">Politika privatnosti</a>
       </span>
     </div>
     <div class="footer-socials">
-      <a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" aria-label="Instagram">
+      <a href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me" aria-label="Instagram profil sportkragujevac">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
           <circle cx="12" cy="12" r="4.5"/>
@@ -325,7 +323,7 @@
     const mainImage = currentGallery[0] || null;
     const extraImages = currentGallery.slice(1);
 
-    const pageTitle = titleText + ' – Kragujevac Sport';
+    const pageTitle = titleText + ' - Kragujevac Sport';
     const canonicalUrl = 'https://kragujevacsport.com/vest/' + encodeURIComponent(news.id);
     const metaDesc = excerpt(descriptionText || titleText, 155);
     document.title = pageTitle;
@@ -345,7 +343,7 @@
       ? '<div class="article-gallery" id="articleGallery">'
         + extraImages.map((url, i) => ''
           + '<button class="gallery-thumb" data-idx="' + (i + 1) + '" aria-label="Otvori sliku ' + (i + 2) + '">'
-          +   '<img src="' + escapeHtml(url) + '" alt="' + escapeHtml(titleText) + ' – slika ' + (i + 2) + '" loading="lazy" decoding="async">'
+          +   '<img src="' + escapeHtml(url) + '" alt="' + escapeHtml(titleText) + ', slika ' + (i + 2) + '" loading="lazy" decoding="async">'
           + '</button>').join('')
         + '</div>'
       : '';
@@ -359,16 +357,25 @@
       +   (isFromInstagram ? '<span>' + igSvg + ' Izvor: Instagram</span>' : '')
       + '</div>'
       + (mainImage
-          ? '<img src="' + escapeHtml(mainImage) + '" alt="' + escapeHtml(titleText) + '" class="article-image" id="articleMainImg" loading="eager" decoding="async" onerror="this.style.display=\'none\'">'
+          ? '<img src="' + escapeHtml(mainImage) + '" alt="' + escapeHtml(titleText) + '" class="article-image" id="articleMainImg" role="button" tabindex="0" aria-label="Otvori glavnu sliku" loading="eager" decoding="async" onerror="this.style.display=\'none\'">'
           : '')
       + gallerySection
       + '<div class="article-body">' + escapeHtml(descriptionText) + '</div>'
       + (isFromInstagram
           ? '<a href="' + escapeHtml(news.instagram_post_url) + '" target="_blank" rel="noopener" class="article-ig-link">' + igSvg + ' Pogledaj originalnu objavu na Instagramu ' + extSvg + '</a>'
-          : '<a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" class="article-ig-link">' + igSvg + ' Prati @kragujevacsport za više vesti ' + extSvg + '</a>');
+          : '<a href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener" class="article-ig-link">' + igSvg + ' Prati @sportkragujevac za više vesti ' + extSvg + '</a>');
 
     const main = document.getElementById('articleMainImg');
-    if (main) { main.style.cursor = 'zoom-in'; main.addEventListener('click', () => openLightbox(0)); }
+    if (main) {
+      main.style.cursor = 'zoom-in';
+      main.addEventListener('click', () => openLightbox(0));
+      main.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openLightbox(0);
+        }
+      });
+    }
     document.querySelectorAll('.gallery-thumb').forEach(btn => {
       btn.addEventListener('click', () => openLightbox(+btn.dataset.idx));
     });
@@ -443,7 +450,7 @@
     s.textContent = JSON.stringify(schema);
     document.head.appendChild(s);
 
-    // BreadcrumbList — dodatni rich result slot u SERPu
+    // BreadcrumbList, dodatni rich result slot u SERPu
     const prevBc = document.getElementById('breadcrumbSchema');
     if (prevBc) prevBc.remove();
     const breadcrumb = {
@@ -481,7 +488,7 @@
     if (!currentGallery.length) return;
     lbIdx = i % currentGallery.length;
     lbImg.src = currentGallery[lbIdx];
-    lbImg.alt = (document.querySelector('.article-title')?.textContent || 'Slika') + ' – ' + (lbIdx + 1);
+    lbImg.alt = (document.querySelector('.article-title')?.textContent || 'Slika') + ', ' + (lbIdx + 1);
     lb.classList.add('is-open');
     document.body.style.overflow = 'hidden';
   }
@@ -514,9 +521,20 @@
     } catch (_) {}
   }
 
+  const bannerIntervals = {};
+
   function renderHBanner(slotId, ads) {
     const slot = document.getElementById(slotId);
-    if (!slot || !ads.length) return;
+    if (!slot) return;
+    if (bannerIntervals[slotId]) {
+      clearInterval(bannerIntervals[slotId]);
+      delete bannerIntervals[slotId];
+    }
+    if (!ads.length) {
+      slot.classList.remove('has-ads');
+      slot.replaceChildren();
+      return;
+    }
     slot.classList.add('has-ads');
     slot.innerHTML = '<span class="h-banner-label">Reklama</span>';
     const perAdMs = Math.max(4000, Math.floor(60000 / ads.length));
@@ -539,7 +557,7 @@
     if (ads.length > 1) {
       let idx = 0;
       const imgs = slot.querySelectorAll('.h-banner-img');
-      setInterval(() => {
+      bannerIntervals[slotId] = setInterval(() => {
         imgs[idx].classList.remove('is-active');
         idx = (idx + 1) % imgs.length;
         imgs[idx].classList.add('is-active');
@@ -613,6 +631,7 @@
       +   '<div class="comment-avatar">' + escapeHtml(initials) + '</div>'
       +   '<span style="font-size:.88rem;font-weight:600;color:var(--text);">' + escapeHtml(name) + '</span>'
       + '</div>'
+      + '<label class="visually-hidden" for="commentText">Komentar</label>'
       + '<textarea id="commentText" placeholder="Napiši komentar..." maxlength="1000" rows="3"></textarea>'
       + '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:10px;">'
       +   '<span style="font-size:.75rem;color:var(--text-dim);" id="charCount">0 / 1000</span>'
@@ -750,6 +769,8 @@
     }
   });
 </script>
+
+<script src="/js/site-motion.js"></script>
 
 </body>
 </html>

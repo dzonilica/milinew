@@ -3,29 +3,25 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#e63535"/>
-  <title>Prijava – Kragujevac Sport</title>
+  <meta name="theme-color" content="#fcfcfc"/>
+  <title>Prijava - Kragujevac Sport</title>
   <meta name="robots" content="noindex, nofollow"/>
   <link rel="stylesheet" href="/css/style.css"/>
-  <link rel="icon" href="/mililogo.png" type="image/png"/>
+  <link rel="stylesheet" href="/css/premium.css"/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="/mililogo.png"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap"/>
   <script>
     (function() {
-      const t = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-theme', 'light');
     })();
   </script>
 </head>
-<body>
+<body class="auth-view">
 
 <header>
   <div class="header-inner">
-    <a href="/" class="logo" aria-label="Kragujevac Sport – početna">
-      <img src="/mililogo.png" alt="Kragujevac Sport" class="logo-icon"/>
-      Kragujevac<span>Sport</span>
+    <a href="/" class="logo" aria-label="Kragujevac Sport - početna">
+      <span class="logo-lockup" aria-hidden="true"><img src="/mililogo.png" alt=""/></span>
     </a>
     <div class="header-right">
       <span class="header-tag">
@@ -51,13 +47,12 @@
 <div class="auth-page">
   <div class="auth-card">
     <div class="auth-brand">
-      <img src="/mililogo.png" alt="Kragujevac Sport" style="width:32px;height:32px;border-radius:8px;object-fit:contain;flex-shrink:0;"/>
-      Kragujevac<span>Sport</span>
+      <span class="auth-logo-lockup"><img src="/mililogo.png" alt="Kragujevac Sport"/></span>
     </div>
 
     <div class="auth-tabs" role="tablist">
-      <button class="auth-tab active" data-tab="login" role="tab" aria-selected="true">Prijava</button>
-      <button class="auth-tab" data-tab="register" role="tab" aria-selected="false">Registracija</button>
+      <button class="auth-tab active" id="loginTab" data-tab="login" role="tab" aria-selected="true" aria-controls="tab-login" tabindex="0">Prijava</button>
+      <button class="auth-tab" id="registerTab" data-tab="register" role="tab" aria-selected="false" aria-controls="tab-register" tabindex="-1">Registracija</button>
     </div>
 
     <!-- LOGIN -->
@@ -72,7 +67,7 @@
           <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required/>
         </div>
         <button type="submit" class="btn btn-primary full" id="loginBtn">Prijavi se</button>
-        <div class="error-msg" id="loginError"></div>
+        <div class="error-msg" id="loginError" role="alert"></div>
       </form>
     </div>
 
@@ -89,8 +84,8 @@
           <input type="password" id="registerPassword" placeholder="Minimalno 6 znakova" autocomplete="new-password" required minlength="6"/>
         </div>
         <button type="submit" class="btn btn-primary full" id="registerBtn">Napravi nalog</button>
-        <div class="error-msg" id="registerError"></div>
-        <div class="success-msg" id="registerSuccess"></div>
+        <div class="error-msg" id="registerError" role="alert"></div>
+        <div class="success-msg" id="registerSuccess" role="status"></div>
         <p style="margin-top:14px;font-size:.76rem;color:var(--text-dim);line-height:1.5;">
           Kreiranjem naloga prihvataš našu <a href="privacy-policy.html" style="color:var(--accent);text-decoration:none;font-weight:600;">Politiku Privatnosti</a>.
         </p>
@@ -141,12 +136,26 @@
       document.querySelectorAll('.auth-tab').forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
+        b.setAttribute('tabindex', '-1');
       });
       document.querySelectorAll('.auth-tab-content').forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
+      btn.setAttribute('tabindex', '0');
       document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
     });
+  });
+
+  document.querySelector('.auth-tabs').addEventListener('keydown', (event) => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    const tabs = Array.from(document.querySelectorAll('.auth-tab'));
+    const current = tabs.indexOf(document.activeElement);
+    const next = event.key === 'ArrowRight'
+      ? (current + 1) % tabs.length
+      : (current - 1 + tabs.length) % tabs.length;
+    tabs[next].click();
+    tabs[next].focus();
   });
 
   function showErr(id, msg) {
@@ -236,6 +245,8 @@
     localStorage.setItem('theme', next);
   });
 </script>
+
+<script src="/js/site-motion.js"></script>
 
 </body>
 </html>

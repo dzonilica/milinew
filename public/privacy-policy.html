@@ -3,18 +3,16 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#e63535"/>
-  <title>Politika Privatnosti – Kragujevac Sport</title>
+  <meta name="theme-color" content="#fcfcfc"/>
+  <title>Politika Privatnosti - Kragujevac Sport</title>
   <meta name="robots" content="noindex, nofollow"/>
   <link rel="stylesheet" href="/css/style.css"/>
-  <link rel="icon" href="/mililogo.png" type="image/png"/>
+  <link rel="stylesheet" href="/css/premium.css"/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="/mililogo.png"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <script>
     (function() {
-      const t = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-theme', 'light');
     })();
   </script>
   <style>
@@ -79,13 +77,12 @@
     }
   </style>
 </head>
-<body>
+<body class="privacy-page">
 
 <header>
   <div class="header-inner">
-    <a href="index.html" class="logo" aria-label="Kragujevac Sport – početna">
-      <img src="/mililogo.png" alt="Kragujevac Sport" class="logo-icon"/>
-      Kragujevac<span>Sport</span>
+    <a href="index.html" class="logo" aria-label="Kragujevac Sport - početna">
+      <span class="logo-lockup" aria-hidden="true"><img src="/mililogo.png" alt=""/></span>
     </a>
     <div class="header-right">
       <span class="header-tag">
@@ -131,9 +128,9 @@
   <h2>2. Podaci koje prikupljamo</h2>
   <p>Prikupljamo samo minimalne podatke neophodne za funkcionisanje sistema komentarisanja:</p>
   <ul>
-    <li><strong>Korisničko ime (nick)</strong> – koje vi sami birate pri registraciji. Prikazuje se javno pored vaših komentara.</li>
-    <li><strong>Lozinka</strong> – čuva se isključivo u hashovanom obliku (Supabase Auth). Mi nemamo pristup vašoj lozinci u originalnom obliku.</li>
-    <li><strong>Komentari</strong> – tekst komentara koji objavljujete, zajedno sa vremenskom oznakom i identifikatorom korisnika.</li>
+    <li><strong>Korisničko ime (nick)</strong>: birate ga pri registraciji. Prikazuje se javno pored vaših komentara.</li>
+    <li><strong>Lozinka</strong>: čuva se isključivo u hashovanom obliku (Supabase Auth). Mi nemamo pristup vašoj lozinci u originalnom obliku.</li>
+    <li><strong>Komentari</strong>: tekst komentara koji objavljujete, zajedno sa vremenskom oznakom i identifikatorom korisnika.</li>
   </ul>
   <p>
     Ne tražimo, ne prikupljamo niti čuvamo vašu email adresu niti bilo kakve lične podatke osim gore navedenih.
@@ -143,7 +140,7 @@
   <p>Koristimo jedan funkcionalni kolačić koji je neophodan za prijavu:</p>
   <ul>
     <li>
-      <strong>ks_rt</strong> – čuva token za obnavljanje sesije kako biste ostali prijavljeni na uređaju. Kolačić traje 30 dana i briše se pri odjavi. Nema reklamnu svrhu niti deli podatke sa trećim stranama.
+      <strong>ks_rt</strong>: čuva token za obnavljanje sesije kako biste ostali prijavljeni na uređaju. Kolačić traje 30 dana i briše se pri odjavi. Nema reklamnu svrhu niti deli podatke sa trećim stranama.
     </li>
   </ul>
   <p>
@@ -172,10 +169,10 @@
   <h2>6. Vaša prava</h2>
   <p>Kao korisnik, imate sledeća prava:</p>
   <ul>
-    <li><strong>Pravo na pristup</strong> – možete zatražiti informacije o tome koje podatke čuvamo o vama.</li>
-    <li><strong>Pravo na brisanje</strong> – možete zatražiti brisanje svog naloga i svih komentara u bilo kom trenutku.</li>
-    <li><strong>Pravo na ispravku</strong> – možete zatražiti izmenu netačnih podataka.</li>
-    <li><strong>Pravo na prigovor</strong> – možete podneti prigovor nadležnom organu (Poverenik za informacije od javnog značaja i zaštitu podataka o ličnosti, Republika Srbija).</li>
+    <li><strong>Pravo na pristup</strong>: možete zatražiti informacije o tome koje podatke čuvamo o vama.</li>
+    <li><strong>Pravo na brisanje</strong>: možete zatražiti brisanje svog naloga i svih komentara u bilo kom trenutku.</li>
+    <li><strong>Pravo na ispravku</strong>: možete zatražiti izmenu netačnih podataka.</li>
+    <li><strong>Pravo na prigovor</strong>: možete podneti prigovor nadležnom organu (Poverenik za informacije od javnog značaja i zaštitu podataka o ličnosti, Republika Srbija).</li>
   </ul>
 
   <h2>7. Bezbednost</h2>
@@ -196,21 +193,25 @@
   <h2>10. Kontakt</h2>
   <p>
     Za sva pitanja, zahteve ili prigovore u vezi sa privatnošću, možete nas kontaktirati putem Instagram naloga:
-    <a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600;text-decoration:none;">@kragujevacsport</a>
+    <a href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me" style="color:var(--accent);font-weight:600;text-decoration:none;">@sportkragujevac</a>
   </p>
 </div>
 
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="/mililogo.png" alt="Kragujevac Sport" class="logo-icon"/>
-      Kragujevac<span>Sport</span>
+      <span class="footer-logo-lockup"><img src="/mililogo.png" alt="Kragujevac Sport"/></span>
     </div>
     <div class="footer-copy">
       © <span id="year"></span> Kragujevac Sport · Sve sportske vesti iz Kragujevca
+      <span class="footer-credit">
+        <a href="/kontakt">Kontakt</a>
+        &nbsp;·&nbsp;
+        <a href="/">Naslovna</a>
+      </span>
     </div>
     <div class="footer-socials">
-      <a href="https://www.instagram.com/kragujevacsport/" target="_blank" rel="noopener" aria-label="Instagram">
+      <a href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me" aria-label="Instagram profil sportkragujevac">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
           <circle cx="12" cy="12" r="4.5"/>
@@ -230,6 +231,8 @@
     localStorage.setItem('theme', next);
   });
 </script>
+
+<script src="/js/site-motion.js"></script>
 
 </body>
 </html>

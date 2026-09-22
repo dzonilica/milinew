@@ -71,6 +71,7 @@ RLS:
 - `/` → `public/index.html`
 - `/vest.html?id=123` → detalj vesti
 - `/vest/123` → rewrite na `vest.html` (čitljiv SEO URL)
+- `/kontakt` → kontakt strana sa Instagram profilom
 - `/admin-panel.html` → admin (noindex)
 - `/sitemap.xml` → generisan iz `/api/sitemap`
 - `/robots.txt` → statik
