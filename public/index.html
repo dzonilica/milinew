@@ -2,8 +2,8 @@
 <html lang="sr" data-theme="light">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#fcfcfc"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#edeeee"/>
 
   <title>Kragujevac Sport - Najnovije sportske vesti iz Kragujevca</title>
   <meta name="description" content="Kragujevac Sport - najnovije sportske vesti iz Kragujevca i Šumadije. Fudbal, košarka, rukomet, vaterpolo, atletika i svi klubovi iz Kragujevca na jednom mestu."/>
@@ -33,17 +33,32 @@
   <meta name="twitter:description" content="Sve sportske vesti iz Kragujevca i Šumadije: fudbal, košarka, rukomet, atletika i mnogo više, ažurirano svakog dana."/>
   <meta name="twitter:image" content="https://kragujevacsport.com/og-image.svg"/>
 
-  <link rel="stylesheet" href="/css/style.css"/>
-  <link rel="stylesheet" href="/css/premium.css"/>
+  <script>
+    // Uvodna stranica: samo pri ulasku na naslovnu (ne za ?cat= / ?search= linkove), jednom po sesiji
+    (function () {
+      var d = document.documentElement;
+      try {
+        var q = new URLSearchParams(location.search);
+        if (q.has('cat')) d.classList.add('is-filtered');
+        if (!q.has('cat') && !q.has('search') && !sessionStorage.getItem('ks_splash')) {
+          d.classList.add('splash-on', 'splash-lock');
+          var l = document.createElement('link');
+          l.rel = 'preload'; l.as = 'image'; l.type = 'image/webp'; l.href = '/img/splash.webp';
+          l.setAttribute('fetchpriority', 'high');
+          document.head.appendChild(l);
+        }
+      } catch (_) {}
+    })();
+  </script>
+  <script src="/js/site.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Fira+Sans+Condensed:wght@800&family=Fira+Sans+Extra+Condensed:wght@900&display=swap"/>
+  <link rel="stylesheet" href="/css/site.css"/>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="/mililogo.png"/>
   <link rel="preconnect" href="https://djhrxrhucwfygnjvkqyl.supabase.co"/>
-
-  <script>
-    (function() {
-      document.documentElement.setAttribute('data-theme', 'light');
-    })();
-  </script>
 
   <!-- Organization / WebSite / CollectionPage schema -->
   <script type="application/ld+json">
@@ -102,161 +117,197 @@
 </head>
 <body class="home-page">
 
-<!-- HEADER -->
-<header>
-  <div class="header-inner">
-    <a href="/" class="logo" aria-label="Kragujevac Sport - početna">
-      <span class="logo-lockup" aria-hidden="true"><img src="/mililogo.png" alt=""/></span>
-    </a>
-    <div class="header-right">
-      <span class="header-tag">
-        <span class="live-dot"></span>
-        Sve sportske vesti iz Kragujevca
-      </span>
-      <div class="header-auth" id="headerAuth">
-        <a href="/login" class="btn-auth-login">Prijavi se</a>
-      </div>
-      <button class="search-btn" id="searchBtn" title="Pretraži vesti" aria-label="Pretraži vesti" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
-      <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" title="Meni" aria-label="Otvori meni" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </div>
-  <!-- SEARCH OVERLAY -->
-  <div class="search-overlay" id="searchOverlay" aria-label="Pretraga vesti">
-    <div class="search-overlay-inner">
-      <div class="search-input-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-        <input type="search" id="searchInput" placeholder="Pretražite vesti..." autocomplete="off" spellcheck="false" aria-label="Pretraga vesti"/>
-        <button class="search-clear-btn" id="searchClearBtn" aria-label="Obriši pretragu" tabindex="-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
+<div class="site" id="site">
+  <a class="skip-link" href="#main">Preskoči na vesti</a>
+  <div class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a href="/" class="brand" aria-label="Kragujevac Sport, početna">
+        <img src="/img/logo.webp" alt="" width="401" height="180"/>
+      </a>
+      <div class="header-actions">
+        <div class="header-auth" id="headerAuth">
+          <a href="/login" class="btn btn-sm">Prijavi se</a>
+        </div>
+        <button class="icon-btn" id="searchBtn" title="Pretraži vesti" aria-label="Pretraži vesti" aria-expanded="false" aria-controls="searchOverlay">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
+        </button>
+        <button class="icon-btn" data-theme-toggle title="Promeni temu" aria-label="Promeni temu">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></svg>
         </button>
       </div>
-      <div class="search-results-wrap" id="searchResultsWrap"></div>
     </div>
-  </div>
 
-  <div class="mobile-menu" id="mobileMenu" aria-label="Mobilni meni">
-    <div class="mobile-menu-content">
-      <div class="mobile-menu-auth" id="mobileMenuAuth">
-        <a href="/login" class="btn-auth-login">Prijavi se</a>
+    <div class="search-overlay" id="searchOverlay" role="search" aria-label="Pretraga vesti">
+      <div class="search-overlay-inner">
+        <div class="search-input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true" width="20" height="20"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg>
+          <input type="search" id="searchInput" placeholder="Pretražite vesti..." autocomplete="off" spellcheck="false" aria-label="Pretraga vesti"/>
+          <button class="search-clear-btn" id="searchClearBtn" aria-label="Obriši pretragu" tabindex="-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="search-results-wrap" id="searchResultsWrap"></div>
       </div>
-      <button class="mobile-menu-theme" id="mobileThemeToggle" title="Promeni temu" aria-label="Promeni temu">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-        <span id="mobileThemeLabel">Tamna tema</span>
-      </button>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- CATEGORY NAV -->
-<nav class="cat-nav" aria-label="Kategorije">
-  <div class="cat-nav-inner">
-    <a href="/" class="cat-nav-link" data-cat="">Naslovna</a>
-    <a href="/?cat=Fudbal" class="cat-nav-link" data-cat="Fudbal">Fudbal</a>
-    <a href="/?cat=Ko%C5%A1arka" class="cat-nav-link" data-cat="Košarka">Košarka</a>
-    <a href="/?cat=Rukomet" class="cat-nav-link" data-cat="Rukomet">Rukomet</a>
-    <a href="/?cat=Odbojka" class="cat-nav-link" data-cat="Odbojka">Odbojka</a>
-    <a href="/?cat=Vaterpolo" class="cat-nav-link" data-cat="Vaterpolo">Vaterpolo</a>
-    <a href="/?cat=Atletika" class="cat-nav-link" data-cat="Atletika">Atletika</a>
-    <a href="/?cat=Tenis" class="cat-nav-link" data-cat="Tenis">Tenis</a>
-    <a href="/?cat=Ostalo" class="cat-nav-link" data-cat="Ostalo">Ostalo</a>
-    <a href="/kontakt" class="cat-nav-link">Kontakt</a>
-  </div>
-</nav>
-
-<!-- PAGE CONTENT -->
-<div class="page-container">
-
-  <!-- TOP HORIZONTAL BANNER -->
-  <div class="h-banner-wrap" id="bannerTop" aria-label="Reklamna pozicija"></div>
-
-  <main>
-    <!-- HERO SECTION (shown only on homepage, no category filter) -->
-    <div class="hero-section" id="heroSection" style="display:none;" aria-label="Izdvojena vest">
-      <div class="hero-featured" id="heroFeatured"></div>
-      <div class="hero-sidebar" id="heroSidebar"></div>
+  <nav class="cat-nav" aria-label="Kategorije">
+    <div class="wrap cat-row">
+      <a href="/" class="cat-link" data-cat="" data-tone="ink">Naslovna</a>
+      <a href="/?cat=Fudbal" class="cat-link" data-cat="Fudbal" data-tone="green">Fudbal</a>
+      <a href="/?cat=Ko%C5%A1arka" class="cat-link" data-cat="Košarka" data-tone="orange">Košarka</a>
+      <a href="/?cat=Rukomet" class="cat-link" data-cat="Rukomet" data-tone="red">Rukomet</a>
+      <a href="/?cat=Odbojka" class="cat-link" data-cat="Odbojka" data-tone="yellow">Odbojka</a>
+      <a href="/?cat=Vaterpolo" class="cat-link" data-cat="Vaterpolo" data-tone="blue">Vaterpolo</a>
+      <a href="/?cat=Atletika" class="cat-link" data-cat="Atletika" data-tone="red">Atletika</a>
+      <a href="/?cat=Tenis" class="cat-link" data-cat="Tenis" data-tone="green">Tenis</a>
+      <a href="/?cat=Ostalo" class="cat-link" data-cat="Ostalo" data-tone="blue">Ostalo</a>
+      <a href="/kontakt" class="cat-link" data-tone="ink">Kontakt</a>
     </div>
+  </nav>
 
-    <div class="section-heading" id="sectionHeading">
-      <div class="accent-bar"></div>
+  <main id="main" class="page-main wrap" tabindex="-1">
+
+    <div class="h-banner-wrap" id="bannerTop" aria-label="Reklamna pozicija"></div>
+
+    <!-- Izdvojene vesti: samo na naslovnoj bez filtera -->
+    <section class="lead" id="heroSection" aria-label="Izdvojene vesti">
+      <div id="heroFeatured">
+        <div class="lead-main" aria-hidden="true">
+          <div class="lead-media"><div class="sk" style="width:100%;height:100%"></div></div>
+          <div class="lead-copy"><div class="sk-line short"></div><div class="sk-line" style="height:30px"></div><div class="sk-line" style="height:30px;width:70%"></div></div>
+        </div>
+      </div>
+      <div class="lead-side" id="heroSidebar">
+        <div class="side-item" aria-hidden="true"><div class="card-media"><div class="sk" style="width:100%;height:100%"></div></div><div class="sk-line"></div><div class="sk-line short"></div></div>
+        <div class="side-item" aria-hidden="true"><div class="card-media"><div class="sk" style="width:100%;height:100%"></div></div><div class="sk-line"></div><div class="sk-line short"></div></div>
+      </div>
+    </section>
+
+    <div class="section-head">
       <h1 id="sectionTitle" class="section-title">Najnovije vesti</h1>
       <span class="section-count" id="sectionCount"></span>
     </div>
+    <script>
+      (function () {
+        var c = new URLSearchParams(location.search).get('cat');
+        if (!c) return;
+        var h = document.getElementById('sectionTitle');
+        h.textContent = c;
+        h.setAttribute('data-tone', KS.tone(c));
+      })();
+    </script>
 
-    <div id="newsGrid" class="news-grid" aria-live="polite">
-      <div style="grid-column:1/-1;">
-        <div class="loading">
-          <div class="loading-spinner"></div>
-          <p>Učitavanje vesti...</p>
-        </div>
-      </div>
+    <div id="newsGrid" class="news-grid" aria-live="polite" aria-busy="true">
+      <div class="card sk-card" aria-hidden="true"><div class="card-media"><div class="sk" style="width:100%;height:100%"></div></div><div class="card-body"><div class="sk-line short"></div><div class="sk-line"></div><div class="sk-line"></div></div></div>
+      <div class="card sk-card" aria-hidden="true"><div class="card-media"><div class="sk" style="width:100%;height:100%"></div></div><div class="card-body"><div class="sk-line short"></div><div class="sk-line"></div><div class="sk-line"></div></div></div>
+      <div class="card sk-card" aria-hidden="true"><div class="card-media"><div class="sk" style="width:100%;height:100%"></div></div><div class="card-body"><div class="sk-line short"></div><div class="sk-line"></div><div class="sk-line"></div></div></div>
     </div>
 
-    <!-- MIDDLE HORIZONTAL BANNER -->
     <div class="h-banner-wrap" id="bannerMiddle" aria-label="Reklamna pozicija"></div>
   </main>
 
+  <footer class="site-footer">
+    <div class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="wrap footer-main">
+      <div>
+        <p class="footer-mark"><span>Kragujevac</span><span>Sport</span></p>
+        <p class="footer-tagline">Sve sportske vesti iz Kragujevca i Šumadije, na jednom mestu.</p>
+      </div>
+      <nav aria-label="Kategorije u podnožju">
+        <p class="footer-h">Sportovi</p>
+        <ul class="footer-links two-col">
+          <li><a href="/?cat=Fudbal" data-tone="green">Fudbal</a></li>
+          <li><a href="/?cat=Ko%C5%A1arka" data-tone="orange">Košarka</a></li>
+          <li><a href="/?cat=Rukomet" data-tone="red">Rukomet</a></li>
+          <li><a href="/?cat=Odbojka" data-tone="yellow">Odbojka</a></li>
+          <li><a href="/?cat=Vaterpolo" data-tone="blue">Vaterpolo</a></li>
+          <li><a href="/?cat=Atletika" data-tone="red">Atletika</a></li>
+          <li><a href="/?cat=Tenis" data-tone="green">Tenis</a></li>
+          <li><a href="/?cat=Ostalo" data-tone="blue">Ostalo</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="footer-h">Portal</p>
+        <ul class="footer-links">
+          <li><a href="/kontakt">Kontakt</a></li>
+          <li><a href="/privacy-policy">Politika privatnosti</a></li>
+          <li>
+            <a class="footer-ig" href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+              @sportkragujevac
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© <span data-year></span> Kragujevac Sport</span>
+      <span>By <a href="https://lotifystudio.com" target="_blank" rel="noopener">Lotify Studio</a></span>
+    </div>
+  </footer>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="footer-logo-lockup"><img src="/mililogo.png" alt="Kragujevac Sport"/></span>
-    </div>
-    <div class="footer-copy">
-      © <span id="year"></span> Kragujevac Sport · Sve sportske vesti iz Kragujevca
-      <span class="footer-credit">
-        By <a href="https://lotifystudio.com" target="_blank" rel="noopener">Lotify Studio</a>
-        &nbsp;·&nbsp;
-        <a href="/kontakt">Kontakt</a>
-        &nbsp;·&nbsp;
-        <a href="privacy-policy.html" style="color:var(--text-muted);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">Politika privatnosti</a>
-      </span>
-    </div>
-    <div class="footer-socials">
-      <a href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me" aria-label="Instagram profil sportkragujevac">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <circle cx="12" cy="12" r="4.5"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-        </svg>
-      </a>
+<!-- UVODNA STRANICA -->
+<section class="splash" id="splash" aria-label="Dobro došli na Sport Kragujevac">
+  <div class="splash-half splash-a">
+    <div class="splash-art">
+      <img src="/img/splash.webp" width="1672" height="941" decoding="async"
+           alt="Kolaž sportista na površinama u bojama: fudbal, streljaštvo, boks, atletika, parasport, košarka, rukomet, tenis i dizanje tegova"/>
     </div>
   </div>
-</footer>
+  <div class="splash-half splash-b" aria-hidden="true">
+    <div class="splash-art"><img src="/img/splash.webp" width="1672" height="941" decoding="async" alt=""/></div>
+  </div>
+  <div class="splash-content">
+    <h2 class="splash-title">
+      <span class="splash-line"><span>Sport</span></span>
+      <span class="splash-line"><span>Kragujevac</span></span>
+      <span class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    </h2>
+    <p class="splash-sub">Sve sportske vesti iz Kragujevca na jednom mestu.</p>
+    <button class="btn splash-cta" id="splashEnter" type="button">
+      Nastavi na sajt
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+<script>
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('splash-on')) return;
+
+    var splash = document.getElementById('splash');
+    var site = document.getElementById('site');
+    var entered = false;
+    site.inert = true;
+
+    function finish() {
+      if (entered) return;
+      entered = true;
+      root.classList.remove('splash-on', 'splash-lock');
+      splash.classList.remove('is-leaving');
+      site.inert = false;
+      document.getElementById('main').focus({ preventScroll: true });
+      document.dispatchEvent(new Event('ks:site-enter'));
+    }
+
+    document.getElementById('splashEnter').addEventListener('click', function () {
+      try { sessionStorage.setItem('ks_splash', '1'); } catch (_) {}
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+      // Skrol se vraća dok je zavesa još preko sajta, pa se pomak scrollbara ne vidi
+      root.classList.remove('splash-lock');
+      site.inert = false;
+      splash.classList.add('is-leaving');
+      document.dispatchEvent(new Event('ks:site-enter'));
+      splash.querySelector('.splash-b').addEventListener('transitionend', finish, { once: true });
+      setTimeout(finish, 1400);
+    });
+  })();
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
@@ -266,17 +317,18 @@
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
   let currentUser = null;
 
-  document.getElementById('year').textContent = new Date().getFullYear();
-
   // ─── CATEGORY FILTER ──────────────────────────────────────────────────────
   const catParam = new URLSearchParams(location.search).get('cat') || '';
 
-  document.querySelectorAll('.cat-nav-link').forEach(a => {
-    if (a.dataset.cat === catParam) a.classList.add('active');
+  document.querySelectorAll('.cat-link').forEach(a => {
+    if (a.dataset.cat === catParam) {
+      a.classList.add('active');
+      a.setAttribute('aria-current', 'page');
+    }
   });
 
   if (catParam) {
-    document.getElementById('sectionTitle').textContent = catParam;
+    document.getElementById('heroSection').hidden = true;
     const catUrl = 'https://kragujevacsport.com/?cat=' + encodeURIComponent(catParam);
     document.querySelector('link[rel="canonical"]').href = catUrl;
     document.querySelector('meta[property="og:url"]').content = catUrl;
@@ -330,40 +382,25 @@
 
   function updateAuthUI(user) {
     const el = document.getElementById('headerAuth');
-    const mobileEl = document.getElementById('mobileMenuAuth');
     if (!user) {
-      el.innerHTML = '<a href="/login" class="btn-auth-login">Prijavi se</a>';
-      if (mobileEl) mobileEl.innerHTML = '<a href="/login" class="btn-auth-login">Prijavi se</a>';
+      el.innerHTML = '<a href="/login" class="btn btn-sm">Prijavi se</a>';
       return;
     }
     const name = user.user_metadata?.full_name || user.email.split('@')[0];
     const initials = name.slice(0, 2).toUpperCase();
-    const userMenuHtml =
-      '<div style="position:relative;">'
-      + '<button class="btn-user-menu" id="userMenuBtn">'
+    el.innerHTML =
+        '<button class="btn-user-menu" id="userMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="Nalog: ' + escapeHtml(name) + '">'
       +   '<span class="user-avatar">' + escapeHtml(initials) + '</span>'
-      +   '<span>' + escapeHtml(name) + '</span>'
+      +   '<span class="user-name">' + escapeHtml(name) + '</span>'
       + '</button>'
       + '<div class="user-dropdown" id="userDropdown">'
       +   '<button class="user-dropdown-item" id="signOutBtn">Odjavi se</button>'
-      + '</div>'
       + '</div>';
-    el.innerHTML = userMenuHtml;
-    if (mobileEl) {
-      mobileEl.innerHTML =
-        '<button class="mobile-user-menu" id="mobileUserMenuBtn">'
-        +   '<span class="user-avatar">' + escapeHtml(initials) + '</span>'
-        +   '<span>' + escapeHtml(name) + '</span>'
-        + '</button>'
-        + '<button class="mobile-user-signout" id="mobileSignOutBtn">Odjavi se</button>';
-      document.getElementById('mobileSignOutBtn').addEventListener('click', async () => {
-        document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
-        await sb.auth.signOut();
-      });
-    }
-    document.getElementById('userMenuBtn').addEventListener('click', (e) => {
+    const btn = document.getElementById('userMenuBtn');
+    btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      document.getElementById('userDropdown').classList.toggle('is-open');
+      const open = document.getElementById('userDropdown').classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open);
     });
     document.getElementById('signOutBtn').addEventListener('click', async () => {
       document.cookie = 'ks_rt=; max-age=0; path=/; SameSite=Lax';
@@ -373,21 +410,21 @@
 
   document.addEventListener('click', () => {
     document.getElementById('userDropdown')?.classList.remove('is-open');
+    document.getElementById('userMenuBtn')?.setAttribute('aria-expanded', 'false');
   });
 
   // ─── HELPERS ──────────────────────────────────────────────────────────────
-  const clockSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="13" height="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
-  const ballSvg    = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="56" height="56"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1.5c1.18 0 2.31.26 3.33.72l-2.1 1.28-1.23-.72-1.27.72-2.04-1.26A8.5 8.5 0 0 1 12 3.5zM7.41 5.1l2.05 1.27-.66 3.63H6.2l-1.7-2.4A8.54 8.54 0 0 1 7.41 5.1zm9.18 0a8.54 8.54 0 0 1 2.91 2.5L17.8 10H15.2L14.54 6.37l2.05-1.27zM4.1 9h2.5l1.77 4.88-2.6 1.89A8.5 8.5 0 0 1 4.1 9zm5.02 0h5.76l1.72 4.74-4.6 3.36-4.6-3.36L9.12 9zm7.36 0h2.5a8.5 8.5 0 0 1-1.67 6.77l-2.6-1.89L16.48 9zm-10.9 7.7 2.37-1.73 3.55 2.6v2.63A8.52 8.52 0 0 1 5.58 16.7zm12.84 0A8.52 8.52 0 0 1 12.5 20.2v-2.63l3.55-2.6 2.37 1.73z"/></svg>';
-  const gallerySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="13" height="13"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
-  const commentSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="13" height="13"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  const clockSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  const gallerySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>';
+  const commentSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 15V4H3v13h4v4l4-4h6"/></svg>';
 
   function relativeTime(dateStr) {
     const diff = (Date.now() - new Date(dateStr)) / 1000;
     if (diff < 60) return 'upravo';
-    if (diff < 3600) return Math.floor(diff/60) + ' min';
+    if (diff < 3600) return 'pre ' + Math.floor(diff/60) + ' min';
     if (diff < 86400) return 'pre ' + Math.floor(diff/3600) + 'h';
     if (diff < 172800) return 'juče';
-    return new Date(dateStr).toLocaleDateString('sr-RS', {day:'numeric',month:'short'});
+    return new Date(dateStr).toLocaleDateString('sr-Latn-RS', {day:'numeric',month:'short'});
   }
 
   function excerpt(text, max = 140) {
@@ -402,99 +439,90 @@
     return base + extra;
   }
 
-// ─── HERO SECTION ─────────────────────────────────────────────────────────
+  // Slika sa blokom u boji kategorije iza; bez slike, blok sa imenom kategorije
+  function mediaHtml(n, cls, eager) {
+    const cat = escapeHtml(decodeHtml(n.category || 'Sport'));
+    const img = n.image_url
+      ? '<img src="' + escapeHtml(n.image_url) + '" alt="" ' + (eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"') + ' decoding="async" onerror="KS.imgFail(this)">'
+      : '';
+    return '<div class="' + cls + (n.image_url ? '' : ' is-ph') + '">'
+      + img
+      + '<div class="ph"' + (n.image_url ? ' hidden' : '') + '>' + cat + '</div>'
+      + '</div>';
+  }
+
+  function metaHtml(n, cc, extra) {
+    return '<div class="meta">'
+      + '<span>' + clockSvg + relativeTime(n.created_at) + '</span>'
+      + '<span aria-label="' + cc + ' komentara">' + commentSvg + cc + '</span>'
+      + (extra || '')
+      + '</div>';
+  }
+
+  // ─── HERO SECTION ─────────────────────────────────────────────────────────
   function buildHero(news, commentCounts = {}) {
-    if (news.length < 2) return;
     const section  = document.getElementById('heroSection');
+    if (news.length < 2) { section.hidden = true; return; }
     const featured = document.getElementById('heroFeatured');
     const sidebar  = document.getElementById('heroSidebar');
     const main = news[0];
-    const sidePosts = news.slice(1, 3);
 
     featured.innerHTML =
-      '<a href="/vest?id=' + encodeURIComponent(main.id) + '" aria-label="' + escapeHtml(decodeHtml(main.title)) + '">'
-      + '<div class="hero-media">'
-      +   (main.image_url
-          ? '<img src="' + escapeHtml(main.image_url) + '" alt="' + escapeHtml(decodeHtml(main.title)) + '" loading="eager" decoding="async" onerror="this.style.display=\'none\'">'
-          : '')
-      +   '<div class="hero-placeholder">' + ballSvg + '</div>'
-      + '</div>'
-      + '<div class="hero-featured-overlay"></div>'
-      + '<div class="hero-featured-body">'
-      +   '<span class="hero-featured-badge">Izdvojeno</span>'
-      +   '<span class="hero-featured-tag">' + escapeHtml(decodeHtml(main.category || 'Sport')) + '</span>'
-      +   '<div class="hero-featured-title">' + escapeHtml(decodeHtml(main.title)) + '</div>'
-      +   '<div class="hero-featured-time">' + relativeTime(main.created_at) + '</div>'
-      + '</div>'
-      + '</a>';
-
-    sidebar.innerHTML = sidePosts.map(n => {
-      const ex = excerpt(decodeHtml(n.content || n.summary || n.description || ''), 100);
-      const cc = commentCounts[n.id] || 0;
-      return '<a href="/vest?id=' + encodeURIComponent(n.id) + '" class="hero-sidebar-item" aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
-      + '<div class="hero-sidebar-media">'
-      +   (n.image_url
-          ? '<img src="' + escapeHtml(n.image_url) + '" alt="" class="hero-sidebar-img" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">'
-          : '')
-      +   '<div class="hero-sidebar-no-img">' + ballSvg + '</div>'
-      + '</div>'
-      + '<div class="hero-sidebar-body">'
-      +   '<span class="hero-sidebar-tag">' + escapeHtml(decodeHtml(n.category || 'Sport')) + '</span>'
-      +   '<div class="hero-sidebar-title">' + escapeHtml(decodeHtml(n.title)) + '</div>'
-      +   (ex ? '<p class="hero-sidebar-excerpt">' + escapeHtml(ex) + '</p>' : '')
-      +   '<div class="hero-sidebar-meta">'
-      +     '<span class="hero-sidebar-time">' + relativeTime(n.created_at) + '</span>'
-      +     '<span class="hero-sidebar-comments">' + commentSvg + ' ' + cc + '</span>'
+        '<a href="/vest?id=' + encodeURIComponent(main.id) + '" class="lead-main" data-tone="' + KS.tone(main.category) + '" data-reveal aria-label="' + escapeHtml(decodeHtml(main.title)) + '">'
+      +   mediaHtml(main, 'lead-media', true)
+      +   '<div class="lead-copy">'
+      +     '<span class="chip">' + escapeHtml(decodeHtml(main.category || 'Sport')) + '</span>'
+      +     '<h2 class="lead-title"><span class="marker">' + escapeHtml(decodeHtml(main.title)) + '</span></h2>'
+      +     metaHtml(main, commentCounts[main.id] || 0)
       +   '</div>'
-      + '</div>'
       + '</a>';
-    }).join('');
 
-    section.style.display = '';
+    sidebar.innerHTML = news.slice(1, 3).map(n =>
+        '<a href="/vest?id=' + encodeURIComponent(n.id) + '" class="side-item" data-tone="' + KS.tone(n.category) + '" data-reveal aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
+      +   mediaHtml(n, 'card-media')
+      +   '<span class="chip">' + escapeHtml(decodeHtml(n.category || 'Sport')) + '</span>'
+      +   '<h2 class="side-title"><span class="marker">' + escapeHtml(decodeHtml(n.title)) + '</span></h2>'
+      +   metaHtml(n, commentCounts[n.id] || 0)
+      + '</a>'
+    ).join('');
+
+    section.hidden = false;
+    KS.reveal(section);
   }
 
   // ─── NEWS GRID ─────────────────────────────────────────────────────────────
   function buildGrid(news, commentCounts = {}) {
     const grid = document.getElementById('newsGrid');
     const countEl = document.getElementById('sectionCount');
-    if (countEl) countEl.textContent = news.length ? news.length + (news.length === 1 ? ' vest' : (news.length < 5 ? ' vesti' : ' vesti')) : '';
+    grid.removeAttribute('aria-busy');
+    if (countEl) countEl.textContent = news.length ? news.length + (news.length === 1 ? ' vest' : ' vesti') : '';
     if (!news.length) {
-      grid.innerHTML = '<div style="grid-column:1/-1;"><div class="empty-state"><h3>Nema vesti za prikaz</h3><p>Vesti će biti dostupne uskoro.</p></div></div>';
+      grid.innerHTML = '<div class="empty-state">'
+        + '<div class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>'
+        + '<h3>Nema vesti za prikaz</h3>'
+        + '<p>' + (catParam ? 'U ovoj kategoriji još nema vesti.' : 'Vesti će biti dostupne uskoro.') + '</p>'
+        + (catParam ? '<a class="btn btn-sm" href="/">Sve vesti</a>' : '')
+        + '</div>';
       return;
     }
-
-    const arrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
 
     const IN_GRID_AFTER = 3;
     const bannerSlot = '<div id="bannerInGrid" class="in-grid-banner-slot" aria-label="Reklamna pozicija"></div>';
 
     const cards = news.map(n => {
-      const hasImg = !!n.image_url;
-      const tag = escapeHtml(decodeHtml(n.category || 'Sport'));
       const count = galleryCount(n);
-      const cc = commentCounts[n.id] || 0;
-      const badge = count > 1
-        ? '<span class="card-gallery-count">' + gallerySvg + ' ' + count + '</span>'
+      const gallery = count > 1
+        ? '<span aria-label="' + count + ' fotografija">' + gallerySvg + count + '</span>'
         : '';
       const ex = excerpt(decodeHtml(n.content || n.summary || n.description || ''), 130);
       return ''
-        + '<a href="/vest?id=' + encodeURIComponent(n.id) + '" class="news-card" aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
-        +   '<div class="card-image-wrap">'
-        +     (hasImg
-              ? '<img src="' + escapeHtml(n.image_url) + '" alt="' + escapeHtml(decodeHtml(n.title)) + '" class="card-image" loading="lazy" decoding="async" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'
-              : '')
-        +     '<div class="card-image-placeholder"' + (hasImg ? ' style="display:none"' : '') + '>' + ballSvg + '</div>'
-        +   '</div>'
+        + '<a href="/vest?id=' + encodeURIComponent(n.id) + '" class="card" data-tone="' + KS.tone(n.category) + '" data-reveal aria-label="' + escapeHtml(decodeHtml(n.title)) + '">'
+        +   mediaHtml(n, 'card-media')
         +   '<div class="card-body">'
-        +     '<span class="card-tag">' + tag + '</span>'
-        +     '<h2 class="card-title">' + escapeHtml(decodeHtml(n.title)) + '</h2>'
+        +     '<span class="chip">' + escapeHtml(decodeHtml(n.category || 'Sport')) + '</span>'
+        +     '<h2 class="card-title"><span class="marker">' + escapeHtml(decodeHtml(n.title)) + '</span></h2>'
         +     (ex ? '<p class="card-excerpt">' + escapeHtml(ex) + '</p>' : '')
-        +     '<div class="card-meta">'
-        +       '<span class="card-time">' + clockSvg + ' ' + relativeTime(n.created_at) + '</span>'
-        +       '<span class="card-comments">' + commentSvg + ' ' + cc + '</span>'
-        +       badge
-        +       '<span class="card-read-more">Pročitaj ' + arrowSvg + '</span>'
-        +     '</div>'
+        +     metaHtml(n, commentCounts[n.id] || 0, gallery)
         +   '</div>'
         + '</a>';
     });
@@ -502,7 +530,7 @@
     const before = cards.slice(0, IN_GRID_AFTER).join('');
     const after  = cards.slice(IN_GRID_AFTER).join('');
     grid.innerHTML = before + (cards.length > IN_GRID_AFTER ? bannerSlot : '') + after;
-
+    KS.reveal(grid);
   }
 
   function injectItemListSchema(news) {
@@ -615,11 +643,12 @@
         buildHero(data.slice(0, 3), commentCounts);
         buildGrid(data.slice(3), commentCounts);
       } else {
+        document.getElementById('heroSection').hidden = true;
         buildGrid(data, commentCounts);
       }
       injectItemListSchema(data);
-      fixSvgDimensions();
     } catch (e) {
+      document.getElementById('heroSection').hidden = true;
       buildGrid([]);
     }
   }
@@ -627,59 +656,6 @@
   loadNews().then(loadBanners);
   setInterval(loadNews, 5 * 60 * 1000);
   setInterval(loadBanners, 10 * 60 * 1000);
-
-  function toggleTheme() {
-    const html = document.documentElement;
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    updateThemeLabel();
-  }
-
-  function updateThemeLabel() {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const label = document.getElementById('mobileThemeLabel');
-    if (label) label.textContent = isDark ? 'Svetla tema' : 'Tamna tema';
-  }
-
-  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-  document.getElementById('mobileThemeToggle').addEventListener('click', toggleTheme);
-
-  updateThemeLabel();
-
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  mobileMenuBtn.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('is-open');
-    mobileMenuBtn.setAttribute('aria-expanded', isOpen);
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-      mobileMenu.classList.remove('is-open');
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Add width/height to dynamically-generated SVGs to prevent them from rendering at full size
-  function fixSvgDimensions() {
-    document.querySelectorAll('.card-image-placeholder svg').forEach(svg => {
-      if (!svg.hasAttribute('width')) svg.setAttribute('width', '56');
-      if (!svg.hasAttribute('height')) svg.setAttribute('height', '56');
-    });
-    document.querySelectorAll('.card-comments svg').forEach(svg => {
-      if (!svg.hasAttribute('width')) svg.setAttribute('width', '13');
-      if (!svg.hasAttribute('height')) svg.setAttribute('height', '13');
-    });
-    document.querySelectorAll('.card-time svg').forEach(svg => {
-      if (!svg.hasAttribute('width')) svg.setAttribute('width', '13');
-      if (!svg.hasAttribute('height')) svg.setAttribute('height', '13');
-    });
-    document.querySelectorAll('.hero-sidebar-comments svg').forEach(svg => {
-      if (!svg.hasAttribute('width')) svg.setAttribute('width', '12');
-      if (!svg.hasAttribute('height')) svg.setAttribute('height', '12');
-    });
-  }
 
   // ─── SEARCH ───────────────────────────────────────────────────────────────
   let allNewsCache = [];
@@ -734,12 +710,6 @@
     }
   });
 
-  function escHtml(s) {
-    return String(s)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
   function renderSearchResults(q) {
     if (!q) {
       searchResultsWrap.innerHTML = '<p class="search-hint-text">Ukucajte pojam za pretragu vesti…</p>';
@@ -752,25 +722,24 @@
     ).slice(0, 8);
 
     if (!results.length) {
-      searchResultsWrap.innerHTML = '<p class="search-no-results">Nema rezultata za <strong>"' + escHtml(q) + '"</strong></p>';
+      searchResultsWrap.innerHTML = '<p class="search-no-results">Nema rezultata za <strong>"' + escapeHtml(q) + '"</strong></p>';
       return;
     }
 
-    const imgPh = '<div class="search-result-thumb-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>';
+    const imgPh = '<div class="search-result-thumb-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>';
     const items = results.map(n =>
-      '<a class="search-result-item" href="vest/' + encodeURIComponent(n.id) + '">' +
-        (n.image_url ? '<img class="search-result-thumb" src="' + escHtml(n.image_url) + '" alt="" loading="lazy"/>' : imgPh) +
+      '<a class="search-result-item" href="/vest/' + encodeURIComponent(n.id) + '" data-tone="' + KS.tone(n.category) + '">' +
+        (n.image_url ? '<img class="search-result-thumb" src="' + escapeHtml(n.image_url) + '" alt="" loading="lazy" onerror="this.style.opacity=0"/>' : imgPh) +
         '<div class="search-result-body">' +
-          (n.category ? '<span class="search-result-cat">' + escHtml(n.category) + '</span>' : '') +
-          '<p class="search-result-title">' + escHtml(n.title || '') + '</p>' +
+          (n.category ? '<span class="chip search-result-cat">' + escapeHtml(decodeHtml(n.category)) + '</span>' : '') +
+          '<p class="search-result-title">' + escapeHtml(decodeHtml(n.title || '')) + '</p>' +
           '<span class="search-result-date">' + relativeTime(n.created_at) + '</span>' +
         '</div>' +
       '</a>'
     ).join('');
 
-    const plural = results.length === 1 ? 'rezultat' : results.length < 5 ? 'rezultata' : 'rezultata';
     searchResultsWrap.innerHTML =
-      '<p class="search-status-text">' + results.length + ' ' + plural + '</p>' + items;
+      '<p class="search-status-text">' + results.length + ' ' + (results.length === 1 ? 'rezultat' : 'rezultata') + '</p>' + items;
   }
 
   // Pre-fill search from URL param
@@ -780,16 +749,7 @@
     searchClearBtn.classList.add('visible');
     openSearch();
   }
-
-  document.getElementById('mobileMenu').addEventListener('click', (e) => {
-    if (e.target.closest('a')) {
-      mobileMenu.classList.remove('is-open');
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
 </script>
-
-<script src="/js/site-motion.js"></script>
 
 </body>
 </html>

@@ -2,53 +2,40 @@
 <html lang="sr" data-theme="light">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#fcfcfc"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#edeeee"/>
   <title>Prijava - Kragujevac Sport</title>
   <meta name="robots" content="noindex, nofollow"/>
-  <link rel="stylesheet" href="/css/style.css"/>
-  <link rel="stylesheet" href="/css/premium.css"/>
+  <script src="/js/site.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Fira+Sans+Condensed:wght@800&family=Fira+Sans+Extra+Condensed:wght@900&display=swap"/>
+  <link rel="stylesheet" href="/css/site.css"/>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="/mililogo.png"/>
-  <script>
-    (function() {
-      document.documentElement.setAttribute('data-theme', 'light');
-    })();
-  </script>
 </head>
 <body class="auth-view">
 
-<header>
-  <div class="header-inner">
-    <a href="/" class="logo" aria-label="Kragujevac Sport - početna">
-      <span class="logo-lockup" aria-hidden="true"><img src="/mililogo.png" alt=""/></span>
+<div class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="/" class="brand" aria-label="Kragujevac Sport, početna">
+      <img src="/img/logo.webp" alt="" width="401" height="180"/>
     </a>
-    <div class="header-right">
-      <span class="header-tag">
-        <span class="live-dot"></span>
-        Sve sportske vesti iz Kragujevca
-      </span>
-      <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
+    <div class="header-actions">
+      <button class="icon-btn" data-theme-toggle title="Promeni temu" aria-label="Promeni temu">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></svg>
       </button>
     </div>
   </div>
 </header>
 
-<div class="auth-page">
-  <div class="auth-card">
-    <div class="auth-brand">
-      <span class="auth-logo-lockup"><img src="/mililogo.png" alt="Kragujevac Sport"/></span>
-    </div>
+<main class="page-main auth-page">
+  <div class="auth-card" data-reveal>
+    <h1 class="auth-title">Nalog</h1>
+    <p class="auth-sub">Prijavite se da biste komentarisali vesti.</p>
 
     <div class="auth-tabs" role="tablist">
       <button class="auth-tab active" id="loginTab" data-tab="login" role="tab" aria-selected="true" aria-controls="tab-login" tabindex="0">Prijava</button>
@@ -56,7 +43,7 @@
     </div>
 
     <!-- LOGIN -->
-    <div class="auth-tab-content active" id="tab-login">
+    <div class="auth-tab-content active" id="tab-login" role="tabpanel" aria-labelledby="loginTab">
       <form id="loginForm" autocomplete="on" novalidate>
         <div class="form-group">
           <label for="loginUsername">Korisničko ime</label>
@@ -66,37 +53,43 @@
           <label for="loginPassword">Lozinka</label>
           <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required/>
         </div>
-        <button type="submit" class="btn btn-primary full" id="loginBtn">Prijavi se</button>
+        <button type="submit" class="btn full" id="loginBtn" style="--bs:var(--red)">Prijavi se</button>
         <div class="error-msg" id="loginError" role="alert"></div>
       </form>
     </div>
 
     <!-- REGISTER -->
-    <div class="auth-tab-content" id="tab-register">
+    <div class="auth-tab-content" id="tab-register" role="tabpanel" aria-labelledby="registerTab">
       <form id="registerForm" autocomplete="on" novalidate>
         <div class="form-group">
           <label for="registerUsername">Korisničko ime</label>
-          <input type="text" id="registerUsername" placeholder="npr. Nikola" autocomplete="username" required maxlength="30"/>
-          <div class="hint">Prikazuje se pored tvojih komentara. Samo slova, brojevi i _ . -</div>
+          <input type="text" id="registerUsername" placeholder="npr. Nikola" autocomplete="username" required maxlength="30" aria-describedby="registerUsernameHint"/>
+          <div class="hint" id="registerUsernameHint">Prikazuje se pored tvojih komentara. Samo slova, brojevi i _ . -</div>
         </div>
         <div class="form-group">
           <label for="registerPassword">Lozinka</label>
           <input type="password" id="registerPassword" placeholder="Minimalno 6 znakova" autocomplete="new-password" required minlength="6"/>
         </div>
-        <button type="submit" class="btn btn-primary full" id="registerBtn">Napravi nalog</button>
+        <button type="submit" class="btn full" id="registerBtn" style="--bs:var(--red)">Napravi nalog</button>
         <div class="error-msg" id="registerError" role="alert"></div>
         <div class="success-msg" id="registerSuccess" role="status"></div>
-        <p style="margin-top:14px;font-size:.76rem;color:var(--text-dim);line-height:1.5;">
-          Kreiranjem naloga prihvataš našu <a href="privacy-policy.html" style="color:var(--accent);text-decoration:none;font-weight:600;">Politiku Privatnosti</a>.
+        <p class="auth-legal">
+          Kreiranjem naloga prihvataš našu <a href="/privacy-policy">Politiku privatnosti</a>.
         </p>
       </form>
     </div>
 
-    <p style="margin-top:22px;text-align:center;font-size:.82rem;color:var(--text-muted);">
-      <a href="index.html" style="color:var(--accent);text-decoration:none;font-weight:600;">← Povratak na vesti</a>
-    </p>
+    <a href="/" class="auth-back">Povratak na vesti</a>
   </div>
-</div>
+</main>
+
+<footer class="site-footer">
+  <div class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap footer-bottom">
+    <span>© <span data-year></span> Kragujevac Sport</span>
+    <span><a href="/kontakt">Kontakt</a> &nbsp; <a href="/privacy-policy">Politika privatnosti</a></span>
+  </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
@@ -104,7 +97,7 @@
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqaHJ4cmh1Y3dmeWduanZrcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzOTAzMTYsImV4cCI6MjA4OTk2NjMxNn0.APKFBCb4PfuPoiD4c4p5AdUWe6aXpZZ3eFvifPuzvpw';
 
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-  const returnUrl = new URLSearchParams(location.search).get('return') || 'index.html';
+  const returnUrl = new URLSearchParams(location.search).get('return') || '/';
 
   function setCookie(rt) {
     document.cookie = 'ks_rt=' + encodeURIComponent(rt) + '; max-age=2592000; path=/; SameSite=Lax';
@@ -236,17 +229,7 @@
       btn.disabled = false; btn.textContent = 'Napravi nalog';
     }
   });
-
-  // ─── THEME ───────────────────────────────────────────────────────────────
-  document.getElementById('themeToggle').addEventListener('click', () => {
-    const html = document.documentElement;
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  });
 </script>
-
-<script src="/js/site-motion.js"></script>
 
 </body>
 </html>

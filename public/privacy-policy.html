@@ -2,121 +2,47 @@
 <html lang="sr" data-theme="light">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#fcfcfc"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#edeeee"/>
   <title>Politika Privatnosti - Kragujevac Sport</title>
   <meta name="robots" content="noindex, nofollow"/>
-  <link rel="stylesheet" href="/css/style.css"/>
-  <link rel="stylesheet" href="/css/premium.css"/>
+  <script src="/js/site.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Fira+Sans+Condensed:wght@800&family=Fira+Sans+Extra+Condensed:wght@900&display=swap"/>
+  <link rel="stylesheet" href="/css/site.css"/>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="/mililogo.png"/>
-  <script>
-    (function() {
-      document.documentElement.setAttribute('data-theme', 'light');
-    })();
-  </script>
-  <style>
-    .privacy-wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
-    .privacy-wrap h1 {
-      font-family: var(--font-display);
-      font-size: 2rem; font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: 0;
-    }
-    .privacy-meta {
-      font-size: 0.83rem; color: var(--text-muted);
-      margin-bottom: 40px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-    .privacy-wrap h2 {
-      font-family: var(--font-display);
-      font-size: 1.2rem; font-weight: 700;
-      margin: 36px 0 14px;
-      color: var(--text);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .privacy-wrap h2::before {
-      content: '';
-      display: inline-block;
-      width: 4px; height: 20px;
-      background: var(--accent);
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    .privacy-wrap p {
-      font-size: 0.95rem; line-height: 1.8;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-    .privacy-wrap ul {
-      margin: 8px 0 16px 20px;
-    }
-    .privacy-wrap ul li {
-      font-size: 0.95rem; line-height: 1.8;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .privacy-notice {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius-sm);
-      padding: 16px 20px;
-      margin: 24px 0;
-      font-size: 0.9rem; line-height: 1.7;
-      color: var(--text-muted);
-    }
-    @media (max-width: 600px) {
-      .privacy-wrap { padding: 32px 16px 60px; }
-      .privacy-wrap h1 { font-size: 1.5rem; }
-    }
-  </style>
 </head>
 <body class="privacy-page">
 
-<header>
-  <div class="header-inner">
-    <a href="index.html" class="logo" aria-label="Kragujevac Sport - početna">
-      <span class="logo-lockup" aria-hidden="true"><img src="/mililogo.png" alt=""/></span>
+<a class="skip-link" href="#main">Preskoči na sadržaj</a>
+<div class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="/" class="brand" aria-label="Kragujevac Sport, početna">
+      <img src="/img/logo.webp" alt="" width="401" height="180"/>
     </a>
-    <div class="header-right">
-      <span class="header-tag">
-        <span class="live-dot"></span>
-        Sve sportske vesti iz Kragujevca
-      </span>
-      <button class="theme-toggle" id="themeToggle" title="Promeni temu" aria-label="Promeni temu">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
+    <div class="header-actions">
+      <a href="/" class="btn btn-sm btn-ghost">Sve vesti</a>
+      <button class="icon-btn" data-theme-toggle title="Promeni temu" aria-label="Promeni temu">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></svg>
       </button>
     </div>
   </div>
 </header>
 
-<div class="privacy-wrap">
-  <a href="index.html" class="back-btn" style="display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);text-decoration:none;font-size:.85rem;font-weight:500;margin-bottom:28px;padding:8px 14px;margin-left:-14px;border-radius:6px;transition:color .2s,background .2s;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-    Povratak na vesti
-  </a>
-
+<main id="main" class="page-main wrap" tabindex="-1">
+  <div class="prose">
+  <a href="/" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7"/></svg> Povratak na vesti</a>
   <h1>Politika Privatnosti</h1>
-  <div class="privacy-meta">
+  <div class="prose-meta">
     Poslednje ažuriranje: maj 2026. &nbsp;·&nbsp; Kragujevac Sport
   </div>
 
-  <div class="privacy-notice">
+  <div class="prose-notice">
     Ova politika privatnosti opisuje kako Kragujevac Sport prikuplja, koristi i čuva vaše podatke kada koristite naš sajt i sistem komentarisanja.
   </div>
 
@@ -193,46 +119,18 @@
   <h2>10. Kontakt</h2>
   <p>
     Za sva pitanja, zahteve ili prigovore u vezi sa privatnošću, možete nas kontaktirati putem Instagram naloga:
-    <a href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me" style="color:var(--accent);font-weight:600;text-decoration:none;">@sportkragujevac</a>
+    <a href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me">@sportkragujevac</a>
   </p>
-</div>
+  </div>
+</main>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="footer-logo-lockup"><img src="/mililogo.png" alt="Kragujevac Sport"/></span>
-    </div>
-    <div class="footer-copy">
-      © <span id="year"></span> Kragujevac Sport · Sve sportske vesti iz Kragujevca
-      <span class="footer-credit">
-        <a href="/kontakt">Kontakt</a>
-        &nbsp;·&nbsp;
-        <a href="/">Naslovna</a>
-      </span>
-    </div>
-    <div class="footer-socials">
-      <a href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me" aria-label="Instagram profil sportkragujevac">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <circle cx="12" cy="12" r="4.5"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-        </svg>
-      </a>
-    </div>
+<footer class="site-footer">
+  <div class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap footer-bottom">
+    <span>© <span data-year></span> Kragujevac Sport</span>
+    <span><a href="/kontakt">Kontakt</a> &nbsp; <a href="/">Naslovna</a></span>
   </div>
 </footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  document.getElementById('themeToggle').addEventListener('click', () => {
-    const html = document.documentElement;
-    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  });
-</script>
-
-<script src="/js/site-motion.js"></script>
 
 </body>
 </html>

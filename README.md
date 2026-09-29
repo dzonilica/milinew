@@ -16,6 +16,15 @@ Radio: [Lotify Studio](https://lotifystudio.com)
   - Upravljanje reklamama (više klijenata po poziciji, aktivacija/pauziranje).
 - SEO: meta, Open Graph, Twitter Cards, JSON-LD (`NewsMediaOrganization`, `WebSite`, `NewsArticle`, `ItemList`), dinamički `sitemap.xml`, `robots.txt`, canonical URL-ovi.
 - Dark / light tema (persist u localStorage).
+- Uvodna stranica (splash) na naslovnoj: kolaž sportista i dugme „Nastavi na sajt“. Prikazuje se jednom po sesiji (`sessionStorage.ks_splash`) i ne prikazuje se za `?cat=` i `?search=` linkove.
+
+## Dizajn
+
+- Javne stranice koriste `public/css/site.css` i `public/js/site.js` (tema, boje kategorija, animacije). Admin panel i dalje koristi `public/css/style.css`.
+- Paleta: papir `#edeeee`, crni tekst `#141414` i pet sportskih boja (crvena, žuta, plava, zelena, narandžasta) koje se koriste samo kao površine. Svi uglovi su oštri.
+- Boja kategorije se zadaje u `TONES` u `site.js` (npr. Fudbal = zelena) i u `data-tone` atributima linkova u navigaciji.
+- Fontovi: Fira Sans, Fira Sans Condensed i Fira Sans Extra Condensed (Google Fonts), zbog pune podrške za latinicu i srpsku ćirilicu.
+- Slike za uvodnu stranicu i zaglavlje: `public/img/splash.webp` i `public/img/logo.webp`.
 
 ## Stack
 

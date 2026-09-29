@@ -2,8 +2,8 @@
 <html lang="sr" data-theme="light">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#fcfcfc"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#edeeee"/>
 
   <title>Kontakt - Kragujevac Sport</title>
   <meta name="description" content="Pošaljite sportsku vest, rezultat, najavu događaja ili predlog portalu Kragujevac Sport putem Instagrama."/>
@@ -29,14 +29,13 @@
   <meta name="twitter:description" content="Pošaljite sportsku vest, rezultat, najavu događaja ili predlog putem Instagrama."/>
   <meta name="twitter:image" content="https://kragujevacsport.com/mililogo.png"/>
 
-  <link rel="stylesheet" href="/css/style.css"/>
-  <link rel="stylesheet" href="/css/premium.css"/>
+  <script src="/js/site.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Fira+Sans+Condensed:wght@800&family=Fira+Sans+Extra+Condensed:wght@900&display=swap"/>
+  <link rel="stylesheet" href="/css/site.css"/>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="/mililogo.png"/>
-
-  <script>
-    document.documentElement.setAttribute('data-theme', 'light');
-  </script>
 
   <script type="application/ld+json">
   {
@@ -58,70 +57,77 @@
 </head>
 <body class="contact-page">
 
-<header>
-  <div class="header-inner">
-    <a href="/" class="logo" aria-label="Kragujevac Sport - početna">
-      <span class="logo-lockup" aria-hidden="true"><img src="/mililogo.png" alt=""/></span>
+<a class="skip-link" href="#main">Preskoči na sadržaj</a>
+<div class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="/" class="brand" aria-label="Kragujevac Sport, početna">
+      <img src="/img/logo.webp" alt="" width="401" height="180"/>
     </a>
-    <div class="header-right">
-      <span class="header-tag">Sve sportske vesti iz Kragujevca</span>
+    <div class="header-actions">
+      <button class="icon-btn" data-theme-toggle title="Promeni temu" aria-label="Promeni temu">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></svg>
+      </button>
     </div>
   </div>
 </header>
 
 <nav class="cat-nav" aria-label="Kategorije">
-  <div class="cat-nav-inner">
-    <a href="/" class="cat-nav-link">Naslovna</a>
-    <a href="/?cat=Fudbal" class="cat-nav-link">Fudbal</a>
-    <a href="/?cat=Ko%C5%A1arka" class="cat-nav-link">Košarka</a>
-    <a href="/?cat=Rukomet" class="cat-nav-link">Rukomet</a>
-    <a href="/?cat=Odbojka" class="cat-nav-link">Odbojka</a>
-    <a href="/?cat=Vaterpolo" class="cat-nav-link">Vaterpolo</a>
-    <a href="/?cat=Atletika" class="cat-nav-link">Atletika</a>
-    <a href="/?cat=Tenis" class="cat-nav-link">Tenis</a>
-    <a href="/?cat=Ostalo" class="cat-nav-link">Ostalo</a>
-    <a href="/kontakt" class="cat-nav-link active" aria-current="page">Kontakt</a>
+  <div class="wrap cat-row">
+    <a href="/" class="cat-link" data-tone="ink">Naslovna</a>
+    <a href="/?cat=Fudbal" class="cat-link" data-tone="green">Fudbal</a>
+    <a href="/?cat=Ko%C5%A1arka" class="cat-link" data-tone="orange">Košarka</a>
+    <a href="/?cat=Rukomet" class="cat-link" data-tone="red">Rukomet</a>
+    <a href="/?cat=Odbojka" class="cat-link" data-tone="yellow">Odbojka</a>
+    <a href="/?cat=Vaterpolo" class="cat-link" data-tone="blue">Vaterpolo</a>
+    <a href="/?cat=Atletika" class="cat-link" data-tone="red">Atletika</a>
+    <a href="/?cat=Tenis" class="cat-link" data-tone="green">Tenis</a>
+    <a href="/?cat=Ostalo" class="cat-link" data-tone="blue">Ostalo</a>
+    <a href="/kontakt" class="cat-link active" data-tone="ink">Kontakt</a>
   </div>
 </nav>
 
-<main class="contact-main">
+<main id="main" class="page-main wrap" tabindex="-1">
   <section class="contact-hero" aria-labelledby="contactTitle">
-    <div class="contact-copy">
-      <p class="contact-kicker">Kontakt</p>
-      <h1 id="contactTitle">Pošaljite sportsku priču.</h1>
+    <div data-reveal>
+      <h1 id="contactTitle">Pošaljite sportsku priču</h1>
       <p class="contact-lead">Najave, rezultate, fotografije i predloge šaljite direktno na naš Instagram.</p>
       <div class="contact-actions">
-        <a class="btn btn-primary contact-action" href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me">Piši nam na Instagramu</a>
-        <a class="btn btn-secondary contact-action" href="/">Nazad na vesti</a>
+        <a class="btn" href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me">
+          Piši nam na Instagramu
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
       </div>
     </div>
 
-    <aside class="contact-instagram-card" aria-label="Instagram kontakt">
-      <span class="contact-card-label">Zvanični Instagram</span>
-      <span class="contact-card-logo" aria-hidden="true">
-        <img src="/mililogo.png" alt=""/>
-      </span>
-      <span>
-        <strong class="contact-card-handle">@sportkragujevac</strong>
-        <span class="contact-card-note">Direktne poruke su najbrži način da nam se javite.</span>
-      </span>
-    </aside>
+    <div class="ig-collage" data-reveal>
+      <i></i><i></i><i></i><i></i>
+      <a class="ig-card" href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me" aria-label="Instagram profil @sportkragujevac">
+        <img src="/img/logo.webp" alt="" width="401" height="180"/>
+        <span>
+          <strong class="ig-card-handle">@sportkragujevac</strong>
+          <span class="ig-card-note">Direktne poruke su najbrži način da nam se javite.</span>
+        </span>
+      </a>
+    </div>
   </section>
 
   <section class="contact-info" aria-labelledby="contactInfoTitle">
-    <h2 id="contactInfoTitle">Šta možete da pošaljete</h2>
-    <p class="contact-info-intro">Javite se kada imate proverenu informaciju važnu za sportsku zajednicu Kragujevca.</p>
+    <h2 id="contactInfoTitle" data-reveal>Šta možete da pošaljete</h2>
+    <p class="contact-info-intro" data-reveal>Javite se kada imate proverenu informaciju važnu za sportsku zajednicu Kragujevca.</p>
 
     <div class="contact-list">
-      <article class="contact-item">
+      <article class="contact-item" data-tone="green" data-reveal>
         <h3>Vest i rezultat</h3>
         <p>Pošaljite tačan rezultat, imena klubova i osnovne informacije o događaju.</p>
       </article>
-      <article class="contact-item">
+      <article class="contact-item" data-tone="yellow" data-reveal>
         <h3>Najava događaja</h3>
         <p>Najavite utakmicu, turnir ili lokalni sportski događaj pre njegovog održavanja.</p>
       </article>
-      <article class="contact-item">
+      <article class="contact-item" data-tone="blue" data-reveal>
         <h3>Saradnja i reklame</h3>
         <p>Za partnerske predloge i oglašavanje javite se putem istog Instagram profila.</p>
       </article>
@@ -129,35 +135,45 @@
   </section>
 </main>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="footer-logo-lockup"><img src="/mililogo.png" alt="Kragujevac Sport"/></span>
+<footer class="site-footer">
+  <div class="colorbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap footer-main">
+    <div>
+      <p class="footer-mark"><span>Kragujevac</span><span>Sport</span></p>
+      <p class="footer-tagline">Sve sportske vesti iz Kragujevca i Šumadije, na jednom mestu.</p>
     </div>
-    <div class="footer-copy">
-      © <span id="year"></span> Kragujevac Sport. Sve sportske vesti iz Kragujevca.
-      <span class="footer-credit">
-        By <a href="https://lotifystudio.com" target="_blank" rel="noopener">Lotify Studio</a>
-        &nbsp;·&nbsp;
-        <a href="/privacy-policy.html">Politika privatnosti</a>
-      </span>
-    </div>
-    <div class="footer-socials">
-      <a href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me" aria-label="Instagram profil sportkragujevac">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <circle cx="12" cy="12" r="4.5"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-        </svg>
-      </a>
+    <nav aria-label="Kategorije u podnožju">
+      <p class="footer-h">Sportovi</p>
+      <ul class="footer-links two-col">
+        <li><a href="/?cat=Fudbal" data-tone="green">Fudbal</a></li>
+        <li><a href="/?cat=Ko%C5%A1arka" data-tone="orange">Košarka</a></li>
+        <li><a href="/?cat=Rukomet" data-tone="red">Rukomet</a></li>
+        <li><a href="/?cat=Odbojka" data-tone="yellow">Odbojka</a></li>
+        <li><a href="/?cat=Vaterpolo" data-tone="blue">Vaterpolo</a></li>
+        <li><a href="/?cat=Atletika" data-tone="red">Atletika</a></li>
+        <li><a href="/?cat=Tenis" data-tone="green">Tenis</a></li>
+        <li><a href="/?cat=Ostalo" data-tone="blue">Ostalo</a></li>
+      </ul>
+    </nav>
+    <div>
+      <p class="footer-h">Portal</p>
+      <ul class="footer-links">
+        <li><a href="/kontakt">Kontakt</a></li>
+        <li><a href="/privacy-policy">Politika privatnosti</a></li>
+        <li>
+          <a class="footer-ig" href="https://www.instagram.com/sportkragujevac/" target="_blank" rel="noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+            @sportkragujevac
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
+  <div class="wrap footer-bottom">
+    <span>© <span data-year></span> Kragujevac Sport</span>
+    <span>By <a href="https://lotifystudio.com" target="_blank" rel="noopener">Lotify Studio</a></span>
+  </div>
 </footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-<script src="/js/site-motion.js"></script>
 
 </body>
 </html>
